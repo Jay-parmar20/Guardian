@@ -1,0 +1,186 @@
+"use client";
+
+import type { AwardSlide } from "@/data/audience-marketing";
+import Image from "next/image";
+import { cn } from "@/utils/cn";
+import {
+	forwardRef,
+	useEffect,
+	useImperativeHandle,
+	useRef,
+	useState,
+} from "react";
+
+export type CardStackHandle = {
+	next: () => boolean;
+	prev: () => boolean;
+};
+
+export const CARD_STACK_TRANSITION_MS = 280;
+export const CARD_STACK_TRANSITION_EASING = "cubic-bezier(0.33, 1, 0.38, 1)";
+/** @deprecated Use CARD_STACK_TRANSITION_MS */
+export const CARD_STACK_EXIT_DURATION_MS = CARD_STACK_TRANSITION_MS;
+
+type CardStackProps = {
+	items: AwardSlide[];
+	offset?: number;
+	scaleFactor?: number;
+	className?: string;
+};
+
+function getItemsKey(items: AwardSlide[]) {
+	return items.map((item) => item.id).join("|");
+}
+
+const CardStackInner = forwardRef<CardStackHandle, CardStackProps>(
+	function CardStackInner(
+		{ items, offset = 32, scaleFactor = 0.018, className },
+		ref,
+	) {
+		const [cards, setCards] = useState<AwardSlide[]>(() => [...items]);
+		const [noTransitionId, setNoTransitionId] = useState<
+			string | number | null
+		>(null);
+
+		const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+		useEffect(() => {
+			setCards([...items]);
+			setNoTransitionId(null);
+
+			return () => {
+				if (timeoutRef.current) clearTimeout(timeoutRef.current);
+			};
+		}, [items]);
+
+		// next: front card moves to the back, revealing the following slide
+		const animateNext = () => {
+			if (cards.length <= 1) return false;
+
+			setCards((prev) => {
+				const arr = [...prev];
+				const first = arr.shift();
+
+				if (first) {
+					// important: prevent front card from visibly throwing to back
+					setNoTransitionId(first.id);
+					arr.push(first);
+
+					if (timeoutRef.current) clearTimeout(timeoutRef.current);
+					timeoutRef.current = setTimeout(() => {
+						setNoTransitionId(null);
+					}, 80);
+				}
+
+				return arr;
+			});
+
+			return true;
+		};
+
+		// prev: the previous slide comes back from the rear onto the top of the stack
+		const animatePrev = () => {
+			if (cards.length <= 1) return false;
+
+			setCards((prev) => {
+				const arr = [...prev];
+				const last = arr.pop();
+				if (last) arr.unshift(last);
+				return arr;
+			});
+
+			return true;
+		};
+
+		useImperativeHandle(ref, () => ({
+			next: animateNext,
+			prev: animatePrev,
+		}));
+
+		if (!cards.length) return null;
+
+		return (
+			<div
+				className={cn("relative mt-10 h-full w-full min-w-0 overflow-visible", className)}
+			>
+				<div className="relative h-full w-full overflow-visible">
+					{cards.map((card, index) => {
+						const visible = index < 3;
+						const isNoTransition = noTransitionId === card.id;
+						const inset = index === 0 ? 10 : index === 1 ? 20 : 30;
+
+						return (
+							<div
+								key={card.id}
+								className="absolute inset-0 overflow-hidden rounded-[20px] border border-[#d8d1cc] bg-[#fbfaf7]"
+								style={{
+									top: `${index * -offset}px`,
+									transform: `scale(${1 - index * scaleFactor})`,
+									zIndex: cards.length - index,
+									filter: index === 0 ? "none" : `blur(${index * 1.2}px)`,
+									opacity: visible ? 1 : 0,
+									transformOrigin: "top center",
+									pointerEvents: index === 0 ? "auto" : "none",
+									marginLeft: `${inset}px`,
+									marginRight: `${inset}px`,
+									transition: isNoTransition
+										? "none"
+										: `top ${CARD_STACK_TRANSITION_MS}ms ${CARD_STACK_TRANSITION_EASING}, transform ${CARD_STACK_TRANSITION_MS}ms ${CARD_STACK_TRANSITION_EASING}, opacity ${CARD_STACK_TRANSITION_MS}ms ${CARD_STACK_TRANSITION_EASING}, filter ${CARD_STACK_TRANSITION_MS}ms ${CARD_STACK_TRANSITION_EASING}`,
+
+									willChange: "top, transform, opacity",
+								}}
+							>
+								<div className="relative h-full w-full overflow-hidden">
+									<div
+										className="pointer-events-none absolute inset-0 z-[6] mix-blend-darken"
+										style={{
+											boxShadow: "0 -24px 42px rgba(15, 23, 42, 0.22)",
+										}}
+									>
+										<Image
+											src="/images/awd-bg.svg"
+											alt=""
+											width={407}
+											height={400}
+											className="h-full w-full object-contain opacity-100"
+										/>
+									</div>
+
+									<div className="pointer-events-none absolute inset-x-0 top-[4%] z-[6] flex justify-center opacity-70">
+										<Image
+											src="/images/award-top.png"
+											alt=""
+											width={160}
+											height={120}
+											className="h-auto w-[48%] object-contain"
+										/>
+									</div>
+
+									{/* inset wrapper keeps the photo clear of the top ornament and fully inside the card */}
+									<div className="absolute inset-x-[8%] bottom-[4%] top-[13%] z-10">
+										<Image
+											src={card.imageSrc}
+											alt=""
+											fill
+											className="object-contain object-center"
+											sizes="(max-width: 1024px) 100vw, 520px"
+											priority={index === 0}
+										/>
+									</div>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		);
+	},
+);
+
+export const CardStack = forwardRef<CardStackHandle, CardStackProps>(
+	function CardStack(props, ref) {
+		return (
+			<CardStackInner key={getItemsKey(props.items)} {...props} ref={ref} />
+		);
+	},
+);

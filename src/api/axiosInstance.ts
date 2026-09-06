@@ -1,0 +1,82 @@
+import axios, { isAxiosError } from "axios";
+import {
+  API_BASE_URL,
+  AXIOS_TIMEOUT_MS,
+  resolveAxiosBaseUrl,
+} from "./config";
+import { isAuthenticated, logout } from "@/src/utils/auth";
+import { normalizeApiError } from "@/src/utils/apiErrorHandler";
+import { showError } from "@/src/utils/toast";
+
+export const axiosInstance = axios.create({
+  baseURL: API_BASE_URL,
+  timeout: AXIOS_TIMEOUT_MS,
+  headers: {
+    Accept: "application/json",
+  },
+  validateStatus: (status) => status >= 200 && status < 300,
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  config.baseURL = resolveAxiosBaseUrl();
+  if (isAuthenticated()) {
+    config.headers.set("x-auth", "true");
+  }
+  // Browser must set multipart boundary; a preset Content-Type breaks file uploads.
+  if (typeof FormData !== "undefined" && config.data instanceof FormData) {
+    config.headers.delete("Content-Type");
+  }
+  return config;
+});
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (!isAxiosError(error)) {
+      return Promise.reject(error);
+    }
+
+    const requestUrl = String(error.config?.url ?? "");
+    const isLoginRequest = requestUrl.includes("users/login");
+
+    if (error.response?.status === 401) {
+      if (!isLoginRequest && isAuthenticated()) {
+        logout();
+        showError("Your session has expired. Please sign in again.");
+        if (typeof window !== "undefined") {
+          window.location.assign("/admin/login");
+        }
+      }
+      return Promise.reject(error);
+    }
+
+    const normalized = normalizeApiError(error);
+    const isAdminContext =
+      typeof window !== "undefined" &&
+      window.location.pathname.startsWith("/admin");
+    const isFileUploadRequest =
+      requestUrl.includes("/files/upload") ||
+      requestUrl.includes("/files/bulk-upload");
+    const status = error.response?.status;
+
+    if (status && status >= 500) {
+      showError(normalized.message);
+    } else if (isAdminContext && isFileUploadRequest && status === 413) {
+      const isBulkUpload = requestUrl.includes("/files/bulk-upload");
+      showError(
+        isBulkUpload
+          ? "Upload is too large. Use images under 15 MB each or upload fewer files at once."
+          : "Upload is too large. Use smaller images or upload fewer files at once.",
+      );
+    } else if (!error.response) {
+      // Network / CORS — only toast on admin (marketing pages fail silently + empty states).
+      if (isAdminContext) {
+        showError(normalized.message);
+      }
+    }
+
+    return Promise.reject(error);
+  },
+);
+
+export { API_BASE_URL };

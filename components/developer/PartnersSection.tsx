@@ -1,0 +1,130 @@
+import { ScrollReveal } from "@/components/animations/ScrollReveal";
+import { StaggerContainer } from "@/components/animations/StaggerContainer";
+import type {
+  PartnerLogo,
+  PartnersSectionContent,
+} from "@/data/audience-marketing";
+import { Container } from "@/components/common/Container";
+import { MarketingEnquireLink } from "@/components/ui/MarketingEnquireLink";
+import { marketingSection } from "@/styles/marketingClasses";
+import { cn } from "@/utils/cn";
+import Image from "next/image";
+
+import "./partners-marquee.css";
+import { OutlineArrowButton } from "../common/OutlineArrowButton";
+import {
+  audienceMarketingOutlineCtaClass,
+  audienceMarketingOutlineCtaIconClass,
+} from "@/styles/audienceMarketingCenter";
+
+export function PartnersSection({
+  content,
+  isBuyer,
+  headingClassName,
+}: {
+  isBuyer: boolean;
+  content: PartnersSectionContent;
+  headingClassName?: string;
+}) {
+  return (
+    <section
+      className={cn(
+        "relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-brand-background-subtle py-4 md:py-7 lg:py-12",
+      )}
+      aria-labelledby="partners-heading"
+    >
+      <ScrollReveal direction="up" delay={0.08} distance={24}>
+        <div className="relative mt-10 overflow-x-clip">
+          <div className="space-y-4">
+            <LogoRow items={[...content.row1]} direction="lr" />
+            <LogoRow items={[...content.row2]} direction="rl" />
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <Container>
+        <StaggerContainer className="mt-12 flex flex-col items-center justify-center gap-4 px-1 sm:mt-16 sm:flex-row sm:flex-wrap sm:gap-6" staggerChildren={0.14}>
+          <ScrollReveal direction="up" delay={0.08} distance={20}>
+            <OutlineArrowButton
+              href={content.ctaHref}
+              iconClassName={audienceMarketingOutlineCtaIconClass}
+              className={audienceMarketingOutlineCtaClass}
+            >
+              READ MORE
+            </OutlineArrowButton>
+          </ScrollReveal>
+        </StaggerContainer>
+      </Container>
+    </section>
+  );
+}
+
+/** Two identical halves (each half = repeated logo sets) so translate -50% loops without a visible seam. */
+function buildMarqueeLoop(items: readonly PartnerLogo[]) {
+  if (items.length === 0) return [];
+  const repeatsPerHalf = items.length <= 4 ? 4 : 2;
+  const half: PartnerLogo[] = [];
+  for (let r = 0; r < repeatsPerHalf; r++) {
+    half.push(...items);
+  }
+  return [...half, ...half];
+}
+
+function LogoRow({
+  items,
+  direction,
+}: {
+  items: readonly PartnerLogo[];
+  direction: "lr" | "rl";
+}) {
+  const loop = buildMarqueeLoop(items);
+
+  return (
+    <div className="partners-marquee__viewport" aria-hidden role="presentation">
+      <ul
+        className={cn(
+          "partners-marquee__track",
+          direction === "lr"
+            ? "partners-marquee__track--lr"
+            : "partners-marquee__track--rl",
+        )}
+      >
+        {loop.map((item, i) => (
+          <li key={`${item.src}-${i}`} className="shrink-0">
+            <LogoTile item={item} decorative />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** Figma: outer card 223×95 (w×h); inner padding 20px horizontal, 10px vertical. */
+
+function LogoTile({
+  item,
+  decorative,
+}: {
+  item: PartnerLogo;
+  decorative?: boolean;
+}) {
+  return (
+    <div
+      className={cn(
+        "relative shrink-0 overflow-hidden rounded-sm border border-black/6 bg-white shadow-sm",
+        "aspect-245/95 max-w-55.75",
+        "w-[8.5rem] sm:w-[9.5rem] md:w-[10.75rem] lg:w-[13.9375rem]",
+      )}
+    >
+      <div className="absolute inset-[8px_12px] sm:inset-[9px_16px] lg:inset-[10px_20px]">
+        <Image
+          src={item.src}
+          alt={decorative ? "" : item.alt}
+          fill
+          sizes="(max-width: 639px) 136px, (max-width: 768px) 160px, 223px"
+          className="object-contain object-center"
+        />
+      </div>
+    </div>
+  );
+}

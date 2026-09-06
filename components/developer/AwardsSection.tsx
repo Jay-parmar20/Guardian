@@ -1,0 +1,171 @@
+"use client";
+
+import type { AwardsSectionContent } from "@/data/audience-marketing";
+import {
+	CARD_STACK_TRANSITION_MS,
+	CardStack,
+	type CardStackHandle,
+} from "@/components/ui/card-stack";
+import { CarouselControls } from "@/components/ui/CarouselControls";
+import { SectionSurface } from "@/components/ui/SectionSurface";
+import { cn } from "@/utils/cn";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+
+export function AwardsSection({
+	content,
+	isBuyer,
+}: {
+	isBuyer: boolean;
+	content: AwardsSectionContent;
+}) {
+	const slidesKey = content.slides.map((slide) => slide.id).join("|");
+
+	return (
+		<AwardsSectionBody key={slidesKey} content={content} isBuyer={isBuyer} />
+	);
+}
+
+function AwardsSectionBody({
+	content,
+	isBuyer: _isBuyer,
+}: {
+	isBuyer: boolean;
+	content: AwardsSectionContent;
+}) {
+	const total = content.slides.length;
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const [isTransitioning, setIsTransitioning] = useState(false);
+	const cardStackRef = useRef<CardStackHandle>(null);
+	const contentTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+	useEffect(() => {
+		return () => {
+			if (contentTimerRef.current) {
+				clearTimeout(contentTimerRef.current);
+			}
+		};
+	}, []);
+
+	if (!content.slides.length) return null;
+
+	const slide = content.slides[currentIndex]!;
+
+	const beginTransition = (direction: 1 | -1) => {
+		if (contentTimerRef.current) {
+			clearTimeout(contentTimerRef.current);
+		}
+
+		setIsTransitioning(true);
+		setCurrentIndex((prev) =>
+			direction === 1 ? (prev + 1) % total : (prev - 1 + total) % total,
+		);
+		contentTimerRef.current = setTimeout(() => {
+			contentTimerRef.current = null;
+			setIsTransitioning(false);
+		}, CARD_STACK_TRANSITION_MS);
+	};
+
+	const goNext = () => {
+		if (isTransitioning) return;
+		if (cardStackRef.current?.next()) {
+			beginTransition(1);
+		}
+	};
+
+	const goPrev = () => {
+		if (isTransitioning) return;
+		if (cardStackRef.current?.prev()) {
+			beginTransition(-1);
+		}
+	};
+
+	return (
+		<SectionSurface
+			variant="stats"
+			aria-labelledby="awards-heading"
+			className="border-t-0 border-b-0 bg-transparent"
+		>
+			<div className="grid min-w-0 gap-12 lg:grid-cols-12 lg:items-stretch lg:gap-10 xl:gap-14 2xl:gap-16">
+				{/* Left: heading */}
+				<div className="flex w-full min-w-0 flex-col items-center text-center lg:col-span-3 lg:items-start lg:text-left">
+					<Image
+						src={content.starIconSrc}
+						alt=""
+						width={90}
+						height={75}
+						className="w-auto shrink-0 object-cover object-center lg:object-left"
+					/>
+					<h2
+						id="awards-heading"
+						className={cn(
+							"qs-reg mt-10 md:mt-30",
+							"w-full min-w-0 max-w-full px-0",
+							"text-balance uppercase text-[#202225]",
+							"max-sm:text-[25px] max-sm:leading-[1.35] max-sm:tracking-[0.06em]",
+							"sm:leading-tight sm:tracking-[0.08em]",
+							"sm:text-[clamp(1.35rem,calc(0.55rem+2.4vw),2.35rem)]",
+							"lg:fs-50 lg:lh-50 lg:tracking-[0.08em]",
+						)}
+					>
+						{content.headingLine1}
+						<br />
+						{content.headingLine2}
+					</h2>
+				</div>
+
+				{/* Center: card stack — top peek needs overflow-visible; horizontal inset via px */}
+				<div className="relative flex w-full min-w-0 justify-center px-4 xs:px-5 sm:px-6 lg:col-span-5 lg:px-0 lg:pl-10">
+					<div
+						className="relative mx-auto w-full max-w-[385px]"
+						style={{
+							aspectRatio: "385 / 459",
+							height: "500px",
+							maxHeight: "none",
+							clipPath: "inset(-60px 0 0 0)",
+						}}
+					>
+						<CardStack
+							ref={cardStackRef}
+							items={content.slides}
+							className="h-full w-full"
+							offset={24}
+							scaleFactor={0.018}
+						/>
+					</div>
+				</div>
+
+				{/* Right: text + controls */}
+				<div className="flex min-h-0 w-full min-w-0 flex-col items-center text-center lg:col-span-4 lg:h-full lg:items-stretch lg:text-left">
+					<div className="mb-8 flex w-full shrink-0 justify-center lg:mb-10 lg:justify-start">
+						<CarouselControls
+							currentIndex={currentIndex}
+							total={total}
+							onPrev={goPrev}
+							onNext={goNext}
+							disabled={isTransitioning}
+							prevLabel="Previous award"
+							nextLabel="Next award"
+							buttonClassName="cursor-pointer border-0  bg-transparent hover:bg-transparent"
+							counterClassName="min-w-[2.75rem] px-2 text-[#141414] sm:text-lg"
+						/>
+					</div>
+
+					<div className="flex min-h-0 w-full min-w-0 flex-1 flex-col justify-between gap-6 lg:mt-25">
+						<div className="w-full min-w-0">
+							<p className="n-bold m-0 text-[clamp(0.875rem,2.5vw,1.125rem)] uppercase tracking-[0.05em] text-[#161616] sm:text-[18px]">
+								{slide.company}
+							</p>
+							<p className="n-bold m-0 text-[clamp(1.5rem,6vw,2.25rem)] tracking-[0.02em] text-[#161616] sm:text-[36px]">
+								{slide.achievement}
+							</p>
+						</div>
+						<p className="fw-600 n-bold m-0 text-[14px] uppercase tracking-[0.2em] text-brand-text-secondary lg:mb-5">
+							{slide.year}
+						</p>
+					</div>
+				</div>
+			</div>
+		</SectionSurface>
+	);
+}
