@@ -1037,12 +1037,12 @@ function PartnersHero({
   return (
     <section
       className={cn(
-        marketingFirstSectionHeightClass(heightPx),
-        "partners-hero-section relative w-full min-w-0 overflow-x-clip",
+        "partners-hero-section relative w-full min-w-0 overflow-hidden bg-[#111]",
+        "h-auto aspect-[1440/513] lg:h-[600px] lg:aspect-auto",
+        "[&_img]:!object-contain lg:[&_img]:!object-cover [&_img]:!object-center",
         heroNavOverlapClass(shiftUnderHeader, shiftTillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(heightPx)}
       aria-labelledby={config["headingId"] as string}
     >
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -1050,7 +1050,7 @@ function PartnersHero({
           src={config["backgroundImage"] as string}
           alt={(config["imageAlt"] as string) || ""}
           fill
-          className="object-cover object-center"
+          className="object-contain object-center lg:object-cover"
           sizes="100vw"
           priority
         />

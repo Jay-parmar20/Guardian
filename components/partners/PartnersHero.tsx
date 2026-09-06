@@ -9,8 +9,8 @@ type PartnersHeroProps = Omit<
 
 const defaultProps: Partial<PartnersHeroProps> = {
   heightPx: 600,
-  mobileHeightPx: 400,
-  useViewportHeightFlag: true,
+  mobileHeightPx: undefined,
+  useViewportHeightFlag: false,
   viewportHeightBreakpointPx: 1024,
   shiftExtraContentTopPx: 0,
   shiftUnderHeader: false,
