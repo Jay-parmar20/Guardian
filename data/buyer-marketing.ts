@@ -1,12 +1,11 @@
 import {
   SERVICES,
-  CONTACT,
   partnersBand,
   PROJECTS_ONGOING,
 } from "./audience-marketing-shared";
 import { getAudienceHero } from "@/utils/marketing-hero";
 import type { DeveloperStat, LandmarkProject, MarketingPageContent } from "./audience-marketing-types";
-import { DEV_LANDMARK_COMPLETED, DEVELOPER_MARKETING_PAGE, PLACEHOLDER_SERVICE_DESC } from "./developer-marketing";
+import { DEVELOPER_MARKETING_PAGE } from "./developer-marketing";
 
 
 export const DEV_LANDMARK_ONGOING: LandmarkProject[] = [

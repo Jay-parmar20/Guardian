@@ -1,7 +1,6 @@
 import { StaggerContainer } from "@/components/animations/StaggerContainer";
 import { SplitSection } from "@/components/sections/our-brand/SplitSection";
 import Image from "next/image";
-import { cn } from "@/utils/cn";
 import { BrandNavRow } from "./BrandNavRow";
 
 const brands = [

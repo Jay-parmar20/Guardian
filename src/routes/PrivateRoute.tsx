@@ -23,11 +23,11 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
     if (!isAuthenticated()) {
       const next = encodeURIComponent(pathname || ROUTES.adminDashboard);
       router.replace(`${ROUTES.adminLogin}?next=${next}`);
-      setAllowed(false);
+      setAllowed(false); // eslint-disable-line react-hooks/set-state-in-effect
     } else {
-      setAllowed(true);
+      setAllowed(true);  
     }
-    setReady(true);
+    setReady(true);  
   }, [router, pathname]);
 
   if (!ready) {

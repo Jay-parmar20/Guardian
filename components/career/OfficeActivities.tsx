@@ -1,7 +1,6 @@
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { StaggerContainer } from "@/components/animations/StaggerContainer";
 import { Container } from "@/components/common/Container";
-import { localImageByIndex } from "@/lib/local-images";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 

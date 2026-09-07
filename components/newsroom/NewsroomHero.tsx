@@ -6,7 +6,7 @@ export function NewsroomHero() {
   return (
     <MarketingPageHero
       heroId="newsroom"
-      heightPx={600}
+      heightPx={650}
       mobileHeightPx={400}
       useViewportHeightFlag
       viewportHeightBreakpointPx={VIEWPORT_HEIGHT_BREAKPOINT_PX}

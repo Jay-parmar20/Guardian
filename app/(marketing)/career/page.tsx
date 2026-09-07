@@ -14,7 +14,9 @@ export const metadata: Metadata = {
 export default function CareerPage() {
   return (
     <>
-      <CareerHero />
+      <section className="lg:h-[650px]">
+        <CareerHero />
+      </section>
       <LifeAtGuardians />
       <ReasonsToJoin />
       <CurrentOpportunity />

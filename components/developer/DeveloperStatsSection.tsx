@@ -1,10 +1,6 @@
 "use client";
 
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
-import {
-  IconChevronLeft,
-  IconChevronRight,
-} from "@/components/common/icons";
 import { SectionSurface } from "@/components/ui/SectionSurface";
 import {
   type DeveloperStat,

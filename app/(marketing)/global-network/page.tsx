@@ -13,18 +13,20 @@ export const metadata: Metadata = {
 export default function GlobalNetworkPage() {
   return (
     <>
-      <MarketingPageHero
-        heroId="globalNetwork"
-        heightPx={600}
-        mobileHeightPx={400}
-        useViewportHeightFlag
-        viewportHeightBreakpointPx={1024}
-        shiftUnderHeader={false}
-        shiftTillSearch={false}
-        shiftExtraContentTopPx={100}
-        mobileShiftExtraContentTopPx={50}
-        negativePadding={50}
-      />
+      <section className="lg:h-[650px]">
+        <MarketingPageHero
+          heroId="globalNetwork"
+          heightPx={650}
+          mobileHeightPx={400}
+          useViewportHeightFlag
+          viewportHeightBreakpointPx={1024}
+          shiftUnderHeader={false}
+          shiftTillSearch={false}
+          shiftExtraContentTopPx={100}
+          mobileShiftExtraContentTopPx={50}
+          negativePadding={50}
+        />
+      </section>
       <InternationalSales />
       <GlobalNetworks heading="WHAT WE DO" showKnowMore={false} />
       <MarketsWeServe />

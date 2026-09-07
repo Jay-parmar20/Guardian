@@ -34,7 +34,6 @@ export interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
 export function Container({
   className,
   children,
-  gutter = "both",
   ...props
 }: ContainerProps) {
   return (

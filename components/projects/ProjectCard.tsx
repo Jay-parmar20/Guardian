@@ -59,7 +59,7 @@ export function ProjectCard({
   const [imageFailed, setImageFailed] = useState(false);
 
   useEffect(() => {
-    setImageFailed(false);
+    setImageFailed(false); // eslint-disable-line react-hooks/set-state-in-effect
   }, [imageSrc]);
 
   const badgeClass =

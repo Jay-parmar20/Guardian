@@ -12,14 +12,6 @@ type Branch = {
   mapUrl: string;
 };
 
-function branchMapUrl(addressLines: readonly string[]): string {
-  const query = addressLines
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .join(", ");
-  return `https://maps.google.com/?q=${encodeURIComponent(query)}`;
-}
-
 const BRANCHES: Branch[] = [
   {
     name: "Mumbai",

@@ -90,12 +90,12 @@ export function DownloadModal({
 
   useEffect(() => {
     if (!isOpen) return;
-    resetForm();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    resetForm(); // eslint-disable-line react-hooks/set-state-in-effect
+     
   }, [isOpen, issueTitle]);
 
   useEffect(() => {
-    if (userType !== "employee") setDesignation("");
+    if (userType !== "employee") setDesignation(""); // eslint-disable-line react-hooks/set-state-in-effect
   }, [userType]);
 
   if (!isOpen) return null;

@@ -5,7 +5,7 @@ import type { ComponentProps } from "react";
 type GazetteHeroProps = Omit<ComponentProps<typeof MarketingPageHero>, "heroId" | "projectsStage">;
 
 const defaultProps: Partial<GazetteHeroProps> = {
-  heightPx: 600,
+  heightPx: 650,
   mobileHeightPx: 400,
   useViewportHeightFlag: true,
   viewportHeightBreakpointPx: 1024,

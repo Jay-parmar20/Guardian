@@ -16,11 +16,14 @@ export function HomeVisitLeadCaptureModal() {
   const isHome = pathname === "/";
 
   const [isOpen, setIsOpen] = useState(false);
-  const [hasCheckedStorage, setHasCheckedStorage] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    if (!isHome) return;
-    setHasCheckedStorage(true);
+    if (!isHome) {
+      setReady(false); // eslint-disable-line react-hooks/set-state-in-effect
+      return;
+    }
+    setReady(true);  
     if (hasSubmittedVisitForm()) return;
 
     const timer = window.setTimeout(() => {
@@ -36,7 +39,7 @@ export function HomeVisitLeadCaptureModal() {
     setIsOpen(false);
   }, []);
 
-  if (!isHome || !hasCheckedStorage) {
+  if (!isHome || !ready) {
     return null;
   }
 

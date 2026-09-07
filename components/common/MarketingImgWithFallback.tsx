@@ -35,7 +35,6 @@ export function MarketingImgWithFallback({
   width,
   height,
   priority,
-  unoptimized: _unoptimized,
   onError,
   ...rest
 }: MarketingImgWithFallbackProps) {

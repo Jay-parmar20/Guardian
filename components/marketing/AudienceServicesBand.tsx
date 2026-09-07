@@ -57,10 +57,8 @@ export function AudienceServicesBand({
   }, [total]);
 
   useEffect(() => {
-    if (currentIndex >= total) {
-      setCurrentIndex(Math.max(0, total - 1));
-    }
-  }, [currentIndex, total]);
+    setCurrentIndex((prev) => (prev >= total ? Math.max(0, total - 1) : prev)); // eslint-disable-line react-hooks/set-state-in-effect
+  }, [total]);
 
   const goPrev = () => setCurrentIndex((idx) => Math.max(0, idx - 1));
   const goNext = () =>

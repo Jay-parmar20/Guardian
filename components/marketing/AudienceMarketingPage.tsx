@@ -38,7 +38,7 @@ export function AudienceMarketingPage({
       <AudienceHero
         key={content.hero.ariaHeadingId}
         content={content.hero}
-        heightPx={content.heroHeightPx ?? 600}
+        heightPx={content.heroHeightPx ?? 650}
         mobileHeightPx={content.heroMobileHeightPx ?? 400}
         useViewportHeightFlag
         viewportHeightBreakpointPx={VIEWPORT_HEIGHT_BREAKPOINT_PX}

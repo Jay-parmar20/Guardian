@@ -13,9 +13,6 @@ const VISIBLE_COUNT = 4;
 /** Match `sm:` breakpoint — mobile shows one testimonial per carousel step. */
 const MOBILE_CAROUSEL_BREAKPOINT_PX = 640;
 
-const partnerLogo = (group: number) =>
-  `/images/partners/logos/Group ${group}.png`;
-
 export type PartnersTestimonial = {
   id: string;
   brandLogoSrc: string;

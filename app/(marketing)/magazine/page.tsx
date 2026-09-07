@@ -1,4 +1,3 @@
-import { MagazineGrid } from "@/components/magazine/MagazineGrid";
 import { MagazineHero } from "@/components/magazine/MagazineHero";
 import type { Metadata } from "next";
 import { MagazineGridHardCoded } from "@/components/magazine/MagazineGridHardCoded";

@@ -12,7 +12,9 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <ContactHero />
+      <section className="lg:h-[650px]">
+        <ContactHero />
+      </section>
       <ContactFormPanel />
       <NationalGlobalPresence />
     </>

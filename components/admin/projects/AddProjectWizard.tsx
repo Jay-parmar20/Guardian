@@ -25,7 +25,6 @@ import { AmenityImageByFileId } from "@/components/common/AmenityImageByFileId";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {
-  LEGACY_AMENITY_IMAGE_IDS,
   LOCAL_AMENITY_IMAGE_FILE_ID,
   isCustomAmenityKey,
   isPresetAmenityKey,
@@ -44,7 +43,6 @@ import {
   presetImageSrc,
   type ProjectAmenityPreset,
 } from "@/lib/admin/projectAmenityPresets";
-import { resolveApiAssetUrl } from "@/lib/api/resolveAssetUrl";
 import { cn } from "@/utils/cn";
 import {
   ALLOWED_UPLOAD_IMAGE_ACCEPT,
@@ -386,20 +384,6 @@ function parsePrice(value: string) {
   const parsed = Number(normalized);
 
   return Number.isFinite(parsed) ? parsed : 0;
-}
-
-function parseInteger(value: string) {
-  const normalized = value.replace(/[^0-9]/g, "");
-  const parsed = Number(normalized);
-  return Number.isFinite(parsed) ? parsed : 0;
-}
-
-/** Positive integer for optional API fields; omit nulls instead of sending 0 when empty. */
-function parseOptionalPositiveInt(raw: string): number | null {
-  const t = raw.trim();
-  if (!t) return null;
-  const n = parseInt(t.replace(/[^0-9]/g, ""), 10);
-  return Number.isFinite(n) && n >= 0 ? n : null;
 }
 
 /** Non‑negative decimal for carpet/built‑up area etc. */

@@ -2,8 +2,6 @@
 
 import { Container } from "@/components/common/Container";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
-import { GradientCtaButton } from "@/components/common/GradientCtaButton";
-import { MarketingEnquireLink } from "@/components/ui/MarketingEnquireLink";
 import type { MarketingHeroContent } from "@/data/audience-marketing-types";
 import { LOCAL_IMAGES } from "@/lib/local-images";
 import { cn } from "@/utils/cn";
@@ -13,7 +11,6 @@ import {
   useMarketingHeroViewport,
 } from "@/hooks/useMarketingHeroViewport";
 import { getMarketingHeroConfig, type MarketingHeroId } from "@/utils/marketing-hero";
-import { useViewportIsMobile } from "@/hooks/useViewportIsMobile";
 import { useEffect, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { OutlineArrowButton } from "../common/OutlineArrowButton";
@@ -113,17 +110,11 @@ const HERO_BG_IMAGE_CLASS = "object-cover object-center";
 /** Ongoing/completed listing hero photo — cover on mobile; fill Figma artboard on desktop (avoids harsh center-crop). */
 const PROJECTS_HERO_PHOTO_CLASS =
   "object-cover object-center";
-const ONGOING_HERO_TEXTURE_SRC = "/images/ongoing-bg.svg";
 
 /**
  * Hero typography: stepped fluid type below `lg`, fixed 70px / 18px at laptop+.
  * Clamps use `max-lg:` so they never override `lg:text-[70px]`.
  */
-const HERO_TITLE_CLAMP_DEFAULT = cn(
-  "max-lg:text-[clamp(1.25rem,calc(0.45rem+5.5vw),2.25rem)] max-lg:leading-[1.1]",
-  "sm:max-lg:text-[clamp(1.5rem,calc(0.6rem+4.5vw),2.5rem)]",
-  "md:max-lg:text-[clamp(1.75rem,calc(0.7rem+3.5vw),2.875rem)]",
-);
 const HERO_TITLE_CLAMP_HOME = cn(
   "max-lg:text-[clamp(1.15rem,calc(0.4rem+6vw),2rem)] max-lg:leading-none",
   "sm:max-lg:text-[clamp(1.35rem,calc(0.45rem+5.5vw),2.5rem)]",
@@ -617,7 +608,7 @@ function HomeHero({
   );
   const heightClasses = marketingViewportHeightSection(
     true, // useViewportHeightFlag
-    600, // desktopHeightPx
+    650, // desktopHeightPx
     400, // mobileHeightPx
     heightPx, // resolvedHeightPx
   );
@@ -742,7 +733,7 @@ function OverlayTitleHero({
   );
   const heightClasses = marketingViewportHeightSection(
     true, // useViewportHeightFlag
-    600, // desktopHeightPx
+    650, // desktopHeightPx
     400, // mobileHeightPx
     heightPx, // resolvedHeightPx
   );
@@ -831,7 +822,7 @@ function ContactHero({
   );
   const heightClasses = marketingViewportHeightSection(
     true, // useViewportHeightFlag
-    600, // desktopHeightPx
+    650, // desktopHeightPx
     400, // mobileHeightPx
     heightPx, // resolvedHeightPx
   );
@@ -911,7 +902,7 @@ function CareerHero({
   );
   const heightClasses = marketingViewportHeightSection(
     true, // useViewportHeightFlag
-    600, // desktopHeightPx
+    650, // desktopHeightPx
     400, // mobileHeightPx
     heightPx, // resolvedHeightPx
   );
@@ -992,7 +983,7 @@ function NewsroomHero({
   );
   const heightClasses = marketingViewportHeightSection(
     true, // useViewportHeightFlag
-    600, // desktopHeightPx
+    650, // desktopHeightPx
     400, // mobileHeightPx
     heightPx, // resolvedHeightPx
   );
@@ -1049,8 +1040,8 @@ function PartnersHero({
   heightPx,
   shiftUnderHeader,
   shiftTillSearch,
-  contentExtraTopPx,
-  negativePadding,
+  contentExtraTopPx: _contentExtraTopPx,
+  negativePadding: _negativePadding,
 }: {
   className?: string;
   config: Record<string, unknown>;
@@ -1060,13 +1051,9 @@ function PartnersHero({
   contentExtraTopPx: number;
   negativePadding?: MarketingHeroNegativeContentShift;
 }) {
-  const contentPad = mergeNegativeContentPad(
-    negativePadding,
-    getHeroContentPad(Boolean(shiftUnderHeader), Boolean(shiftTillSearch), contentExtraTopPx),
-  );
   const heightClasses = marketingViewportHeightSection(
     true, // useViewportHeightFlag
-    600, // desktopHeightPx
+    650, // desktopHeightPx
     400, // mobileHeightPx
     heightPx, // resolvedHeightPx
   );
@@ -1123,7 +1110,7 @@ function PublicationHeroView({
   );
   const heightClasses = marketingViewportHeightSection(
     true, // useViewportHeightFlag
-    600, // desktopHeightPx
+    650, // desktopHeightPx
     400, // mobileHeightPx
     heightPx, // resolvedHeightPx
   );
@@ -1211,7 +1198,7 @@ function TgreaHero({
   const title = (config["title"] as string) || "";
   const heightClasses = marketingViewportHeightSection(
     true, // useViewportHeightFlag
-    600, // desktopHeightPx
+    650, // desktopHeightPx
     400, // mobileHeightPx
     heightPx, // resolvedHeightPx
   );
@@ -1287,7 +1274,7 @@ function ServicesHero({
   );
   const heightClasses = marketingViewportHeightSection(
     true, // useViewportHeightFlag
-    600, // desktopHeightPx
+    650, // desktopHeightPx
     400, // mobileHeightPx
     heightPx, // resolvedHeightPx
   );
@@ -1316,7 +1303,7 @@ function ServicesHero({
         <div className="flex flex-col items-center gap-4">
           <h1
             id={config["headingId"] as string}
-            className="qs-reg font-normal text-[35px] leading-[35px] lg:text-[70px] lg:leading-[70px] tracking-[0.05em] text-[#202225] uppercase text-center"
+            className="qs-reg font-normal text-[28px] leading-[28px] sm:text-[35px] sm:leading-[35px] lg:text-[70px] lg:leading-[70px] tracking-[0.05em] text-[#202225] uppercase text-center whitespace-nowrap"
           >
             {config["title"] as string}
           </h1>
@@ -1362,7 +1349,7 @@ function AboutHero({
   const heading = config["headingHtml"] as { prefix: string; rest: string };
   const heightClasses = marketingViewportHeightSection(
     true, // useViewportHeightFlag
-    600, // desktopHeightPx
+    650, // desktopHeightPx
     400, // mobileHeightPx
     heightPx, // resolvedHeightPx
   );
@@ -1458,7 +1445,7 @@ function ProjectsHeroSection({
   }, [src]);
   const heightClasses = marketingViewportHeightSection(
     true, // useViewportHeightFlag
-    600, // desktopHeightPx
+    650, // desktopHeightPx
     400, // mobileHeightPx
     heightPx, // resolvedHeightPx
   );

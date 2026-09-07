@@ -68,7 +68,6 @@ type UserType = "buyer" | "developer" | "other";
 
 function RadioOption({
   label,
-  value,
   selected,
   onClick,
 }: {

@@ -7,5 +7,9 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <AudienceMarketingPage content={HOME_MARKETING_PAGE} />;
+  return (
+    <section className="lg:h-[650px]">
+      <AudienceMarketingPage content={HOME_MARKETING_PAGE} />
+    </section>
+  );
 }

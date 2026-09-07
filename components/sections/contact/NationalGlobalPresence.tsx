@@ -100,12 +100,11 @@ export function NationalGlobalPresence() {
           </div>
 
           {/* Right — Map */}
-          <div className="h-[300px] w-full overflow-hidden rounded-sm bg-neutral-200 sm:h-[380px] lg:h-[420px]">
+          <div className="h-[300px] w-full overflow-visible rounded-sm bg-neutral-200 sm:h-[380px] lg:h-[336px]">
             <iframe
               key={selected.embedUrl}
               src={selected.embedUrl}
-              width="100%"
-              height="100%"
+              className="h-full w-[calc(100%+200px)] -ml-[200px]"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"

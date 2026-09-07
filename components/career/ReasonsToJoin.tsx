@@ -56,20 +56,6 @@ const REASONS: ReasonCard[] = [
   },
 ];
 
-function ReasonCardArrow() {
-  return (
-    <svg width="51" height="12" viewBox="0 0 51 12" fill="none" aria-hidden>
-      <path
-        d="M0 6H49M49 6L44 1M49 6L44 11"
-        stroke="#000000"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export function ReasonCard({
   card,
   variant = "desktop",

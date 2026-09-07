@@ -1,7 +1,6 @@
 "use client";
 
 import { Container } from "@/components/common/Container";
-import { GradientCtaButton } from "@/components/common/GradientCtaButton";
 import { MarketingPageHero } from "@/components/marketing/MarketingPageHero";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { StaggerContainer } from "@/components/animations/StaggerContainer";
@@ -379,7 +378,6 @@ function ProjectsPageContent() {
   const [projects, setProjects] = useState<ProjectRow[]>([]);
   const [listLoading, setListLoading] = useState(true);
   const [listError, setListError] = useState<string | null>(null);
-  const [listTotal, setListTotal] = useState(0);
 
   const builderFilterOptions = useBuilderFilterOptions(projects);
 
@@ -405,8 +403,7 @@ function ProjectsPageContent() {
           with: "files",
         });
         if (cancelled) return;
-        const { items, total } = parseProjectListResponse(raw);
-        setListTotal(total);
+        const { items } = parseProjectListResponse(raw);
         setProjects(items.map(mapApiProjectListItemToRow));
       } catch (e) {
         if (!cancelled) {
@@ -487,17 +484,18 @@ function ProjectsPageContent() {
   }
   return (
     <main>
-      <MarketingPageHero
-        heroId="projects"
-        projectsStage={filterStage === "Completed" ? "Completed" : "Ongoing"}
-        heightPx={600}
-        mobileHeightPx={400}
-        useViewportHeightFlag
-        viewportHeightBreakpointPx={VIEWPORT_HEIGHT_BREAKPOINT_PX}
-        shiftUnderHeader
-        shiftTillSearch={false}
-        shiftExtraContentTopPx={100}
-        mobileShiftExtraContentTopPx={50}
+      <section className="lg:h-[650px]">
+        <MarketingPageHero
+          heroId="projects"
+          projectsStage={filterStage === "Completed" ? "Completed" : "Ongoing"}
+          heightPx={650}
+          mobileHeightPx={400}
+          useViewportHeightFlag
+          viewportHeightBreakpointPx={VIEWPORT_HEIGHT_BREAKPOINT_PX}
+          shiftUnderHeader
+          shiftTillSearch={false}
+          shiftExtraContentTopPx={100}
+          mobileShiftExtraContentTopPx={50}
         negativePadding={50}
         mobileNegativePadding={50}
       />
@@ -726,7 +724,7 @@ function ProjectsPageContent() {
   );
 }
 
-export default function ProjectsPage(props: object) {
+export default function ProjectsPage() {
   return (
     <Suspense
       fallback={<AppPageSkeleton />}

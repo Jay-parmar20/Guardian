@@ -8,7 +8,7 @@ type PartnersHeroProps = Omit<
 >;
 
 const defaultProps: Partial<PartnersHeroProps> = {
-  heightPx: 600,
+  heightPx: 650,
   mobileHeightPx: 400,
   useViewportHeightFlag: true,
   viewportHeightBreakpointPx: 1024,

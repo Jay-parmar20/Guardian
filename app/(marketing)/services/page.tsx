@@ -11,7 +11,9 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <ServicesHero audience="developer" />
+      <section className="lg:h-[650px]">
+        <ServicesHero audience="developer" />
+      </section>
       <DeveloperServicesAlternatingLayout />
     </>
   );

@@ -161,7 +161,6 @@ export function CurrentOpportunity() {
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
-    const sync = () => setItemsPerView(mq.matches ? 4 : mq.matches ? 2 : 1);
     const syncExact = () => {
       if (window.innerWidth >= 1024) setItemsPerView(4);
       else if (window.innerWidth >= 640) setItemsPerView(2);

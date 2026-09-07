@@ -1,4 +1,3 @@
-import { Container } from "@/components/common/Container";
 import { OutlineArrowButton } from "@/components/common/OutlineArrowButton";
 import { cn } from "@/utils/cn";
 import Image from "next/image";

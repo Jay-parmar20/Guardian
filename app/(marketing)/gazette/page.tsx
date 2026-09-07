@@ -1,4 +1,3 @@
-import { GazetteGrid } from "@/components/gazette/GazetteGrid";
 import { GazetteHero } from "@/components/gazette/GazetteHero";
 import type { Metadata } from "next";
 import { GazetteGridHardCoded } from "@/components/gazette/GazetteGridHardCoded";

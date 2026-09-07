@@ -824,7 +824,6 @@ export function ArticlesPageContent() {
   const [lastPage, setLastPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     let isMounted = true;
@@ -871,7 +870,7 @@ export function ArticlesPageContent() {
     return () => {
       isMounted = false;
     };
-  }, [currentPage, appliedTypeFilter, appliedYearFilter, reloadKey]);
+  }, [currentPage, appliedTypeFilter, appliedYearFilter]);
 
   function handleApplyFilter() {
     setAppliedTypeFilter(draftTypeFilter);

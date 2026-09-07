@@ -2,7 +2,6 @@
 
 import { Container } from "@/components/common/Container";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
-import { cn } from "@/utils/cn";
 
 interface StatItem {
   value: string;

@@ -1,4 +1,3 @@
-import { GradientCtaButton } from "@/components/common/GradientCtaButton";
 import { cn } from "@/utils/cn";
 import { heroTitleTypography } from "./heroResponsiveClasses";
 import { OutlineArrowButton } from "@/components/common/OutlineArrowButton";

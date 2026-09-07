@@ -9,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function BuyerPage() {
-  return <AudienceMarketingPage content={BUYER_MARKETING_PAGE} />;
+  return (
+    <section className="lg:h-[650px]">
+      <AudienceMarketingPage content={BUYER_MARKETING_PAGE} />
+    </section>
+  );
 }

@@ -16,7 +16,7 @@ export function HeroSection() {
       useViewportHeightFlag
       viewportHeightBreakpointPx={VIEWPORT_HEIGHT_BREAKPOINT_PX}
       mobileHeightPx={400}
-      heightPx={600}
+      heightPx={650}
       negativePadding={50}
       mobileNegativePadding={50}
     />

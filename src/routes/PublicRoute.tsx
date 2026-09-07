@@ -21,11 +21,11 @@ export function PublicRoute({ children }: PublicRouteProps) {
   useEffect(() => {
     if (isAuthenticated()) {
       router.replace(ROUTES.adminDashboard);
-      setShow(false);
+      setShow(false); // eslint-disable-line react-hooks/set-state-in-effect
     } else {
-      setShow(true);
+      setShow(true);  
     }
-    setReady(true);
+    setReady(true);  
   }, [router]);
 
   if (!ready) {

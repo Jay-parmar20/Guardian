@@ -5,8 +5,6 @@ import type {
   PartnersSectionContent,
 } from "@/data/audience-marketing";
 import { Container } from "@/components/common/Container";
-import { MarketingEnquireLink } from "@/components/ui/MarketingEnquireLink";
-import { marketingSection } from "@/styles/marketingClasses";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 
@@ -19,8 +17,6 @@ import {
 
 export function PartnersSection({
   content,
-  isBuyer,
-  headingClassName,
 }: {
   isBuyer: boolean;
   content: PartnersSectionContent;

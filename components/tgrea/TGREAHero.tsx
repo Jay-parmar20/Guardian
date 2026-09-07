@@ -5,7 +5,7 @@ export function TGREAHero() {
     <div>
       <MarketingPageHero
         heroId="tgrea"
-        heightPx={600}
+        heightPx={650}
         mobileHeightPx={400}
         useViewportHeightFlag
         shiftUnderHeader={false}

@@ -59,7 +59,7 @@ export const HOME_MARKETING_PAGE = {
     ariaHeadingId: "home-hero-heading",
   },
   stickyScroll: true,
-  heroHeightPx: 600,
+  heroHeightPx: 650,
   heroMobileHeightPx: 400,
   services: {
     sectionTitle: "OUR SERVICES",

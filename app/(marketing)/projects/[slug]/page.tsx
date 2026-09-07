@@ -1,7 +1,6 @@
 "use client";
 import { createVisit } from "@/src/api/services/visitService";
 import { getProjectById } from "@/src/api/services/projectService";
-import { uploadFile } from "@/src/api/services/fileService";
 import { showError, showSuccess } from "@/src/utils/toast";
 import { LOCAL_IMAGES } from "@/lib/local-images";
 import {
@@ -12,14 +11,12 @@ import { AmenityImageByFileId } from "@/components/common/AmenityImageByFileId";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { StaggerContainer } from "@/components/animations/StaggerContainer";
 import { Container } from "@/components/common/Container";
-import { FileUploadField } from "@/components/common/FileUploadField";
 import { OutlineArrowButton } from "@/components/common/OutlineArrowButton";
 import {
   audienceMarketingOutlineCtaClass,
   audienceMarketingOutlineCtaIconClass,
 } from "@/styles/audienceMarketingCenter";
 import { cn } from "@/utils/cn";
-import { IconUpload } from "@/components/admin/panel/AdminIcons";
 import { DynamicMap } from "@/components/projects/DynamicMap";
 import type { MapMarker } from "@/components/projects/DynamicMap";
 import Link from "next/link";
@@ -27,37 +24,14 @@ import { useParams, useSearchParams } from "next/navigation";
 import {
   Suspense,
   useEffect,
-  useId,
   useRef,
   useState,
-  type ChangeEvent,
 } from "react";
 import { MarketingImgWithFallback } from "@/components/common/MarketingImgWithFallback";
 
 // ---------------------------------------------------------------------------
 // Walk / Drive icon
 // ---------------------------------------------------------------------------
-function WalkIcon() {
-  return (
-    <svg
-      width="13"
-      height="18"
-      viewBox="0 0 13 18"
-      fill="none"
-      className="shrink-0 text-[#8F8183]"
-    >
-      <circle cx="6.5" cy="2.5" r="2.5" fill="currentColor" />
-      <path
-        d="M6.5 6L4 14h2l1-4 1 4h2L8 6"
-        stroke="currentColor"
-        strokeWidth="1"
-        fill="none"
-      />
-      <path d="M4 9.5l-2 3M9 9.5l2 3" stroke="currentColor" strokeWidth="1" />
-    </svg>
-  );
-}
-
 function DriveIcon() {
   return (
     <svg
@@ -94,43 +68,13 @@ function minutesFromTimeLabel(raw: string) {
 }
 
 // ---------------------------------------------------------------------------
-// Chevron down for select
-// ---------------------------------------------------------------------------
-function ChevronDown() {
-  return (
-    <svg width="17" height="10" viewBox="0 0 17 10" fill="none">
-      <path
-        d="M1 1L8.5 9L16 1"
-        stroke="#202020"
-        strokeWidth="1.5"
-        strokeOpacity="0.4"
-      />
-    </svg>
-  );
-}
-
-// ---------------------------------------------------------------------------
 // Case Study (Client Chronicles video + copy)
 // ---------------------------------------------------------------------------
-function CaseStudyPlayIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M9.5 7.5v9l8-4.5-8-4.5z"
-        fill="currentColor"
-        className="translate-x-[2px]"
-      />
-    </svg>
-  );
-}
-
 function CaseStudySection({
   posterSrc,
-  videoUrl,
   paragraphs,
 }: {
   posterSrc: string;
-  videoUrl: string;
   paragraphs: string[];
 }) {
   return (
@@ -207,17 +151,6 @@ type BookVisitCreateResponse = {
     cv_file_url: string | null;
     created_at: string;
     updated_at: string;
-  };
-};
-type FileUploadResponse = {
-  success: boolean;
-  message: string;
-  data: {
-    id: number;
-    file_url: string;
-    file_name: string;
-    file_type: string;
-    sequence_no: number | null;
   };
 };
 
@@ -300,10 +233,6 @@ function ProjectDetailPageContent() {
   }, [project]);
 
   const [cvFileId, setCvFileId] = useState<number | null>(null);
-  const [cvFileName, setCvFileName] = useState("");
-  const [isUploadingCv, setIsUploadingCv] = useState(false);
-  const [bookVisitCvKey, setBookVisitCvKey] = useState(0);
-  const bookVisitCvId = useId();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -313,57 +242,6 @@ function ProjectDetailPageContent() {
     >,
   ) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-  async function handleCvUpload(event: ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-
-    if (!file) return;
-
-    const maxFileSizeInBytes = 5 * 1024 * 1024;
-
-    if (!file.type.startsWith("image/")) {
-      setCvFileId(null);
-      setCvFileName("");
-      event.target.value = "";
-      showError("Only image files are allowed (e.g. JPEG, PNG, WebP).");
-      return;
-    }
-
-    if (file.size > maxFileSizeInBytes) {
-      setCvFileId(null);
-      setCvFileName("");
-      event.target.value = "";
-      showError("Image size must be less than 5 MB.");
-      return;
-    }
-
-    try {
-      setIsUploadingCv(true);
-      setCvFileName("Uploading...");
-
-      const formData = new FormData();
-      formData.append("file", file);
-      // Same as AddProjectWizard `uploadSingleAsset` for images (amenity / logo / hero use LOGO | HERO | ICON).
-      formData.append("file_type", "ICON");
-
-      const result = (await uploadFile(formData)) as FileUploadResponse;
-
-      if (!result.success) {
-        throw new Error(result.message || "File upload failed.");
-      }
-
-      setCvFileId(result.data.id);
-      setCvFileName(result.data.file_name || file.name);
-    } catch (error) {
-      setCvFileId(null);
-      setCvFileName("");
-      event.target.value = "";
-      showError(
-        error instanceof Error ? error.message : "File upload failed.",
-      );
-    } finally {
-      setIsUploadingCv(false);
-    }
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -414,9 +292,6 @@ function ProjectDetailPageContent() {
         message: "",
       });
       setCvFileId(null);
-      setCvFileName("");
-      setIsUploadingCv(false);
-      setBookVisitCvKey((k) => k + 1);
     } catch (error) {
       showError(
         error instanceof Error ? error.message : "Something went wrong.",
@@ -567,7 +442,7 @@ function ProjectDetailPageContent() {
       {/* BUILDING HERO IMAGE                                              */}
       {/* ---------------------------------------------------------------- */}
       {/* Full-bleed — edge to edge (no Container) */}
-      <section className="relative h-[400px] min-h-[200px] w-full min-w-0 overflow-hidden lg:h-[600px]">
+      <section className="relative h-[400px] min-h-[200px] w-full min-w-0 overflow-hidden lg:h-[650px]">
         <MarketingImgWithFallback
           src={buildingHeroSrc}
           fallbackSrc={isFromCompleted ? COMPLETED_HERO_BG : LOCAL_IMAGES.tgreaHero}
@@ -825,7 +700,6 @@ function ProjectDetailPageContent() {
             <ScrollReveal direction="up" distance={26}>
               <CaseStudySection
                 posterSrc={project.caseStudy.posterSrc}
-                videoUrl={project.caseStudy.videoUrl}
                 paragraphs={project.caseStudy.paragraphs}
               />
             </ScrollReveal>
@@ -1072,59 +946,5 @@ function FormField({
         className="border-b border-[#8F8183] bg-transparent pb-1 text-left n-reg text-sm text-[#202020] placeholder-[#202020]/40 outline-none"
       />
     </div >
-  );
-}
-
-interface SelectFieldProps {
-  label: string;
-  name: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  options: string[];
-  wrapperClassName?: string;
-}
-
-function SelectField({
-  label,
-  name,
-  placeholder,
-  value,
-  onChange,
-  options,
-  wrapperClassName,
-}: SelectFieldProps) {
-  return (
-    <div className="flex flex-col gap-1 text-left">
-      <label className="text-left n-reg text-sm text-brand-text-primary">
-        {label}
-      </label>
-      <div
-        className={cn(
-          "relative border-b border-[#8F8183] pb-1",
-          wrapperClassName,
-        )}
-      >
-        <select
-          suppressHydrationWarning
-          name={name}
-          value={value}
-          onChange={onChange}
-          className="w-full appearance-none bg-transparent text-left n-reg text-sm text-[#202020]/40 outline-none"
-        >
-          <option value="" disabled>
-            {placeholder}
-          </option>
-          {options.map((opt) => (
-            <option key={opt} value={opt} className="text-[#202020]">
-              {opt}
-            </option>
-          ))}
-        </select>
-        <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2">
-          <ChevronDown />
-        </div>
-      </div>
-    </div>
   );
 }

@@ -700,16 +700,12 @@ html:not(.js-directional-grad) .btn-grad--dark:focus-visible {
   position: relative;
   display: block;
   width: 100%;
-  height: var(--marketing-hero-h-mobile, 500px);
-  max-height: var(--marketing-hero-h-mobile, 500px);
-  min-height: var(--marketing-hero-h-mobile, 500px);
+  height: var(--marketing-hero-h-mobile, 400px);
 }
 
 @media (min-width: 1024px) {
   .marketing-hero-height-viewport {
-    height: var(--marketing-hero-h-desktop, 600px);
-    max-height: var(--marketing-hero-h-desktop, 600px);
-    min-height: var(--marketing-hero-h-desktop, 600px);
+    height: var(--marketing-hero-h-desktop, 650px);
   }
 }
 
@@ -720,8 +716,8 @@ html:not(.js-directional-grad) .btn-grad--dark:focus-visible {
 
 @media (min-width: 1024px) {
   .marketing-first-section-height {
-    /* Desktop: consistent 600px height for all hero images/videos. */
-    height: 600px;
+    /* Desktop: consistent 650px height for all hero images/videos (matching About hero). */
+    height: 650px !important;
   }
 }
 
@@ -739,9 +735,7 @@ html:not(.js-directional-grad) .btn-grad--dark:focus-visible {
   
   /* Ensure partners hero section uses consistent desktop height */
   .partners-hero-section.marketing-hero-height-viewport {
-    height: var(--marketing-hero-h-desktop, 600px);
-    max-height: var(--marketing-hero-h-desktop, 600px);
-    min-height: var(--marketing-hero-h-desktop, 600px);
+    height: var(--marketing-hero-h-desktop, 650px) !important;
   }
 }
 
@@ -749,6 +743,10 @@ html:not(.js-directional-grad) .btn-grad--dark:focus-visible {
 @media (max-width: 1023px) {
   .services-hero-section.marketing-first-section-height {
     height: 400px;
+  }
+  
+  .marketing-hero-height-viewport {
+    height: var(--marketing-hero-h-mobile, 400px);
   }
 }
 

@@ -175,11 +175,11 @@ export function DirectionalButtonGradientClient() {
       return;
     }
 
-    let lastX = 0;
-    let lastY = 0;
+    let _lastX = 0;
+    let _lastY = 0;
     const onTrack = (e: PointerEvent) => {
-      lastX = e.clientX;
-      lastY = e.clientY;
+      _lastX = e.clientX;
+      _lastY = e.clientY;
     };
     document.addEventListener("pointermove", onTrack, { capture: true, passive: true });
 

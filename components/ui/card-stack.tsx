@@ -45,7 +45,7 @@ const CardStackInner = forwardRef<CardStackHandle, CardStackProps>(
 		const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
 		useEffect(() => {
-			setCards([...items]);
+			setCards([...items]); // eslint-disable-line react-hooks/set-state-in-effect
 			setNoTransitionId(null);
 
 			return () => {

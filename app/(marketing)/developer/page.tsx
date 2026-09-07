@@ -9,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function DeveloperDetailsPage() {
-  return <AudienceMarketingPage content={DEVELOPER_MARKETING_PAGE} />;
+  return (
+    <section className="lg:h-[650px]">
+      <AudienceMarketingPage content={DEVELOPER_MARKETING_PAGE} />
+    </section>
+  );
 }

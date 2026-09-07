@@ -1,4 +1,3 @@
-import { LOCAL_IMAGES, localImageByIndex } from "@/lib/local-images";
 import { getAudienceHero } from "@/utils/marketing-hero";
 import type {
   AwardSlide,
@@ -7,8 +6,6 @@ import type {
   MarketingPageContent,
 } from "./audience-marketing-types";
 import {
-  CONTACT,
-  DEFAULT_KNOW_MORE,
   DEFAULT_READ_MORE,
   DEFAULT_VIEW_MORE,
   DEVELOPER_SERVICES,
@@ -196,7 +193,7 @@ const DEV_AWARD_SLIDES: AwardSlide[] = AWARD_IMAGE_FILES.map((entry, i) => ({
 export const DEVELOPER_MARKETING_PAGE = {
   hero: getAudienceHero("developer"),
   stickyScroll: true,
-  heroHeightPx: 600,
+  heroHeightPx: 650,
   heroMobileHeightPx: 400,
   services: {
     sectionTitle: "OUR SERVICES",

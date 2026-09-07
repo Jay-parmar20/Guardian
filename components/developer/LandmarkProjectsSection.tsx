@@ -91,8 +91,6 @@ export function LandmarkProjectsSection({
   } | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const isHovered = useRef(false);
-  const projectCountRef = useRef(0);
-  const totalProjectCountRef = useRef(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -136,8 +134,8 @@ export function LandmarkProjectsSection({
     [projects, listOffset],
   );
 
-  totalProjectCountRef.current = projects.length;
-  projectCountRef.current = visibleProjects.length;
+  const totalProjectCount = projects.length;
+  const projectCount = visibleProjects.length;
 
   const focusPanel = (panelIndex: number) => {
     if (slidesAllProjects) {
@@ -156,8 +154,8 @@ export function LandmarkProjectsSection({
   };
 
   const advanceCarousel = () => {
-    const total = totalProjectCountRef.current;
-    const count = projectCountRef.current;
+    const total = totalProjectCount;
+    const count = projectCount;
 
     if (count <= 1) {
       return;
@@ -218,6 +216,7 @@ export function LandmarkProjectsSection({
 
     startAutoRotate();
     return () => stopAutoRotate();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visibleProjects.length, projects.length]);
 
   const ctaHref = tab === "ongoing" ? PROJECTS_ONGOING : PROJECTS_COMPLETED;
@@ -459,8 +458,8 @@ export function LandmarkProjectsSection({
 function ProjectPanelVisual({
   project,
   active,
-  panelIndex,
-  totalPanels,
+  panelIndex: _panelIndex,
+  totalPanels: _totalPanels,
 }: {
   project: LandmarkProject;
   active: boolean;
@@ -468,7 +467,6 @@ function ProjectPanelVisual({
   totalPanels: number;
 }) {
   const imageSizes = "(max-width: 768px) 100vw, 896px";
-  const positionLabel = `${String(panelIndex + 1).padStart(2, "0")}/${String(totalPanels).padStart(2, "0")}`;
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-neutral-200">

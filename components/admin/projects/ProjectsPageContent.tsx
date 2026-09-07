@@ -291,7 +291,7 @@ export function ProjectsPageContent() {
             ) : projects.length === 0 ? (
               <div className="flex min-h-[260px] flex-col items-center justify-center gap-4 rounded-[24px] bg-[#fffdfa] px-6 text-center">
                 <p className="max-w-[780px] text-[1.28rem] leading-relaxed text-[#5d6678]">
-                  Your projects will appear here. Click "Add Project" to create
+                  Your projects will appear here. Click &quot;Add Project&quot; to create
                   your first listing.
                 </p>
               </div>

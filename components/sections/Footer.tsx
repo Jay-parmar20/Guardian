@@ -5,10 +5,6 @@ import {
   ContactEnquiryPhoneIcon,
 } from "@/components/common/ContactEnquiryIcons";
 import { IconArrowUpRight, IconChevronDown } from "@/components/common/icons";
-import {
-  PROJECTS_COMPLETED,
-  PROJECTS_ONGOING,
-} from "@/data/audience-marketing-shared";
 import { CONTACT_ENQUIRIES } from "@/data/contactEnquiries";
 import { cn } from "@/utils/cn";
 import Image from "next/image";

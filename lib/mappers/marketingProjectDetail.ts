@@ -124,11 +124,6 @@ function parseCoord(
   return Number.isFinite(n) ? n : fallback;
 }
 
-function formatNumArea(area: string | null | undefined): string {
-  if (area == null || String(area).trim() === "") return "—";
-  return String(area).replace(/\s*sq\.?\s*ft\.?/i, "").trim() || "—";
-}
-
 function formatCompletionDate(raw: string | null | undefined): string {
   if (raw == null || raw === "") return "—";
   const s = String(raw).trim();
