@@ -1,5 +1,6 @@
 "use client";
 
+import { Container } from "@/components/common/Container";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { CarouselControls } from "@/components/ui/CarouselControls";
 import { useCycleIndex } from "@/hooks/useCycleIndex";
@@ -14,236 +15,316 @@ const VISIBLE_COUNT = 4;
 const MOBILE_CAROUSEL_BREAKPOINT_PX = 640;
 
 const partnerLogo = (group: number) =>
-  `/images/partners/logos/Group ${group}.png`;
+	`/images/partners/logos/Group ${group}.png`;
 
 export type PartnersTestimonial = {
-  id: string;
-  brandLogoSrc: string;
-  brandLogoAlt: string;
-  quote: string;
-  name: string;
-  role: string;
-  location: string;
+	id: string;
+	brandLogoSrc: string;
+	brandLogoAlt: string;
+	quote: string;
+	name: string;
+	role: string;
+	location: string;
+
+	// Optional video testimonial
+	videoSrc?: string;
+	videoPosterSrc?: string;
 };
 
 const TESTIMONIALS: PartnersTestimonial[] = [
-  {
-    id: "1",
-    brandLogoSrc: "/images/partners/gbd-logo.png",
-    brandLogoAlt: "Adani Realty",
-    quote:
-      "Our journey is defined by the trust and confidence of our esteemed clients. Bajrang Singh, Managing Director of GBD Realty, shares his thoughts on our collaboration and the impact we’ve created together. Stay tuned as we bring you more success stories!",
-    name: "Bajrang Singh",
-    role: "Managing Director, GBD Realty",
-    location: "",
-  },
-  {
-    id: "2",
-    brandLogoSrc: "/images/partners/haware-logo.png",
-    brandLogoAlt: "Godrej Properties",
-    quote:
-      "We take pride in delivering excellence, and nothing speaks louder than the words of our valued clients. Amit Haware, CEO & MD of Haware Properties, shares his experience working with us, highlighting our commitment to trust, quality, and innovation. Stay tuned for more insights!",
-    name: "Priya Shah",
-    role: "CEO & MD, Haware Properties",
-    location: "",
-  },
-  {
-    id: "3",
-    brandLogoSrc: "/images/partners/promesa-logo.svg",
-    brandLogoAlt: "Marathon Group",
-    quote:
-      "Mamik Jain & Pritesh Jain, Directors of Promesa Realty, share their insights on the evolving real estate landscape. Stay tuned as we bring you their vision, expertise, and success story!",
-    name: "Rahul Verma",
-    role: "Directors of Promesa Realty",
-    location: "",
-  }, 
+	{
+		id: "1",
+		brandLogoSrc: "/images/partners/gbd-logo.png",
+		brandLogoAlt: "GBD Realty",
+		quote:
+			"Our journey is defined by the trust and confidence of our esteemed clients. Bajrang Singh, Managing Director of GBD Realty, shares his thoughts on our collaboration and the impact we’ve created together. Stay tuned as we bring you more success stories!",
+		name: "Bajrang Singh",
+		role: "Managing Director, GBD Realty",
+		location: "Mumbai",
+	},
+	{
+		id: "2",
+		brandLogoSrc: "/images/partners/haware-logo.png",
+		brandLogoAlt: "Haware Properties",
+		quote:
+			"We take pride in delivering excellence, and nothing speaks louder than the words of our valued clients. Amit Haware, CEO & MD of Haware Properties, shares his experience working with us, highlighting our commitment to trust, quality, and innovation. Stay tuned for more insights!",
+		name: "Priya Shah",
+		role: "CEO & MD, Haware Properties",
+		location: "Mumbai",
+	},
+	{
+		id: "3",
+		brandLogoSrc: "/images/partners/promesa-logo.svg",
+		brandLogoAlt: "Promesa Realty",
+		quote:
+			"Mamik Jain & Pritesh Jain, Directors of Promesa Realty, share their insights on the evolving real estate landscape. Stay tuned as we bring you their vision, expertise, and success story!",
+		name: "Rahul Verma",
+		role: "Directors of Promesa Realty",
+		location: "Mumbai",
+	},
+	{
+		id: "4",
+		brandLogoSrc: "/images/partners/adani-logo.png",
+		brandLogoAlt: "Adani Realty",
+		quote: "",
+		name: "Abhishek Naagar",
+		role: "Project Manager, Adani Realty",
+		location: "BKC, Mumbai",
+
+		videoSrc: "/videos/partners/adani-testimonial.mp4",
+		videoPosterSrc: "/images/partners/adani-testimonial-poster.png",
+	},
 ];
 
 export const TestimonialCard = memo(function TestimonialCard({
-  item,
+	item,
 }: {
-  item: PartnersTestimonial;
+	item: PartnersTestimonial;
 }) {
-  return (
-    <article
-      data-testimonial-card
-      className={cn(
-        "group flex h-full w-full min-w-0 max-w-full flex-col overflow-hidden border border-black/10 will-change-transform",
-        "transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_34px_rgba(22,20,19,0.18)]",
-        "bg-[radial-gradient(circle_at_center,#BCBDC0_1px,transparent_1px),linear-gradient(110deg,rgba(188,189,192,0.2)_0%,rgba(143,129,131,0.2)_100%)]",
-        "bg-size-[14px_14px,100%_100%] [background-repeat:repeat,no-repeat]",
-      )}
-    >
-      <div className="flex min-h-0 flex-1 flex-col p-6 sm:p-8 lg:p-10">
-        <div className="flex w-fit max-w-full min-w-[9.5rem] items-center justify-center rounded-full bg-white px-5 py-2 shadow-sm transition-transform duration-300 group-hover:scale-[1.02]">
-          <Image
-            src={item.brandLogoSrc}
-            alt={item.brandLogoAlt}
-            width={200}
-            height={48}
-            className="h-9 w-auto max-w-[10rem] object-contain object-left sm:h-10"
-          />
-        </div>
+	const isVideo = Boolean(item.videoSrc);
 
-        <span className="mt-6 block text-brand-text-primary sm:mt-8">
-          <Image
-            src="/images/invertedComma.svg"
-            alt=""
-            width={27}
-            height={27}
-            className="object-cover"
-          />
-        </span>
+	return (
+		<article
+			data-testimonial-card
+			className={cn(
+				"group flex h-full w-full min-w-0 max-w-full flex-col overflow-hidden border border-black/10 will-change-transform",
+				"transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_34px_rgba(22,20,19,0.18)]",
+				"bg-[radial-gradient(circle_at_center,#BCBDC0_1px,transparent_1px),linear-gradient(110deg,rgba(188,189,192,0.2)_0%,rgba(143,129,131,0.2)_100%)]",
+				"bg-size-[14px_14px,100%_100%] [background-repeat:repeat,no-repeat]",
+			)}
+		>
+			{isVideo ? (
+				/* VIDEO TESTIMONIAL */
+				<div className="relative flex min-h-0 flex-1 p-[15px]">
+					<div className="relative w-full overflow-hidden bg-white">
+						<video
+							src={item.videoSrc}
+							poster={item.videoPosterSrc}
+							controls
+							playsInline
+							preload="metadata"
+							className="
+								h-full
+								min-h-[260px]
+								w-full
+								object-cover
+								sm:min-h-[300px]
+								lg:min-h-[314px]
+							"
+						/>
 
-        <p className="mt-4 flex-1 n-bold text-[clamp(0.9375rem,2.5vw,1.125rem)] leading-relaxed text-brand-text-primary sm:mt-5 sm:leading-6">
-          {item.quote}
-        </p>
-      </div>
+						{/* Logo pill over video */}
+						<div
+							className="
+								pointer-events-none
+								absolute
+								left-5
+								top-5
+								z-10
+								flex
+								h-[44px]
+								min-w-[130px]
+								items-center
+								justify-center
+								rounded-full
+								bg-white
+								px-5
+								sm:h-[50px]
+								sm:min-w-[150px]
+							"
+						>
+							<Image
+								src={item.brandLogoSrc}
+								alt={item.brandLogoAlt}
+								width={100}
+								height={50}
+								className="max-h-[42px] w-auto max-w-[90px] object-contain"
+							/>
+						</div>
+					</div>
+				</div>
+			) : (
+				/* EXISTING TEXT TESTIMONIAL — unchanged */
+				<div className="flex min-h-0 flex-1 flex-col p-6 sm:p-8 lg:p-10">
+					<div className="flex w-fit max-w-full min-w-[9.5rem] items-center justify-center rounded-full bg-white px-5 py-2 shadow-sm transition-transform duration-300 group-hover:scale-[1.02]">
+						<Image
+							src={item.brandLogoSrc}
+							alt={item.brandLogoAlt}
+							width={200}
+							height={48}
+							className="h-9 w-auto max-w-[10rem] object-contain object-left sm:h-10"
+						/>
+					</div>
 
-      <div className="mt-auto shrink-0 border-t border-black/10 bg-black px-6 py-4 sm:px-8 sm:py-5 lg:px-10">
-        <p className="n-bold text-sm text-white">{item.name}</p>
-        <p className="mt-0.5 n-reg text-sm text-white">{item.role}</p>
-        <p className="mt-0.5 n-reg text-xs text-white/80">{item.location}</p>
-      </div>
-    </article>
-  );
+					<span className="mt-6 block text-brand-text-primary sm:mt-8">
+						<Image
+							src="/images/invertedComma.svg"
+							alt=""
+							width={27}
+							height={27}
+							className="object-cover"
+						/>
+					</span>
+
+					<p className="mt-4 flex-1 n-bold text-[clamp(0.9375rem,2.5vw,1.125rem)] leading-relaxed text-brand-text-primary sm:mt-5 sm:leading-6">
+						{item.quote}
+					</p>
+				</div>
+			)}
+
+			{/* Footer — same for text + video */}
+			<div className="mt-auto shrink-0 border-t border-black/10 bg-[#161616] px-6 py-4 sm:px-8 sm:py-5 lg:px-10">
+				<p className="n-bold text-sm text-[#BCBDC0]">{item.name}</p>
+
+				<p className="mt-0.5 n-reg text-sm text-[#BCBDC0]">{item.role}</p>
+
+				{item.location && (
+					<p className="mt-0.5 n-reg text-xs text-[#BCBDC0]/70">
+						{item.location}
+					</p>
+				)}
+			</div>
+		</article>
+	);
 });
 
 function visibleForPage(
-  items: PartnersTestimonial[],
-  page: number,
+	items: PartnersTestimonial[],
+	page: number,
 ): PartnersTestimonial[] {
-  const n = items.length;
-  const visibleCount = Math.min(VISIBLE_COUNT, n);
-  return Array.from({ length: visibleCount }, (_, offset) => {
-    const i = (page * visibleCount + offset) % n;
-    return items[i]!;
-  });
+	const n = items.length;
+	const visibleCount = Math.min(VISIBLE_COUNT, n);
+	return Array.from({ length: visibleCount }, (_, offset) => {
+		const i = (page * visibleCount + offset) % n;
+		return items[i]!;
+	});
 }
 
 export function PartnersTestimonials() {
-  const items = TESTIMONIALS;
-  const n = items.length;
-  const visibleCount = Math.min(VISIBLE_COUNT, n);
-  const isMobileCarousel = useViewportIsMobile(true, MOBILE_CAROUSEL_BREAKPOINT_PX);
-  const desktopPageCount = Math.max(1, Math.ceil(n / visibleCount));
-  const pageCount = isMobileCarousel ? n : desktopPageCount;
-  const { index: page, advance, setIndex } = useCycleIndex(pageCount, 0);
+	const items = TESTIMONIALS;
+	const n = items.length;
+	const visibleCount = Math.min(VISIBLE_COUNT, n);
+	const isMobileCarousel = useViewportIsMobile(
+		true,
+		MOBILE_CAROUSEL_BREAKPOINT_PX,
+	);
+	const desktopPageCount = Math.max(1, Math.ceil(n / visibleCount));
+	const pageCount = isMobileCarousel ? n : desktopPageCount;
+	const { index: page, advance, setIndex } = useCycleIndex(pageCount, 0);
 
-  const visible = useMemo(
-    () => visibleForPage(items, page),
-    [items, page],
-  );
+	const visible = useMemo(() => visibleForPage(items, page), [items, page]);
 
-  const mobileIndex = page;
-  const gridRef = useRef<HTMLDivElement>(null);
+	const mobileIndex = page;
+	const gridRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setIndex((current) => (current >= pageCount ? 0 : current));
-  }, [pageCount, setIndex]);
+	useEffect(() => {
+		setIndex((current) => (current >= pageCount ? 0 : current));
+	}, [pageCount, setIndex]);
 
-  useLayoutEffect(() => {
-    const grid = gridRef.current;
-    if (!grid) return;
+	useLayoutEffect(() => {
+		const grid = gridRef.current;
+		if (!grid) return;
 
-    const syncHeights = () => {
-      if (!window.matchMedia("(min-width: 640px)").matches) {
-        grid
-          .querySelectorAll<HTMLElement>("[data-testimonial-card]")
-          .forEach((card) => {
-            card.style.minHeight = "";
-          });
-        return;
-      }
+		const syncHeights = () => {
+			if (!window.matchMedia("(min-width: 640px)").matches) {
+				grid
+					.querySelectorAll<HTMLElement>("[data-testimonial-card]")
+					.forEach((card) => {
+						card.style.minHeight = "";
+					});
+				return;
+			}
 
-      const cards = grid.querySelectorAll<HTMLElement>("[data-testimonial-card]");
-      cards.forEach((card) => {
-        card.style.minHeight = "";
-      });
+			const cards = grid.querySelectorAll<HTMLElement>(
+				"[data-testimonial-card]",
+			);
+			cards.forEach((card) => {
+				card.style.minHeight = "";
+			});
 
-      let maxHeight = 0;
-      cards.forEach((card) => {
-        maxHeight = Math.max(maxHeight, card.offsetHeight);
-      });
+			let maxHeight = 0;
+			cards.forEach((card) => {
+				maxHeight = Math.max(maxHeight, card.offsetHeight);
+			});
 
-      if (maxHeight > 0) {
-        cards.forEach((card) => {
-          card.style.minHeight = `${maxHeight}px`;
-        });
-      }
-    };
+			if (maxHeight > 0) {
+				cards.forEach((card) => {
+					card.style.minHeight = `${maxHeight}px`;
+				});
+			}
+		};
 
-    syncHeights();
+		syncHeights();
 
-    const observer = new ResizeObserver(syncHeights);
-    observer.observe(grid);
-    grid.querySelectorAll("[data-testimonial-card]").forEach((card) => {
-      observer.observe(card);
-    });
+		const observer = new ResizeObserver(syncHeights);
+		observer.observe(grid);
+		grid.querySelectorAll("[data-testimonial-card]").forEach((card) => {
+			observer.observe(card);
+		});
 
-    window.addEventListener("resize", syncHeights);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", syncHeights);
-    };
-  }, [page, visible]);
+		window.addEventListener("resize", syncHeights);
+		return () => {
+			observer.disconnect();
+			window.removeEventListener("resize", syncHeights);
+		};
+	}, [page, visible]);
 
-  return (
-    <section
-      className="bg-brand-background"
-      aria-labelledby="pc-testimonials-heading"
-    >
-      <div className="mx-auto w-full min-w-0 max-w-7xl px-6 py-20 md:px-16">
-        <ScrollReveal direction="up" duration={0.6} distance={40}>
-          <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
-            <h2
-              id="pc-testimonials-heading"
-              className={cn(marketingClasses.headingDisplayMd, "max-w-full")}
-            >
-              What Our Clients Say
-            </h2>
-            <CarouselControls
-              className="w-auto"
-              currentIndex={page}
-              total={pageCount}
-              onPrev={() => advance(-1)}
-              onNext={() => advance(1)}
-              prevLabel="Previous testimonials"
-              nextLabel="Next testimonials"
-            />
-          </div>
-        </ScrollReveal>
+	return (
+		<section
+			className="bg-brand-background pb-10 sm:pb-14 lg:pb-25"
+			aria-labelledby="pc-testimonials-heading"
+		>
+			<Container>
+				<ScrollReveal direction="up" duration={0.6} distance={40}>
+					<div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+						<h2
+							id="pc-testimonials-heading"
+							className={cn(marketingClasses.headingDisplayMd, "max-w-full")}
+						>
+							What Our Clients Say
+						</h2>
+						<CarouselControls
+							className="w-auto"
+							currentIndex={page}
+							total={pageCount}
+							onPrev={() => advance(-1)}
+							onNext={() => advance(1)}
+							prevLabel="Previous testimonials"
+							nextLabel="Next testimonials"
+						/>
+					</div>
+				</ScrollReveal>
 
-        {/* Desktop / tablet: 2×2 grid — equal-height cards (Figma) */}
-        <div
-          ref={gridRef}
-          className="mt-8 hidden grid-cols-2 items-stretch gap-4 sm:mt-10 sm:grid sm:gap-5 lg:gap-6"
-        >
-          {visible.map((item, cardIndex) => (
-            <ScrollReveal
-              key={`${item.id}-page-${page}-${cardIndex}`}
-              className="flex h-full w-full min-h-0"
-              direction="up"
-              delay={cardIndex * 0.06}
-              distance={32}
-            >
-              <TestimonialCard item={item} />
-            </ScrollReveal>
-          ))}
-        </div>
+				{/* Desktop / tablet: 2×2 grid — equal-height cards (Figma) */}
+				<div
+					ref={gridRef}
+					className="mt-8 hidden grid-cols-2 items-stretch gap-4 sm:mt-10 sm:grid sm:gap-5 lg:gap-6"
+				>
+					{visible.map((item, cardIndex) => (
+						<ScrollReveal
+							key={`${item.id}-page-${page}-${cardIndex}`}
+							className="flex h-full w-full min-h-0"
+							direction="up"
+							delay={cardIndex * 0.06}
+							distance={32}
+						>
+							<TestimonialCard item={item} />
+						</ScrollReveal>
+					))}
+				</div>
 
-        {/* Mobile: one card per step (1 / n) */}
-        <div className="mt-6 sm:hidden">
-          <ScrollReveal
-            key={items[mobileIndex]!.id}
-            direction="up"
-            delay={0.1}
-            distance={32}
-          >
-            <TestimonialCard item={items[mobileIndex]!} />
-          </ScrollReveal>
-        </div>
-      </div>
-    </section>
-  );
+				{/* Mobile: one card per step (1 / n) */}
+				<div className="mt-6 sm:hidden">
+					<ScrollReveal
+						key={items[mobileIndex]!.id}
+						direction="up"
+						delay={0.1}
+						distance={32}
+					>
+						<TestimonialCard item={items[mobileIndex]!} />
+					</ScrollReveal>
+				</div>
+			</Container>
+		</section>
+	);
 }

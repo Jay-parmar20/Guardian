@@ -1,25 +1,37 @@
-import { PartnersHero } from "@/components/partners/PartnersHero";
+import { MarketingPageHero } from "@/components/marketing/MarketingPageHero";
 import { PartnersLogoGrid } from "@/components/partners/PartnersLogoGrid";
-import { FeaturedPartnerShowcase } from "@/components/partners/FeaturedPartnerShowcase";
 import { PartnersStats } from "@/components/partners/PartnersStats";
 import { PartnersTestimonials } from "@/components/partners/PartnersTestimonials";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: { absolute: "Partners & Clients | The Guardians" },
-  description:
-    "Our trusted partners and clients across the Indian real estate landscape.",
+	title: { absolute: "Partners & Clients | The Guardians" },
+	description:
+		"Our trusted partners and clients across the Indian real estate landscape.",
 };
 
 export default function PartnersClientsPage() {
-  return (
-    <>
-      <PartnersHero />
-      
-      {/* <FeaturedPartnerShowcase /> */}
-      <PartnersLogoGrid />
-      <PartnersTestimonials />
-      <PartnersStats />
-    </>
-  );
+	return (
+		<div className="min-w-0 bg-white md:mb-25">
+			{/* Partners Hero */}
+			<MarketingPageHero
+				heroId="partners"
+				heightPx={600}
+				mobileHeightPx={400}
+				useViewportHeightFlag
+				viewportHeightBreakpointPx={1024}
+				shiftUnderHeader={true}
+				shiftTillSearch={false}
+				shiftExtraContentTopPx={44}
+				negativePadding={16}
+			/>
+
+			{/* Partners content */}
+			<PartnersLogoGrid />
+
+			<PartnersTestimonials />
+
+			<PartnersStats />
+		</div>
+	);
 }

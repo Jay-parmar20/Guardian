@@ -1,141 +1,142 @@
 {
-  "marketingHeroes": {
-    "home": {
-      "variant": "home",
-      "sectionId": "marketing-hero",
-      "headingId": "hero-heading",
-      "backgroundImage": "/images/Home/1.png",
-      "imageClassName": "object-cover object-center",
-      "lines": [
-        { "line1": "Shaping  ", "accent": " Real Estate" },
-        { "line2": "Growing bigger better together" }
-      ],
-      "subtitle": "Working across markets as one of the country’s foremost real estate firms, reshaping how India experiences real estate consultancy.",
-      "cta": { "href": "/about", "label": "Experience Us" }
-    },
-    "blog": {
-      "variant": "overlayTitle",
-      "headingId": "blog-hero-heading",
-      "backgroundImage": "/images/blog.svg",
-      "title": "BLOG",
-      "overlayClassName": "bg-black/40",
-      "titleClassName": "qs-reg uppercase"
-    },
-    "contact": {
-      "variant": "contact",
-      "headingId": "contact-hero-heading",
-      "primaryImage": "/images/image 152.svg",
-      "secondaryImage": "/images/image 153.svg",
-      "secondaryImageClassName": "object-cover object-center mix-blend-darken"
-    },
-    "career": {
-      "variant": "career",
-      "headingId": "career-hero-heading",
-      "backgroundImage": "/images/workwithus.svg",
-      "imageAlt": "Work With Us",
-      "title": "Work With Us",
-      "subtitle": "We are one of the fastest growing Real Estate consulting company in India."
-    },
-    "newsroom": {
-      "variant": "newsroom",
-      "headingId": "newsroom-hero-heading",
-      "backgroundImage": "/images/newsroom.svg",
-      "imageAlt": "Newsroom",
-      "title": "Newsroom",
-      "imageClassName": "object-cover object-center mt-[-1.6rem]"
-    },
-    "partners": {
-      "variant": "partners",
-      "headingId": "partners-hero-heading",
-      "backgroundImage": "/images/partners/home.png",
-      "imageAlt": "Partners and Clients",
-      "title": "PARTNERS AND CLIENTS",
-      "imageClassName": "object-cover object-center"
-    },
-    "gazette": {
-      "variant": "publication",
-      "headingId": "gazette-hero-heading",
-      "backgroundImage": "/images/gazette.svg",
-      "imageClassName": "object-cover object-center",
-      "title": "Gazette"
-    },
-    "magazine": {
-      "variant": "publication",
-      "headingId": "magazine-hero-heading",
-      "backgroundImage": "/images/magazine.svg",
-      "imageClassName": "object-cover object-center",
-      "title": "Magazine"
-    },
-    "tgrea": {
-      "variant": "tgrea",
-      "headingId": "tgrea-hero-heading",
-      "backgroundImage": "/images/brand-home.png",
-      "imageClassName": "object-cover object-center",
-      "title": "",
-      "tagline": "",
-      "body": ""
-    },
-    "about": {
-      "variant": "about",
-      "backgroundImage": "/images/image 77.svg",
-      "imageAlt": "The Guardians city skyline",
-      "headingHtml": {  "rest": " WHO WE ARE?" },
-      "subtitle": "We are one of the fastest growing Real Estate consulting company in India.",
-      "cta": { "href": "/tgrea", "label": "Explore More" }
-    },
-    "servicesBuyer": {
-      "variant": "services",
-      "headingId": "services-heading",
-      "ariaLabelledBy": "services-heading",
-      "title": "OUR SERVICES",
-      "subtitle": "We are one of the fastest growing Real Estate consulting company in India.",
-      "backgroundImage": "/images/OurServices/service-home.png"
-    },
-    "servicesDeveloper": {
-      "variant": "services",
-      "headingId": "dev-services-heading",
-      "ariaLabelledBy": "dev-services-heading",
-      "title": "OUR SERVICES",
-      "subtitle": "We are one of the fastest growing Real Estate consulting company in India.",
-      "backgroundImage": "/images/OurServices/service-home.png"
-    },
-    "projects": {
-      "variant": "projects",
-      "subtitle": "We are one of the fastest growing Real Estate consulting company in India.",
-      "images": {
-        "ongoing": "/images/Projects/ongoing/bg-hero.svg",
-        "completed": "/images/completed-project.svg"
-      }
-    },
-    "globalNetwork": {
-      "variant": "overlayTitle",
-      "headingId": "global-network-hero-heading",
-      "backgroundImage": "/images/global-network/home.png",
-      "imageAlt": "Global Network",
-      "title": "GLOBAL NETWORKS",
-      "subtitle": "Connecting Indian Real Estate with Global Investors",
-      "overlayClassName": "",
-      "titleClassName": "qs-reg uppercase lg:!text-[70px] lg:!leading-[70px]"
-    }
-  },
-  "audienceHeroes": {
-    "developer": {
-      "isBuyer": false,
-      "backgroundImageSrc": "/images/Developer/developer_hero.png",
-      "backgroundVideoSrc": "/images/Home/home.mp4",
-      "hideHeroContent": true,
-      "body": "At The Guardians Real Estate Advisory, we bring pricing intelligence, launch strategy, and on-ground sales execution together to maximise your project’s performance from day one.",
-      "enquireHref": "/contact",
-      "enquireLabel": "Let's Connect",
-      "ariaHeadingId": "developer-hero-heading"
-    },
-    "buyer": {
-      "isBuyer": true,
-      "backgroundImageSrc": "/images/Buyer/hero.svg",
-      "body": "Your home-buying journey deserves clarity, comfort and the right guidance. We’re here to make every step feel easier and more meaningful.",
-      "enquireHref": "/contact",
-      "enquireLabel": "Explore Now",
-      "ariaHeadingId": "buyer-hero-heading"
-    }
-  }
+	"marketingHeroes": {
+		"home": {
+			"variant": "home",
+			"sectionId": "marketing-hero",
+			"headingId": "hero-heading",
+			"backgroundImage": "/images/Home/1.png",
+			"imageClassName": "object-cover object-center",
+			"lines": [
+				{ "line1": "Shaping  ", "accent": " Real Estate" },
+				{ "line2": "Growing bigger better together" }
+			],
+			"subtitle": "Working across markets as one of the country’s foremost real estate firms, reshaping how India experiences real estate consultancy.",
+			"cta": { "href": "/about", "label": "Experience Us" }
+		},
+		"blog": {
+			"variant": "overlayTitle",
+			"headingId": "blog-hero-heading",
+			"backgroundImage": "/images/blog.svg",
+			"title": "BLOG",
+			"overlayClassName": "bg-black/40",
+			"titleClassName": "qs-reg uppercase"
+		},
+		"contact": {
+			"variant": "contact",
+			"headingId": "contact-hero-heading",
+			"primaryImage": "/images/image 152.svg",
+			"secondaryImage": "/images/image 153.svg",
+			"secondaryImageClassName": "object-cover object-center mix-blend-darken"
+		},
+		"career": {
+			"variant": "career",
+			"headingId": "career-hero-heading",
+			"backgroundImage": "/images/workwithus.svg",
+			"imageAlt": "Work With Us",
+			"title": "Work With Us",
+			"subtitle": "We are one of the fastest growing Real Estate consulting company in India."
+		},
+		"newsroom": {
+			"variant": "newsroom",
+			"headingId": "newsroom-hero-heading",
+			"backgroundImage": "/images/newsroom.svg",
+			"imageAlt": "Newsroom",
+			"title": "Newsroom",
+			"imageClassName": "object-cover object-center mt-[-1.6rem]"
+		},
+		"partners": {
+			"variant": "partners",
+			"headingId": "partners-hero-heading",
+			"backgroundImage": "/images/partners/partners-hero.png",
+			"imageAlt": "Partners and Clients",
+			"title": "PARTNERS & CLIENTS",
+			"imageClassName": "object-cover object-center"
+		},
+		"gazette": {
+			"variant": "publication",
+			"headingId": "gazette-hero-heading",
+			"backgroundImage": "/images/gazette.svg",
+			"imageClassName": "object-cover object-center",
+			"title": "Gazette"
+		},
+		"magazine": {
+			"variant": "publication",
+			"headingId": "magazine-hero-heading",
+			"backgroundImage": "/images/magazine.svg",
+			"imageClassName": "object-cover object-center",
+			"title": "Magazine"
+		},
+		"tgrea": {
+			"variant": "overlayTitle",
+			"headingId": "tgrea-hero-heading",
+			"backgroundImage": "/images/brand-home-2.png",
+			"imageAlt": "Our Brands",
+			"title": "OUR BRANDS",
+			"subtitle": "We are one of the fastest growing Real Estate consulting company in India.",
+			"overlayClassName": "bg-transparent",
+			"titleClassName": "qs-reg uppercase lg:!text-[70px] lg:!leading-[70px]"
+		},
+		"about": {
+			"variant": "about",
+			"backgroundImage": "/images/image 77.svg",
+			"imageAlt": "The Guardians city skyline",
+			"headingHtml": { "rest": " WHO WE ARE?" },
+			"subtitle": "We are one of the fastest growing Real Estate consulting company in India.",
+			"cta": { "href": "/tgrea", "label": "Explore More" }
+		},
+		"servicesBuyer": {
+			"variant": "services",
+			"headingId": "services-heading",
+			"ariaLabelledBy": "services-heading",
+			"title": "OUR SERVICES",
+			"subtitle": "We are one of the fastest growing Real Estate consulting company in India.",
+			"backgroundImage": "/images/OurServices/service-home.png"
+		},
+		"servicesDeveloper": {
+			"variant": "services",
+			"headingId": "dev-services-heading",
+			"ariaLabelledBy": "dev-services-heading",
+			"title": "OUR SERVICES",
+			"subtitle": "We are one of the fastest growing Real Estate consulting company in India.",
+			"backgroundImage": "/images/OurServices/service-home.png"
+		},
+		"projects": {
+			"variant": "projects",
+			"subtitle": "We are one of the fastest growing Real Estate consulting company in India.",
+			"images": {
+				"ongoing": "/images/Projects/ongoing/bg-hero.svg",
+				"completed": "/images/completed-project.svg"
+			}
+		},
+		"globalNetwork": {
+			"variant": "overlayTitle",
+			"headingId": "global-network-hero-heading",
+			"backgroundImage": "/images/global-network/home.png",
+			"imageAlt": "Global Network",
+			"title": "GLOBAL NETWORKS",
+			"subtitle": "Connecting Indian Real Estate with Global Investors",
+			"overlayClassName": "",
+			"titleClassName": "qs-reg uppercase lg:!text-[70px] lg:!leading-[70px]"
+		}
+	},
+	"audienceHeroes": {
+		"developer": {
+			"isBuyer": false,
+			"backgroundImageSrc": "/images/Developer/developer_hero.png",
+			"backgroundVideoSrc": "/images/Home/home.mp4",
+			"hideHeroContent": true,
+			"body": "At The Guardians Real Estate Advisory, we bring pricing intelligence, launch strategy, and on-ground sales execution together to maximise your project’s performance from day one.",
+			"enquireHref": "/contact",
+			"enquireLabel": "Let's Connect",
+			"ariaHeadingId": "developer-hero-heading"
+		},
+		"buyer": {
+			"isBuyer": true,
+			"backgroundImageSrc": "/images/Buyer/hero.svg",
+			"body": "Your home-buying journey deserves clarity, comfort and the right guidance. We’re here to make every step feel easier and more meaningful.",
+			"enquireHref": "/contact",
+			"enquireLabel": "Explore Now",
+			"ariaHeadingId": "buyer-hero-heading"
+		}
+	}
 }

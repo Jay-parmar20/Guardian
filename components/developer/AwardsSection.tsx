@@ -86,7 +86,7 @@ function AwardsSectionBody({
 			aria-labelledby="awards-heading"
 			className="border-t-0 border-b-0 bg-transparent"
 		>
-			<div className="grid min-w-0 gap-12 lg:grid-cols-12 lg:items-stretch lg:gap-10 xl:gap-14 2xl:gap-16">
+			<div className="grid min-w-0 gap-12 lg:grid-cols-12 lg:items-stretch lg:gap-10 xl:gap-14 2xl:gap-16 lg:py-25">
 				{/* Left: heading */}
 				<div className="flex w-full min-w-0 flex-col items-center text-center lg:col-span-3 lg:items-start lg:text-left">
 					<Image
