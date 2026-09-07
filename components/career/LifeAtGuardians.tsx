@@ -137,7 +137,12 @@ function CareerImageCarousel() {
 								key={item.id}
 								type="button"
 								aria-label={`Go to slide ${i + 1}`}
-								onClick={() => advance(i - index)}
+								onClick={() => {
+									if (i === index) return;
+
+									const direction: 1 | -1 = i > index ? 1 : -1;
+									advance(direction);
+								}}
 								className="flex h-[6px] min-w-[6px] items-center justify-center"
 							>
 								<span
