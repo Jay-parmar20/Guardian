@@ -71,7 +71,7 @@ export function DeveloperServicesSection({
                   <div className="hidden sm:block h-10 w-px bg-[#ccc]" />
                 )}
                 <div className="text-center">
-                  <div className={cn("n-bold tabular-nums text-center text-brand-footer leading-none tracking-[-0.03em] text-[clamp(1.35rem,5.5vw,2rem)] sm:text-4xl md:text-[clamp(2.25rem,4vw,2.85rem)] md:tracking-[-0.04em]")}>
+                  <div className={cn("n-bold tabular-nums text-center text-brand-footer leading-none tracking-[-0.03em] text-[clamp(1.35rem,5.5vw,2rem)] text-balance max-md:whitespace-normal md:whitespace-nowrap sm:text-4xl md:text-[clamp(2.25rem,4vw,2.85rem)] md:tracking-[-0.04em]")}>
                     {stat.value}
                   </div>
                   <div className="mt-1 n-book text-[11px] leading-snug text-[#666] sm:text-[12px] lg:text-[13px]">

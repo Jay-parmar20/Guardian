@@ -9,12 +9,14 @@ type PartnersHeroProps = Omit<
 
 const defaultProps: Partial<PartnersHeroProps> = {
   heightPx: 600,
-  mobileHeightPx: undefined,
-  useViewportHeightFlag: false,
+  mobileHeightPx: 400,
+  useViewportHeightFlag: true,
   viewportHeightBreakpointPx: 1024,
-  shiftExtraContentTopPx: 0,
+  shiftExtraContentTopPx: 100,
+  mobileShiftExtraContentTopPx: 50,
   shiftUnderHeader: false,
   shiftTillSearch: false,
+  negativePadding: 50,
 };
 
 export function PartnersHero(props: PartnersHeroProps) {

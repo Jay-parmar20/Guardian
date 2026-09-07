@@ -352,7 +352,7 @@ function getProjectsContentPad(shift: boolean, till: boolean, extra: number): He
 /** Replaces `marketing-first-section-height` when `heightPx` is set. */
 function marketingFirstSectionHeightClass(heightPx?: number) {
   return isCustomHeroHeight(heightPx)
-    ? "min-h-0 min-w-0 w-full [&_img]:!object-top [&_video]:!object-top"
+    ? "min-h-0 min-w-0 w-full [&_img]:!object-center [&_video]:!object-center"
     : "marketing-first-section-height";
 }
 
@@ -615,12 +615,18 @@ function HomeHero({
     negativePadding,
     getHomeContainerPad(Boolean(shiftUnderHeader), tillSearch, contentExtraTopPx),
   );
+  const heightClasses = marketingViewportHeightSection(
+    true, // useViewportHeightFlag
+    600, // desktopHeightPx
+    400, // mobileHeightPx
+    heightPx, // resolvedHeightPx
+  );
 
   return (
     <section
       id={(config["sectionId"] as string) || undefined}
       className={cn(
-        marketingFirstSectionHeightClass(heightPx),
+        heightClasses.className,
         "relative overflow-hidden bg-[#E4E4E4]",
         tillSearch
           ? "pt-0 pb-12 sm:pb-14 lg:pb-16"
@@ -628,7 +634,7 @@ function HomeHero({
         heroNavOverlapClass(shiftUnderHeader, tillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(heightPx)}
+      style={heightClasses.style}
       aria-labelledby={config["headingId"] as string}
     >
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -734,15 +740,21 @@ function OverlayTitleHero({
     negativePadding,
     getHeroContentPad(Boolean(shiftUnderHeader), Boolean(shiftTillSearch), contentExtraTopPx),
   );
+  const heightClasses = marketingViewportHeightSection(
+    true, // useViewportHeightFlag
+    600, // desktopHeightPx
+    400, // mobileHeightPx
+    heightPx, // resolvedHeightPx
+  );
   return (
     <section
       className={cn(
-        marketingFirstSectionHeightClass(heightPx),
+        heightClasses.className,
         "relative overflow-hidden",
         heroNavOverlapClass(shiftUnderHeader, shiftTillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(heightPx)}
+      style={heightClasses.style}
       aria-labelledby={config["headingId"] as string}
     >
       <div className="absolute inset-0 z-0" aria-hidden>
@@ -817,15 +829,21 @@ function ContactHero({
     negativePadding,
     getHeroContentPad(Boolean(shiftUnderHeader), Boolean(shiftTillSearch), contentExtraTopPx),
   );
+  const heightClasses = marketingViewportHeightSection(
+    true, // useViewportHeightFlag
+    600, // desktopHeightPx
+    400, // mobileHeightPx
+    heightPx, // resolvedHeightPx
+  );
   return (
     <section
       className={cn(
-        marketingFirstSectionHeightClass(heightPx),
+        heightClasses.className,
         "relative overflow-hidden",
         heroNavOverlapClass(shiftUnderHeader, shiftTillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(heightPx)}
+      style={heightClasses.style}
       aria-labelledby={config["headingId"] as string}
     >
       <div className="absolute inset-0 z-0" aria-hidden>
@@ -891,15 +909,21 @@ function CareerHero({
     negativePadding,
     getHeroContentPad(Boolean(shiftUnderHeader), Boolean(shiftTillSearch), contentExtraTopPx),
   );
+  const heightClasses = marketingViewportHeightSection(
+    true, // useViewportHeightFlag
+    600, // desktopHeightPx
+    400, // mobileHeightPx
+    heightPx, // resolvedHeightPx
+  );
   return (
     <section
       className={cn(
-        marketingFirstSectionHeightClass(heightPx),
+        heightClasses.className,
         "relative overflow-hidden bg-neutral-200",
         heroNavOverlapClass(shiftUnderHeader, shiftTillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(heightPx)}
+      style={heightClasses.style}
       aria-labelledby={config["headingId"] as string}
     >
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
@@ -966,15 +990,21 @@ function NewsroomHero({
     negativePadding,
     getHeroContentPad(Boolean(shiftUnderHeader), Boolean(shiftTillSearch), contentExtraTopPx),
   );
+  const heightClasses = marketingViewportHeightSection(
+    true, // useViewportHeightFlag
+    600, // desktopHeightPx
+    400, // mobileHeightPx
+    heightPx, // resolvedHeightPx
+  );
   return (
     <section
       className={cn(
-        marketingFirstSectionHeightClass(heightPx),
+        heightClasses.className,
         "relative overflow-hidden",
         heroNavOverlapClass(shiftUnderHeader, shiftTillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(heightPx)}
+      style={heightClasses.style}
       aria-labelledby={config["headingId"] as string}
     >
       <div className="absolute inset-0 z-0" aria-hidden>
@@ -1034,15 +1064,21 @@ function PartnersHero({
     negativePadding,
     getHeroContentPad(Boolean(shiftUnderHeader), Boolean(shiftTillSearch), contentExtraTopPx),
   );
+  const heightClasses = marketingViewportHeightSection(
+    true, // useViewportHeightFlag
+    600, // desktopHeightPx
+    400, // mobileHeightPx
+    heightPx, // resolvedHeightPx
+  );
   return (
     <section
       className={cn(
         "partners-hero-section relative w-full min-w-0 overflow-hidden bg-[#111]",
-        "h-auto aspect-[1440/513] lg:h-[600px] lg:aspect-auto",
-        "[&_img]:!object-contain lg:[&_img]:!object-cover [&_img]:!object-center",
+        heightClasses.className,
         heroNavOverlapClass(shiftUnderHeader, shiftTillSearch),
         className,
       )}
+      style={heightClasses.style}
       aria-labelledby={config["headingId"] as string}
     >
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -1050,7 +1086,7 @@ function PartnersHero({
           src={config["backgroundImage"] as string}
           alt={(config["imageAlt"] as string) || ""}
           fill
-          className="object-contain object-center lg:object-cover"
+          className="object-cover object-center"
           sizes="100vw"
           priority
         />
@@ -1085,15 +1121,21 @@ function PublicationHeroView({
       contentExtraTopPx,
     ),
   );
+  const heightClasses = marketingViewportHeightSection(
+    true, // useViewportHeightFlag
+    600, // desktopHeightPx
+    400, // mobileHeightPx
+    heightPx, // resolvedHeightPx
+  );
   return (
     <section
       className={cn(
-        marketingFirstSectionHeightClass(heightPx),
+        heightClasses.className,
         "relative overflow-hidden",
         heroNavOverlapClass(shiftUnderHeader, shiftTillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(heightPx)}
+      style={heightClasses.style}
       aria-labelledby={config["headingId"] as string}
     >
       <div className="hero-projects-stage-bg" aria-hidden>
@@ -1167,18 +1209,22 @@ function TgreaHero({
   const bgImageClass =
     (config["imageClassName"] as string) || "object-cover object-center";
   const title = (config["title"] as string) || "";
+  const heightClasses = marketingViewportHeightSection(
+    true, // useViewportHeightFlag
+    600, // desktopHeightPx
+    400, // mobileHeightPx
+    heightPx, // resolvedHeightPx
+  );
 
   return (
     <section
       className={cn(
-        isCustomHeroHeight(heightPx)
-          ? "min-h-0 min-w-0 w-full [&_img]:!object-cover [&_img]:!object-top"
-          : "marketing-first-section-height",
+        heightClasses.className,
         "relative isolate w-full min-w-0 overflow-hidden bg-[#e8e8e8]",
         heroNavOverlapClass(shiftUnderHeader, shiftTillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(heightPx)}
+      style={heightClasses.style}
       aria-labelledby={config["headingId"] as string}
     >
       <div className="pointer-events-none absolute inset-0 z-0 min-h-full">
@@ -1239,15 +1285,21 @@ function ServicesHero({
     negativePadding,
     getServicesContentPad(Boolean(shiftUnderHeader), Boolean(shiftTillSearch), contentExtraTopPx),
   );
+  const heightClasses = marketingViewportHeightSection(
+    true, // useViewportHeightFlag
+    600, // desktopHeightPx
+    400, // mobileHeightPx
+    heightPx, // resolvedHeightPx
+  );
   return (
     <section
       className={cn(
-        marketingFirstSectionHeightClass(heightPx),
+        heightClasses.className,
         "services-hero-section relative",
         heroNavOverlapClass(shiftUnderHeader, shiftTillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(heightPx)}
+      style={heightClasses.style}
       aria-labelledby={config["ariaLabelledBy"] as string}
     >
       <div className="absolute inset-0 z-0" aria-hidden>
@@ -1255,7 +1307,7 @@ function ServicesHero({
           src={config["backgroundImage"] as string}
           alt=""
           fill
-          className="object-contain object-center"
+          className="object-cover object-center"
           sizes="100vw"
           priority
         />
@@ -1264,7 +1316,7 @@ function ServicesHero({
         <div className="flex flex-col items-center gap-4">
           <h1
             id={config["headingId"] as string}
-            className="qs-reg font-normal text-[70px] leading-[70px] tracking-[0.05em] text-[#202225] uppercase text-center"
+            className="qs-reg font-normal text-[35px] leading-[35px] lg:text-[70px] lg:leading-[70px] tracking-[0.05em] text-[#202225] uppercase text-center"
           >
             {config["title"] as string}
           </h1>
@@ -1308,15 +1360,21 @@ function AboutHero({
     getHeroContentPad(Boolean(shiftUnderHeader), Boolean(shiftTillSearch), shiftContentExtra),
   );
   const heading = config["headingHtml"] as { prefix: string; rest: string };
+  const heightClasses = marketingViewportHeightSection(
+    true, // useViewportHeightFlag
+    600, // desktopHeightPx
+    400, // mobileHeightPx
+    heightPx, // resolvedHeightPx
+  );
   return (
     <div
       className={cn(
-        marketingFirstSectionHeightClass(heightPx),
+        heightClasses.className,
         "relative overflow-hidden",
         heroNavOverlapClass(shiftUnderHeader, shiftTillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(heightPx)}
+      style={heightClasses.style}
     >
       <Image
         src={config["backgroundImage"] as string}
@@ -1398,16 +1456,22 @@ function ProjectsHeroSection({
   useEffect(() => {
     setDisplaySrc(src);
   }, [src]);
+  const heightClasses = marketingViewportHeightSection(
+    true, // useViewportHeightFlag
+    600, // desktopHeightPx
+    400, // mobileHeightPx
+    heightPx, // resolvedHeightPx
+  );
 
   return (
     <section
       className={cn(
-        marketingFirstSectionHeightClass(heightPx),
+        heightClasses.className,
         "relative isolate flex flex-col overflow-hidden md:flex ",
         heroNavOverlapClass(shiftUnderHeader, shiftTillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(heightPx)}
+      style={heightClasses.style}
     >
       <div className="hero-projects-stage-bg" aria-hidden>
         <div className="hero-projects-stage-bg__photo">
@@ -1472,52 +1536,61 @@ export function MarketingAudienceHero({
   shiftUnderHeader,
   shiftTillSearch,
   shiftExtraContentTopPx,
+  mobileShiftExtraContentTopPx,
   negativePadding = 50,
+  mobileNegativePadding,
   viewportHeightBreakpointPx = DEFAULT_VIEWPORT_HEIGHT_BREAKPOINT,
 }: {
   className?: string;
   content: MarketingHeroContent;
-  /** When set, replaces default `marketing-first-section-height` clamp with this fixed height (px). */
   heightPx?: number;
-  /** Mobile hero height (px) when `useViewportHeightFlag` is true. */
   mobileHeightPx?: number;
-  /** Swap to `mobileHeightPx` below `viewportHeightBreakpointPx`. */
   useViewportHeightFlag?: boolean;
   shiftUnderHeader?: boolean;
   shiftTillSearch?: boolean;
-  /**
-   * When `shiftUnderHeader` is true, extra top padding (px) on the main content, after the header offset.
-   * Defaults to 32. Pass `0` to turn off.
-   */
   shiftExtraContentTopPx?: number;
-  /** See `MarketingHeroNegativeContentShift`. Disabled on viewports below `viewportHeightBreakpointPx`. */
+  mobileShiftExtraContentTopPx?: number;
   negativePadding?: MarketingHeroNegativeContentShift;
-  /** Mobile/desktop cutoff for height + negative-padding resolution. Default: 1024. */
+  mobileNegativePadding?: MarketingHeroNegativeContentShift;
   viewportHeightBreakpointPx?: number;
 }) {
   const { lead, accent } = resolveHeadline(content);
   const tillSearch = Boolean(shiftUnderHeader && shiftTillSearch);
   const shift = Boolean(shiftUnderHeader);
-  const contentExtraTopPx = shift ? (shiftExtraContentTopPx ?? 32) : 0;
   const {
     heightPx: resolvedHeightPx,
     negativePadding: resolvedNegativePadding,
+    isMobileViewport,
   } = useMarketingHeroViewport({
     useViewportHeightFlag,
     heightPx,
     mobileHeightPx,
     viewportHeightBreakpointPx,
     negativePadding,
+    mobileNegativePadding,
+    mobileShiftExtraContentTopPx,
   });
+  const contentExtraTopPx = shift ? resolveShiftContentExtraPx(
+    shift,
+    shiftExtraContentTopPx,
+    mobileShiftExtraContentTopPx,
+    isMobileViewport,
+  ) : 0;
   const contentPad = mergeNegativeContentPad(
     resolvedNegativePadding,
     getHeroContentPad(shift, tillSearch, contentExtraTopPx),
+  );
+  const heightClasses = marketingViewportHeightSection(
+    useViewportHeightFlag,
+    heightPx,
+    mobileHeightPx,
+    resolvedHeightPx,
   );
 
   return (
     <section
       className={cn(
-        marketingFirstSectionHeightClass(resolvedHeightPx),
+        heightClasses.className,
         "relative isolate w-full min-w-0 overflow-hidden bg-neutral-300",
         shiftUnderHeader
           ? "pt-0 sm:pt-0 lg:pt-0 2xl:pt-0 pb-28 sm:pb-32 lg:pb-40 2xl:pb-44"
@@ -1525,7 +1598,7 @@ export function MarketingAudienceHero({
         heroNavOverlapClass(shiftUnderHeader, tillSearch),
         className,
       )}
-      style={marketingFirstSectionHeightStyle(resolvedHeightPx)}
+      style={heightClasses.style}
       aria-labelledby={content.ariaHeadingId}
     >
 <div className="pointer-events-none absolute inset-0 z-0">

@@ -13,12 +13,9 @@ export type AudienceHeroProps = {
   useViewportHeightFlag?: boolean;
   viewportHeightBreakpointPx?: number;
   negativePadding?: MarketingHeroNegativeContentShift;
-  /**
-   * Extra top padding (px) when shift flags apply. If set, overrides
-   * `content.shiftExtraContentTopPx` from page data; otherwise the hero content value
-   * (or the default in `MarketingAudienceHero`) is used.
-   */
+  mobileNegativePadding?: MarketingHeroNegativeContentShift;
   shiftExtraContentTopPx?: number;
+  mobileShiftExtraContentTopPx?: number;
 };
 
 export function AudienceHero({
@@ -28,9 +25,11 @@ export function AudienceHero({
   useViewportHeightFlag,
   viewportHeightBreakpointPx,
   negativePadding,
+  mobileNegativePadding,
   shiftUnderHeader,
   shiftTillSearch,
   shiftExtraContentTopPx,
+  mobileShiftExtraContentTopPx,
 }: AudienceHeroProps) {
   const resolvedExtraTop =
     shiftExtraContentTopPx !== undefined
@@ -45,9 +44,11 @@ export function AudienceHero({
       useViewportHeightFlag={useViewportHeightFlag}
       viewportHeightBreakpointPx={viewportHeightBreakpointPx}
       negativePadding={negativePadding}
+      mobileNegativePadding={mobileNegativePadding}
       shiftUnderHeader={shiftUnderHeader}
       shiftTillSearch={shiftTillSearch}
       shiftExtraContentTopPx={resolvedExtraTop}
+      mobileShiftExtraContentTopPx={mobileShiftExtraContentTopPx}
     />
   );
 }

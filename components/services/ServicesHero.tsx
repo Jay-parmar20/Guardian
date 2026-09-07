@@ -1,7 +1,6 @@
 "use client";
 
 import { MarketingPageHero } from "@/components/marketing/MarketingPageHero";
-import { useViewportIsMobile } from "@/hooks/useViewportIsMobile";
 
 const VIEWPORT_BREAKPOINT_PX = 1024;
 
@@ -13,23 +12,21 @@ type ServicesHeroProps = {
 /**
  * Shared hero for Buyer's and Developer's service pages.
  * Copy and images are defined in `utils/static.json` (`servicesBuyer` / `servicesDeveloper`).
- * `negativePadding` is cleared on mobile inside `MarketingPageHero`.
  */
 export function ServicesHero({ audience }: ServicesHeroProps) {
-  const isMobile = useViewportIsMobile(true, VIEWPORT_BREAKPOINT_PX);
-  const shiftExtraContentTopPx = isMobile
-    ? 0
-    : audience === "buyer"
-      ? 0
-      : 0;
-
   return (
     <MarketingPageHero
       heroId={audience === "buyer" ? "servicesBuyer" : "servicesDeveloper"}
-      shiftExtraContentTopPx={shiftExtraContentTopPx}
+      heightPx={600}
+      mobileHeightPx={400}
+      useViewportHeightFlag
+      viewportHeightBreakpointPx={VIEWPORT_BREAKPOINT_PX}
+      shiftExtraContentTopPx={100}
+      mobileShiftExtraContentTopPx={50}
       shiftUnderHeader={true}
       shiftTillSearch={false}
-      negativePadding={0}
+      negativePadding={50}
+      mobileNegativePadding={50}
     />
   );
 }

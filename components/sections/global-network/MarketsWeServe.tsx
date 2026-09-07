@@ -31,7 +31,7 @@ const MARKETS: MarketCard[] = [
 function MarketCardItem({ market }: { market: MarketCard }) {
   return (
     <article
-      className="relative flex-shrink-0"
+      className="relative flex-shrink-0 mb-6 sm:mb-0"
       style={{ width: "385px", height: "326px" }}
       aria-hidden="true"
     >

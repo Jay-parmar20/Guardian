@@ -707,9 +707,9 @@ html:not(.js-directional-grad) .btn-grad--dark:focus-visible {
 
 @media (min-width: 1024px) {
   .marketing-hero-height-viewport {
-    height: var(--marketing-hero-h-desktop, 650px);
-    max-height: var(--marketing-hero-h-desktop, 650px);
-    min-height: var(--marketing-hero-h-desktop, 650px);
+    height: var(--marketing-hero-h-desktop, 600px);
+    max-height: var(--marketing-hero-h-desktop, 600px);
+    min-height: var(--marketing-hero-h-desktop, 600px);
   }
 }
 
@@ -720,26 +720,35 @@ html:not(.js-directional-grad) .btn-grad--dark:focus-visible {
 
 @media (min-width: 1024px) {
   .marketing-first-section-height {
-    /* Desktop QA baseline (locked). */
-    height: clamp(560px, 45vw, 1250px);
+    /* Desktop: consistent 600px height for all hero images/videos. */
+    height: 600px;
   }
 }
 
-/* Full-bleed hero images: consistent cover + center for all hero media. */
-.marketing-first-section-height:not(.services-hero-section) :is(img, video),
-.marketing-hero-height-viewport :is(img, video) {
-  object-fit: cover !important;
-  object-position: center center !important;
+/* Full-bleed hero images: consistent cover + center for all hero media on desktop. */
+@media (min-width: 1024px) {
+  .marketing-first-section-height :is(img, video),
+  .marketing-hero-height-viewport :is(img, video),
+  .partners-hero-section :is(img, video),
+  .services-hero-section :is(img, video),
+  .partners-hero-section img,
+  .services-hero-section img {
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+  
+  /* Ensure partners hero section uses consistent desktop height */
+  .partners-hero-section.marketing-hero-height-viewport {
+    height: var(--marketing-hero-h-desktop, 600px);
+    max-height: var(--marketing-hero-h-desktop, 600px);
+    min-height: var(--marketing-hero-h-desktop, 600px);
+  }
 }
 
 /* Services hero mobile height fallback (used when useViewportHeightFlag is removed). */
 @media (max-width: 1023px) {
   .services-hero-section.marketing-first-section-height {
     height: 400px;
-  }
-  .services-hero-section img {
-    object-fit: cover !important;
-    object-position: center center !important;
   }
 }
 

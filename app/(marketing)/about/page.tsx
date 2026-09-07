@@ -15,7 +15,7 @@ export default function AboutPage() {
         id="about"
         className="border-b border-[#d8d2d2] bg-[linear-gradient(180deg,#fbfbfb_0%,#f7f5f5_50%,#efeded_100%)] "
       >
-        <MarketingPageHero heroId="about" heightPx={600} mobileHeightPx={400} useViewportHeightFlag viewportHeightBreakpointPx={1024} shiftUnderHeader={true} shiftTillSearch={false} shiftExtraContentTopPx={44} negativePadding={16} />
+        <MarketingPageHero heroId="about" heightPx={600} mobileHeightPx={400} useViewportHeightFlag viewportHeightBreakpointPx={1024} shiftUnderHeader={true} shiftTillSearch={false} shiftExtraContentTopPx={100} mobileShiftExtraContentTopPx={50} negativePadding={50} />
       </section>
 
       <AboutPageContent />

@@ -9,10 +9,11 @@ const defaultProps: Partial<GazetteHeroProps> = {
   mobileHeightPx: 400,
   useViewportHeightFlag: true,
   viewportHeightBreakpointPx: 1024,
-  shiftExtraContentTopPx: 0,
+  shiftExtraContentTopPx: 100,
+  mobileShiftExtraContentTopPx: 50,
   shiftUnderHeader: true,
-  shiftTillSearch: true,
-  negativePadding: 24,
+  shiftTillSearch: false,
+  negativePadding: 50,
 };
 
 export function GazetteHero(props: GazetteHeroProps) {

@@ -12,10 +12,10 @@ export function NewsroomHero() {
       viewportHeightBreakpointPx={VIEWPORT_HEIGHT_BREAKPOINT_PX}
       shiftUnderHeader
       shiftTillSearch={false}
-      shiftExtraContentTopPx={200}
-      mobileShiftExtraContentTopPx={0}
+      shiftExtraContentTopPx={100}
+      mobileShiftExtraContentTopPx={50}
       negativePadding={50}
-      mobileNegativePadding={80}
+      mobileNegativePadding={50}
     />
   );
 }

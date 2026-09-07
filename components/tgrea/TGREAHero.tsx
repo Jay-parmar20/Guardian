@@ -10,9 +10,10 @@ export function TGREAHero() {
         useViewportHeightFlag
         shiftUnderHeader={false}
         shiftTillSearch={false}
-        shiftExtraContentTopPx={0}
-        mobileShiftExtraContentTopPx={100}
+        shiftExtraContentTopPx={100}
+        mobileShiftExtraContentTopPx={50}
         viewportHeightBreakpointPx={1024}
+        negativePadding={50}
       />
     </div>
   );

@@ -495,11 +495,11 @@ function ProjectsPageContent() {
         useViewportHeightFlag
         viewportHeightBreakpointPx={VIEWPORT_HEIGHT_BREAKPOINT_PX}
         shiftUnderHeader
-        shiftTillSearch
-        shiftExtraContentTopPx={80}
-        mobileShiftExtraContentTopPx={0}
+        shiftTillSearch={false}
+        shiftExtraContentTopPx={100}
+        mobileShiftExtraContentTopPx={50}
         negativePadding={50}
-        mobileNegativePadding={250}
+        mobileNegativePadding={50}
       />
 
       {/* ------------------------------------------------------------------ */}

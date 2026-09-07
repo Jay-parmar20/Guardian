@@ -64,11 +64,11 @@ export function InternationalSales() {
                     role="listitem"
                   >
                     <div className="flex items-baseline gap-1">
-                      <span className="n-bold text-[clamp(2.25rem,4vw,3.5rem)] leading-none tabular-nums text-[#8F8183]">
+                      <span className="n-bold text-[clamp(1.35rem,5.5vw,2rem)] sm:text-4xl md:text-[clamp(2.25rem,4vw,2.85rem)] leading-none tabular-nums text-[#8F8183]">
                         {stat.value}
                       </span>
                     </div>
-                    <p className="mt-3 n-bold text-sm uppercase leading-snug tracking-wide text-[#202225] max-w-[200px]">
+                    <p className="mt-3 n-bold font-bold text-[16px] leading-[20px] text-center normal-case text-[#202225] max-w-[200px]">
                       {stat.label}
                     </p>
                   </div>

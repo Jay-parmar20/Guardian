@@ -24,7 +24,7 @@ export function HeroSectionDesktop() {
           src={HERO_IMAGE}
           alt=""
           fill
-          className="object-fill object-center"
+          className="object-cover object-center"
           sizes="100vw"
           priority
         />

@@ -12,9 +12,9 @@ export function CareerHero() {
       viewportHeightBreakpointPx={VIEWPORT_HEIGHT_BREAKPOINT_PX}
       shiftUnderHeader={false}
       shiftTillSearch={false}
-      shiftExtraContentTopPx={120}
-      mobileShiftExtraContentTopPx={0}
-      negativePadding={16}
+      shiftExtraContentTopPx={100}
+      mobileShiftExtraContentTopPx={50}
+      negativePadding={50}
     />
   );
 }

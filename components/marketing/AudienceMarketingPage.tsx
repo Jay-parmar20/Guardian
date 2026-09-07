@@ -32,25 +32,29 @@ export function AudienceMarketingPage({
       className={cn(
         "mx-auto flex w-full min-w-0 max-w-full flex-col overflow-x-clip gap-10 md:gap-16 lg:gap-20 xl:gap-25 2xl:gap-25 mb-10 md:mb-20 lg:mb-20 2xl:mb-20",
         "[&>*]:min-w-0",
+        isMobile && "gap-4 mb-4",
       )}
     >
       <AudienceHero
         key={content.hero.ariaHeadingId}
         content={content.hero}
-        heightPx={content.heroHeightPx ?? 1390}
-        mobileHeightPx={content.heroMobileHeightPx ?? 500}
+        heightPx={content.heroHeightPx ?? 600}
+        mobileHeightPx={content.heroMobileHeightPx ?? 400}
         useViewportHeightFlag
         viewportHeightBreakpointPx={VIEWPORT_HEIGHT_BREAKPOINT_PX}
         shiftUnderHeader={true}
-        shiftTillSearch={true}
-        shiftExtraContentTopPx={isMobile ? 50 : 100}
+        shiftTillSearch={false}
+        shiftExtraContentTopPx={100}
+        mobileShiftExtraContentTopPx={50}
         negativePadding={50}
+        mobileNegativePadding={50}
       />
       <div
         className={cn(
           "flex w-full min-w-0 flex-col gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-5 mt-[15px]",
           /* Stretch bands full width so carousels are not shrink-wrapped / clipped on mobile. */
           "max-lg:items-stretch",
+          isMobile && "gap-1 mt-0",
         )}
       >
         {content.stickyScroll ? <HomeStickyScrollCopy /> : null}
@@ -98,7 +102,7 @@ export function AudienceMarketingPage({
             <ScrollReveal direction="up" distance={32} className="w-full">
               <h2
                 id="partners-heading"
-                className="mt-2 mx-auto max-w-[538px] text-center uppercase text-brand-text-primary qs-reg font-normal text-[32px] sm:text-[40px] md:text-[50px] lg:text-[60px] leading-[1.1] tracking-[0.05em]"
+                className="mt-2 mx-auto max-w-[1105px] text-center uppercase text-brand-text-primary qs-reg font-normal text-[32px] sm:text-[40px] md:text-[50px] lg:text-[52px] leading-[1.1] tracking-[0.05em] lg:whitespace-nowrap"
               >
                 {content.partners.headlineLine1.trim()}
               </h2>

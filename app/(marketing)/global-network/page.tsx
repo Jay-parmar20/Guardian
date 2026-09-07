@@ -21,6 +21,9 @@ export default function GlobalNetworkPage() {
         viewportHeightBreakpointPx={1024}
         shiftUnderHeader={false}
         shiftTillSearch={false}
+        shiftExtraContentTopPx={100}
+        mobileShiftExtraContentTopPx={50}
+        negativePadding={50}
       />
       <InternationalSales />
       <GlobalNetworks heading="WHAT WE DO" showKnowMore={false} />
