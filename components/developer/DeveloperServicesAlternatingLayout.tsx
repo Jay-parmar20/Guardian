@@ -1,152 +1,359 @@
 "use client";
 
 import { Container } from "@/components/common/Container";
-import { SERVICE_PANELS } from "@/data/services";
 import type { ServicePanel } from "@/components/services/ServicesGrid";
-import Image from "next/image";
+import { SERVICE_PANELS } from "@/data/services";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 
 type Props = {
-  panels?: ServicePanel[];
-  ariaLabel?: string;
+	panels?: ServicePanel[];
+	ariaLabel?: string;
+};
+
+const accordionTransition = {
+	duration: 0.35,
+	ease: [0.22, 1, 0.36, 1] as const,
 };
 
 export function DeveloperServicesAlternatingLayout({
-  panels,
-  ariaLabel = "Developer services",
+	panels,
+	ariaLabel = "Developer services",
 }: Props) {
-  const services = panels ?? SERVICE_PANELS;
+	const services = panels ?? SERVICE_PANELS;
 
-  return (
-    <section className="bg-white" aria-label={ariaLabel}>
-      <Container className="pt-0 pb-6 sm:pb-10 lg:pb-14 xl:pb-20">
-        <div className="flex flex-col gap-8 lg:gap-10 xl:gap-12">
-          {services.map((service, index) => {
-            const isImageLeft = index % 2 === 0;
-            const [introItem, ...accordionItems] = service.items;
+	return (
+		<section
+			className="bg-white py-12 sm:py-16 lg:py-[100px]"
+			aria-label={ariaLabel}
+		>
+			<Container>
+				{/* Exactly 50px between every service article */}
+				<div className="flex flex-col gap-[50px]">
+					{services.map((service, index) => {
+						const isImageLeft = index % 2 === 0;
+						const [introItem, ...accordionItems] = service.items;
 
-            return (
-              <DeveloperServiceRow
-                key={service.title}
-                service={service}
-                introItem={introItem}
-                accordionItems={accordionItems}
-                isImageLeft={isImageLeft}
-                index={index}
-              />
-            );
-          })}
-        </div>
-      </Container>
-    </section>
-  );
+						return (
+							<DeveloperServiceRow
+								key={service.title}
+								service={service}
+								introItem={introItem}
+								accordionItems={accordionItems}
+								isImageLeft={isImageLeft}
+								index={index}
+							/>
+						);
+					})}
+				</div>
+			</Container>
+		</section>
+	);
 }
 
 function DeveloperServiceRow({
-  service,
-  introItem,
-  accordionItems,
-  isImageLeft,
-  index,
+	service,
+	introItem,
+	accordionItems,
+	isImageLeft,
+	index,
 }: {
-  service: typeof SERVICE_PANELS[0];
-  introItem: { title: string; description?: string };
-  accordionItems: { title: string; description?: string }[];
-  isImageLeft: boolean;
-  index: number;
+	service: (typeof SERVICE_PANELS)[0];
+	introItem: {
+		title: string;
+		description?: string;
+	};
+	accordionItems: {
+		title: string;
+		description?: string;
+	}[];
+	isImageLeft: boolean;
+	index: number;
 }) {
-  const [openIndex, setOpenIndex] = useState<number>(0);
+	const [openIndex, setOpenIndex] = useState<number>(0);
 
-  return (
-    <article className="flex flex-col gap-0 lg:grid lg:grid-cols-[45%_1fr]">
-      <div
-        className={`relative min-w-0 w-full overflow-hidden aspect-[3/2] lg:aspect-auto ${
-          isImageLeft ? "lg:order-1" : "lg:order-2"
-        }`}
-      >
-        <div className="absolute inset-0 p-5 sm:p-6 lg:p-8 xl:p-10">
-          <div className="relative h-full w-full">
-            <Image
-              src={service.imageSrc}
-              alt={service.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              priority={index < 2}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#202225] via-[#202225]/60 to-transparent" />
-            <div className="absolute inset-0 flex items-center justify-center px-6">
-              <h3 className="text-center font-extrabold uppercase tracking-[0.1em] text-white text-[20px] leading-[24px] max-w-[320px]">
-                {service.title}
-              </h3>
-            </div>
-          </div>
-        </div>
-      </div>
+	return (
+		<article
+			className="
+				grid
+				w-full
+				grid-cols-1
+				overflow-hidden
+				lg:grid-cols-[45%_55%]
+			"
+		>
+			{/* =========================
+			    IMAGE SIDE
+			========================= */}
+			<div
+				className={`
+					relative
+					aspect-[3/2]
+					w-full
+					min-w-0
+					overflow-hidden
+					lg:aspect-auto
+					lg:min-h-[540px]
+					${isImageLeft ? "lg:order-1" : "lg:order-2"}
+				`}
+			>
+				<Image
+					src={service.imageSrc}
+					alt={service.title}
+					fill
+					className="object-cover object-center"
+					sizes="(max-width: 1024px) 100vw, 45vw"
+					priority={index < 2}
+				/>
 
-      <div
-        className={`relative min-w-0 w-full flex flex-col flex-shrink-0 ${
-          isImageLeft ? "lg:order-2" : "lg:order-1"
-        }`}
-      >
-        <div className="flex flex-1 flex-col p-5 sm:p-6 lg:p-8 xl:p-10">
-            <h4 className="qs-reg uppercase tracking-[0.05em] text-[#202225] text-[clamp(1.125rem,2.5vw,1.5rem)] leading-tight mb-3">
-              {introItem.title}
-            </h4>
+				{/* Dark gradient */}
+				<div
+					className="
+						pointer-events-none
+						absolute
+						inset-0
+						bg-gradient-to-t
+						from-[#202225]
+						via-[#202225]/55
+						to-transparent
+					"
+				/>
 
-            <div className="flex flex-1 flex-col">
-              <motion.div
-                initial={false}
-                animate={
-                  openIndex === 0
-                    ? { height: "auto", opacity: 1 }
-                    : { height: 0, opacity: 0 }
-                }
-                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                className="overflow-hidden"
-              >
-                <p className="n-book text-base leading-[1.6] text-[#444] pb-4 sm:text-lg sm:leading-[1.7] lg:text-[17px] lg:leading-[26px]">
-                  {introItem.description}
-                </p>
-              </motion.div>
+				{/* Image title */}
+				<div className="absolute inset-0 flex items-center justify-center px-6">
+					<h3
+						className="
+							n-bold
+							max-w-[340px]
+							text-center
+							text-[20px]
+							leading-[24px]
+							tracking-[0.1em]
+							text-white
+							uppercase
+						"
+					>
+						{service.title}
+					</h3>
+				</div>
+			</div>
 
-              {accordionItems.map((item, i) => (
-                <div key={item.title}>
-                  <div className="border-t border-[#E5E5E5]" />
-                  <button
-                    type="button"
-                    onClick={() => setOpenIndex(openIndex === i + 1 ? -1 : i + 1)}
-                    className="flex w-full cursor-pointer items-start justify-between gap-3 py-4 text-left transition-opacity hover:opacity-80 sm:items-center sm:gap-4"
-                  >
-                    <span className="n-reg min-w-0 flex-1 text-base leading-snug text-[#202225] sm:text-lg lg:text-[18px]">
-                      {item.title}
-                    </span>
-                    <span className="shrink-0 n-reg text-xl text-[#202225]">
-                      {openIndex === i + 1 ? "−" : "+"}
-                    </span>
-                  </button>
-                  {item.description ? (
-                    <motion.div
-                      initial={false}
-                      animate={
-                        openIndex === i + 1
-                          ? { height: "auto", opacity: 1 }
-                          : { height: 0, opacity: 0 }
-                      }
-                      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="pb-4 n-book text-base leading-[1.6] text-[#555] sm:text-lg sm:leading-[1.7] lg:text-[16px] lg:leading-[24px]">
-                        {item.description}
-                      </p>
-                    </motion.div>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-    </article>
-  );
+			{/* =========================
+			    CONTENT SIDE
+			========================= */}
+			<div
+				className={`
+					w-full
+					min-w-0
+					bg-white
+					${isImageLeft ? "lg:order-2" : "lg:order-1"}
+				`}
+			>
+				<div
+					className="
+		flex
+		h-full
+		flex-col
+		justify-start
+		items-start
+		px-5
+		py-2
+		sm:px-8
+		sm:py-4
+		lg:px-10
+		lg:py-16
+		xl:px-12.5
+		xl:py-8
+	"
+				>
+					{/* =========================
+					    INTRODUCTION
+					========================= */}
+					<div>
+						<button
+							type="button"
+							onClick={() => setOpenIndex(openIndex === 0 ? -1 : 0)}
+							aria-expanded={openIndex === 0}
+							className="
+								flex
+								w-full
+								cursor-pointer
+								items-center
+								justify-between
+								gap-5
+								text-left
+							"
+						>
+							<span
+								className="
+									n-bold
+									min-w-0
+									flex-1
+									text-[20px]
+									leading-[24px]
+									text-[#000000]
+								"
+							>
+								{introItem.title}
+							</span>
+
+							<span
+								className="
+									n-bold
+									flex
+									h-6
+									w-6
+									shrink-0
+									items-center
+									justify-center
+									text-[20px]
+									leading-[24px]
+									text-[#000000]
+								"
+								aria-hidden
+							>
+								{openIndex === 0 ? "−" : "+"}
+							</span>
+						</button>
+
+						{/* Introduction description */}
+						<motion.div
+							initial={false}
+							animate={
+								openIndex === 0
+									? {
+											height: "auto",
+											opacity: 1,
+										}
+									: {
+											height: 0,
+											opacity: 0,
+										}
+							}
+							transition={accordionTransition}
+							className="overflow-hidden"
+						>
+							{introItem.description ? (
+								<p
+									className="
+										n-reg
+										mt-[10px]
+										max-w-[533px]
+										text-[16px]
+										leading-[24px]
+										text-[#000000]
+									"
+								>
+									{introItem.description}
+								</p>
+							) : null}
+						</motion.div>
+					</div>
+
+					{/* 20px below intro description */}
+					<div className="mt-[20px]">
+						{accordionItems.map((item, i) => {
+							const itemIndex = i + 1;
+							const isOpen = openIndex === itemIndex;
+
+							return (
+								<div key={item.title} className="border-t border-black/50">
+									{/* Accordion heading */}
+									<button
+										type="button"
+										onClick={() => setOpenIndex(isOpen ? -1 : itemIndex)}
+										aria-expanded={isOpen}
+										className="
+											group
+											flex
+											w-full
+											cursor-pointer
+											items-center
+											justify-between
+											gap-5
+											py-[15px]
+											text-left
+										"
+									>
+										<span
+											className="
+												n-bold
+												min-w-0
+												flex-1
+												text-[20px]
+												leading-[24px]
+												text-[#000000]
+												transition-opacity
+												duration-200
+												group-hover:opacity-70
+											"
+										>
+											{item.title}
+										</span>
+
+										<span
+											className="
+												n-bold
+												flex
+												h-6
+												w-6
+												shrink-0
+												items-center
+												justify-center
+												text-[20px]
+												leading-[24px]
+												text-[#000000]
+											"
+											aria-hidden
+										>
+											{isOpen ? "−" : "+"}
+										</span>
+									</button>
+
+									{/* Accordion description */}
+									{item.description ? (
+										<motion.div
+											initial={false}
+											animate={
+												isOpen
+													? {
+															height: "auto",
+															opacity: 1,
+														}
+													: {
+															height: 0,
+															opacity: 0,
+														}
+											}
+											transition={accordionTransition}
+											className="overflow-hidden"
+										>
+											<p
+												className="
+													n-reg
+													max-w-[533px]
+													pb-[20px]
+													text-[16px]
+													leading-[24px]
+													text-[#000000]
+												"
+											>
+												{item.description}
+											</p>
+										</motion.div>
+									) : null}
+								</div>
+							);
+						})}
+
+						{/* Final bottom divider */}
+						{accordionItems.length > 0 && (
+							<div className="border-t border-black/50" />
+						)}
+					</div>
+				</div>
+			</div>
+		</article>
+	);
 }

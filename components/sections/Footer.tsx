@@ -399,7 +399,7 @@ export function Footer() {
 							{/* Quick links */}
 							<div className={footerBottomSectionCls}>
 								<h3 className={sectionTitleCls}>Quick links</h3>
-								<div className="mt-2 flex flex-col gap-1.5 sm:gap-2">
+								<div className="mt-2 flex flex-col justify-center gap-1.5 sm:gap-1">
 									<QuickLinkRow
 										items={[
 											{ label: "About", href: "/about", showDot: false },
