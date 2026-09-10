@@ -71,25 +71,29 @@ export function NationalGlobalPresence() {
 
 	return (
 		<section
-			className="bg-white pb-10 sm:pb-14 lg:pb-25"
+			className="bg-white py-14 sm:py-20 lg:pt-0 lg:pb-25"
 			aria-labelledby="national-global-presence-heading"
 		>
 			<Container>
 				{/* Heading */}
 				<h2
 					id="national-global-presence-heading"
-					className="
-            qs-reg
-            mb-10
-            text-center
-            text-[clamp(1.75rem,3.5vw,3.125rem)]
-            uppercase
-            leading-tight
-            tracking-[0.05em]
-            text-[#202225]
-            sm:mb-12
-            lg:mb-[50px]
-          "
+					className=" 
+	qs-reg 
+	mb-8 
+	text-center 
+	text-[30px] 
+	uppercase 
+	leading-[36px] 
+	tracking-[0.05em] 
+	text-[#202225] 
+
+	sm:mb-12 
+	sm:text-[clamp(1.75rem,3.5vw,3.125rem)] 
+	sm:leading-tight 
+
+	lg:mb-[50px] 
+"
 				>
 					National &amp; Global Presence
 				</h2>
@@ -143,7 +147,7 @@ export function NationalGlobalPresence() {
 													"block text-[#161616]",
 													"transition-all duration-300 ease-out",
 
-													"text-[30px] leading-[36px]",
+													"text-[26px] leading-[32px]",
 													"sm:text-[34px] sm:leading-[42px]",
 													"lg:text-[42px] lg:leading-[50px]",
 
@@ -167,14 +171,17 @@ export function NationalGlobalPresence() {
 										>
 											<div className="min-h-0 overflow-hidden">
 												<p
-													className="
-                            n-reg
-                            w-full
-                            max-w-[301px]
-                            text-[16px]
-                            leading-[20px]
-                            text-[#161616]
-                          "
+													className=" 
+	n-reg 
+	w-full 
+	max-w-[301px] 
+	text-[14px] 
+	leading-[20px] 
+	text-[#161616] 
+
+	sm:text-[16px] 
+	sm:leading-[20px] 
+"
 												>
 													{location.address}
 												</p>
@@ -188,18 +195,20 @@ export function NationalGlobalPresence() {
 
 					{/* RIGHT - MAP */}
 					<div
-						className="
-              relative
-              mt-8
-              h-[300px]
-              w-full
-              min-w-0
-              overflow-hidden
-              bg-[#E9E9E9]
-              sm:h-[380px]
-              lg:mt-0
-              lg:h-[420px]
-            "
+						className=" 
+	relative 
+	mt-8 
+	h-[260px] 
+	w-full 
+	min-w-0 
+	overflow-hidden 
+	bg-[#E9E9E9] 
+
+	sm:h-[380px] 
+
+	lg:mt-0 
+	lg:h-[420px] 
+"
 					>
 						<iframe
 							key={selected.embedUrl}

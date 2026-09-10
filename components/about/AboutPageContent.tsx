@@ -106,13 +106,26 @@ export function AboutPageContent() {
 		<>
 			<section>
 				<Container className="min-w-0">
-					<div className="py-25">
-						<h2 className="text-center qs-reg text-[clamp(1.9rem,2.6vw,3rem)] uppercase tracking-[0.03em] text-[#2a2626]">
+					<div className="py-14 sm:py-20 lg:py-25">
+						<h2
+							className="
+								qs-reg
+								text-center
+								text-[30px]
+								uppercase
+								leading-[36px]
+								tracking-[0.04em]
+								text-[#2a2626]
+
+								sm:text-[clamp(1.9rem,2.6vw,3rem)]
+								sm:leading-tight
+							"
+						>
 							Brand Promise
 						</h2>
 
-						<div className=" bg-white py-3 sm:py-4  lg:py-5">
-							<div className="relative w-[95%] mx-auto">
+						<div className="bg-white py-4 sm:py-4 lg:py-5">
+							<div className="relative mx-auto w-full sm:w-[95%]">
 								<div className="absolute left-3 top-1/2 hidden -translate-y-1/2 lg:block">
 									<Image
 										src={brandPromiseOrnament}
@@ -122,8 +135,24 @@ export function AboutPageContent() {
 										className="h-auto w-[80px] object-cover scale-x-[-1]"
 									/>
 								</div>
-								<div className=" text-center mx-5 md:mx-30 lg:mx-40">
-									<p className="text-[#3c393a] leading-[28px] n-book text-[20px] max-w-[901px] mx-auto">
+
+								<div className="mx-auto max-w-[330px] text-center sm:max-w-[720px] md:mx-30 lg:mx-40 lg:max-w-none">
+									<p
+										className="
+											n-book
+											mx-auto
+											max-w-[901px]
+											text-[15px]
+											leading-[23px]
+											text-[#3c393a]
+
+											sm:text-[17px]
+											sm:leading-[26px]
+
+											lg:text-[20px]
+											lg:leading-[28px]
+										"
+									>
 										<span className="font-semibold text-[#242021]">
 											The Guardians
 										</span>{" "}
@@ -141,6 +170,7 @@ export function AboutPageContent() {
 										<br />
 									</p>
 								</div>
+
 								<div className="absolute right-3 top-1/2 hidden -translate-y-1/2 lg:block">
 									<Image
 										src={brandPromiseOrnament}
@@ -155,11 +185,52 @@ export function AboutPageContent() {
 					</div>
 
 					{/* ── Target section: heading + description + horizontal stats ── */}
-					<div className="text-center pb-25">
-						<h3 className="n-bold fs-42 mx-auto max-w-[900px] text-[clamp(1.72rem,2.1vw,2.6rem)] font-semibold leading-[1.08] tracking-[-0.03em] text-[#161616]">
+					<div className="pb-14 text-center sm:pb-20 lg:pb-25">
+						<h3
+							className="
+								n-bold
+								mx-auto
+								max-w-[330px]
+								text-[26px]
+								font-semibold
+								leading-[32px]
+								tracking-[-0.03em]
+								text-[#161616]
+
+								sm:max-w-[700px]
+								sm:text-[34px]
+								sm:leading-[40px]
+
+								lg:max-w-[900px]
+								lg:text-[clamp(1.72rem,2.1vw,2.6rem)]
+								lg:leading-[1.08]
+							"
+						>
 							Revolutionising real estate through innovation
 						</h3>
-						<p className="mx-auto mt-12 w-full text-[14px] leading-[1.5] text-[#161616] n-book sm:text-base lg:text-[20px]">
+
+						<p
+							className="
+								n-book
+								mx-auto
+								mt-5
+								max-w-[330px]
+								text-[14px]
+								leading-[22px]
+								text-[#161616]
+
+								sm:mt-8
+								sm:max-w-[720px]
+								sm:text-base
+								sm:leading-[24px]
+
+								lg:mt-12
+								lg:w-full
+								lg:max-w-none
+								lg:text-[20px]
+								lg:leading-[1.5]
+							"
+						>
 							Over the years, we have advised on projects, transactions, and
 							developments that have shaped communities across the country.
 							Behind every number is a client relationship, a strategic
@@ -167,31 +238,62 @@ export function AboutPageContent() {
 						</p>
 
 						{/* Horizontal stats row with vertical separators */}
-						<div className="mt-10 sm:mt-14 lg:mt-16">
+						<div className="mt-8 sm:mt-14 lg:mt-16">
 							<AboutStatsRow content={ABOUT_STATS_CONTENT} />
 						</div>
 					</div>
 				</Container>
 			</section>
 
-			<section className="pt-4 pb-2.5 sm:pt-4 sm:pb-3.5 lg:pt-6 lg:pb-6">
-				<Container className="min-w-0 pb-25">
-					<h2 className="qs-reg mb-3 text-center text-[clamp(1.75rem,5vw,3.125rem)] uppercase leading-[1.08] tracking-[0.05em] text-[#000000] sm:mb-12.5">
+			<section className="pt-3 pb-2.5 sm:pt-4 sm:pb-3.5 lg:pt-6 lg:pb-6">
+				<Container className="min-w-0 pb-14 sm:pb-20 lg:pb-25">
+					<h2
+						className="
+							qs-reg
+							mb-6
+							text-center
+							text-[30px]
+							uppercase
+							leading-[36px]
+							tracking-[0.05em]
+							text-[#000000]
+
+							sm:mb-12.5
+							sm:text-[clamp(1.75rem,5vw,3.125rem)]
+							sm:leading-[1.08]
+						"
+					>
 						Meet The Leadership
 					</h2>
+
 					<AboutLeadershipSection slides={leadershipSlides} />
 				</Container>
 			</section>
 
-			<h2 className="qs-reg mb-12.5 text-center text-[50px] leading-[70px] tracking-[0.05em] uppercase text-[#000000]">
+			<h2
+				className="
+					qs-reg
+					mb-8
+					text-center
+					text-[30px]
+					uppercase
+					leading-[36px]
+					tracking-[0.05em]
+					text-[#000000]
+
+					sm:mb-12.5
+					sm:text-[50px]
+					sm:leading-[70px]
+				"
+			>
 				OUR BRANDS
 			</h2>
 
-			<section id="brands" className="bg-[#F2F2F2] py-12 sm:py-16 lg:py-12.5">
+			<section id="brands" className="bg-[#F2F2F2] py-10 sm:py-16 lg:py-12.5">
 				<Container className="min-w-0">
 					<div className="flex items-center justify-center gap-5 max-lg:w-full"></div>
 
-					<div className="grid grid-cols-1 gap-[15px] md:grid-cols-3">
+					<div className="grid grid-cols-1 gap-[15px] sm:grid-cols-1 md:grid-cols-3">
 						{brandCards.map((brand) => (
 							<BrandCard
 								key={brand.title}
@@ -207,9 +309,14 @@ export function AboutPageContent() {
 							href="/our-brand"
 							className={cn(
 								audienceMarketingOutlineCtaClass,
+								"h-[44px] w-fit max-w-full px-6 py-0 text-[12px] leading-none",
+								"sm:h-[55px] sm:px-[45px] sm:text-base",
 								"max-lg:!w-fit max-lg:!max-w-full",
 							)}
-							iconClassName={audienceMarketingOutlineCtaIconClass}
+							iconClassName={cn(
+								audienceMarketingOutlineCtaIconClass,
+								"h-[10px] w-[10px] sm:h-[15px] sm:w-[15px]",
+							)}
 						>
 							Know More
 						</OutlineArrowButton>
@@ -217,7 +324,7 @@ export function AboutPageContent() {
 				</Container>
 			</section>
 
-			<GlobalNetworks className="pt-25" />
+			<GlobalNetworks className="pt-14 sm:pt-20 lg:pt-25" />
 		</>
 	);
 }

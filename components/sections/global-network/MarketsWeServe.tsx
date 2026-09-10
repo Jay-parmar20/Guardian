@@ -57,13 +57,19 @@ function MarketCardItem({ market }: { market: MarketCard }) {
 	return (
 		<article
 			className="
-				relative
-				h-[326px]
-				w-[385px]
-				shrink-0
-				overflow-hidden
-				bg-[#DBDBDB]
-			"
+		relative
+		h-[220px]
+		w-[260px]
+		shrink-0
+		overflow-hidden
+		bg-[#DBDBDB]
+
+		sm:h-[280px]
+		sm:w-[330px]
+
+		lg:h-[326px]
+		lg:w-[385px]
+	"
 			role="listitem"
 		>
 			<Image
@@ -72,7 +78,7 @@ function MarketCardItem({ market }: { market: MarketCard }) {
 				fill
 				draggable={false}
 				className="select-none object-cover object-center"
-				sizes="385px"
+				sizes="(max-width: 639px) 260px, (max-width: 1023px) 330px, 385px"
 			/>
 
 			{/* Black overlay — Figma 30% */}
@@ -97,10 +103,17 @@ function MarketCardItem({ market }: { market: MarketCard }) {
 		cursor-text
 		select-text
 		text-center
-		text-[20px]
+		
 		font-extrabold
 		uppercase
-		leading-[24px]
+		text-[16px]
+leading-[21px]
+
+sm:text-[18px]
+sm:leading-[22px]
+
+lg:text-[20px]
+lg:leading-[24px]
 		tracking-[0.1em]
 		text-white
 	"
@@ -116,14 +129,17 @@ export function MarketsWeServe() {
 	return (
 		<section
 			className="
-				mt-6
-				w-full
-				overflow-hidden
-				bg-white
-				sm:mt-0
-				sm:py-20
-				lg:py-25
-			"
+		mt-12
+		w-full
+		overflow-hidden
+		bg-white
+		py-14
+
+		sm:mt-0
+		sm:py-20
+
+		lg:py-25
+	"
 			aria-label="Markets We Serve"
 		>
 			{/* Heading stays aligned with website container */}
@@ -131,14 +147,17 @@ export function MarketsWeServe() {
 				<ScrollReveal direction="up" distance={40} duration={0.6}>
 					<h2
 						className="
-							qs-reg
-							text-center
-							text-[clamp(1.75rem,3.5vw,3.125rem)]
-							uppercase
-							leading-tight
-							tracking-[0.05em]
-							text-[#202225]
-						"
+		qs-reg
+		text-center
+		text-[30px]
+		uppercase
+		leading-[36px]
+		tracking-[0.05em]
+		text-[#202225]
+
+		sm:text-[clamp(1.75rem,3.5vw,3.125rem)]
+		sm:leading-tight
+	"
 					>
 						MARKETS WE SERVE
 					</h2>
@@ -147,7 +166,7 @@ export function MarketsWeServe() {
 
 			{/* Full-width carousel */}
 			<ScrollReveal direction="up" distance={40} delay={0.15} duration={0.6}>
-				<div className="mt-10 w-full overflow-hidden lg:mt-12.5">
+				<div className="mt-8 w-full overflow-hidden lg:mt-12.5">
 					<div
 						className="markets-track flex w-max gap-6"
 						role="list"

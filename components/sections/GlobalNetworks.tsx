@@ -270,9 +270,11 @@ function FlipCard({
 								w-[82.7%]
 								-translate-x-1/2
 								text-center
-								text-[13px]
-								font-normal
-								leading-[20px]
+
+								text-[12px]
+font-normal
+leading-[18px]
+
 								text-[#161616]
 
 								sm:text-[14px]
@@ -328,15 +330,19 @@ export function GlobalNetworks({
 					<ScrollReveal direction="up" distance={40} duration={0.6}>
 						<h2
 							className="
-								qs-reg
-								mb-12.5
-								text-center
-								text-[clamp(1.75rem,3.5vw,3.125rem)]
-								leading-tight
-								tracking-[0.05em]
-								text-brand-text-primary
-								uppercase
-							"
+		qs-reg
+		mb-8
+		text-center
+		text-[30px]
+		leading-[36px]
+		tracking-[0.05em]
+		text-brand-text-primary
+		uppercase
+
+		sm:mb-12.5
+		sm:text-[clamp(1.75rem,3.5vw,3.125rem)]
+		sm:leading-tight
+	"
 						>
 							{heading}
 						</h2>
@@ -346,15 +352,15 @@ export function GlobalNetworks({
 				<ScrollReveal direction="up" distance={40} delay={0.15} duration={0.6}>
 					<div
 						className="
-							flex
-							flex-col
-							gap-5
+		flex
+		flex-col
+		gap-4
 
-							sm:gap-6
+		sm:gap-6
 
-							lg:flex-row
-							lg:gap-8
-						"
+		lg:flex-row
+		lg:gap-8
+	"
 					>
 						<FlipCard front={front} back={back} />
 
@@ -364,14 +370,19 @@ export function GlobalNetworks({
 
 				{showKnowMore && (
 					<ScrollReveal direction="up" distance={24} delay={0.3} duration={0.6}>
-						<div className="mt-12.5 mb-4 flex justify-center sm:mb-0">
+						<div className="mt-8 mb-4 flex justify-center sm:mt-12.5 sm:mb-0">
 							<OutlineArrowButton
 								href="/our-brand"
 								className={cn(
 									audienceMarketingOutlineCtaClass,
+									"h-[44px] w-fit max-w-full px-6 py-0 text-[12px] leading-none",
+									"sm:h-[55px] sm:px-[45px] sm:text-base",
 									"max-lg:!w-fit max-lg:!max-w-full",
 								)}
-								iconClassName={audienceMarketingOutlineCtaIconClass}
+								iconClassName={cn(
+									audienceMarketingOutlineCtaIconClass,
+									"h-[10px] w-[10px] sm:h-[15px] sm:w-[15px]",
+								)}
 							>
 								Know More
 							</OutlineArrowButton>

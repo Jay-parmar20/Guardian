@@ -148,9 +148,14 @@ export function SplitSection({
 					>
 						<OutlineArrowButton
 							href={href!}
-							iconClassName={audienceMarketingOutlineCtaIconClass}
+							iconClassName={cn(
+								audienceMarketingOutlineCtaIconClass,
+								"h-[10px] w-[10px] sm:h-[15px] sm:w-[15px]",
+							)}
 							className={cn(
 								audienceMarketingOutlineCtaClass,
+								"h-[44px] w-fit max-w-full px-6 py-0 text-[12px] leading-none",
+								"sm:h-[55px] sm:px-[45px] sm:text-base",
 								"max-lg:!w-fit max-lg:!max-w-full",
 								buttonClassName,
 							)}

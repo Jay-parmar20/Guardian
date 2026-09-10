@@ -83,7 +83,7 @@ export function ReasonCard({
 		<motion.div
 			className={cn(
 				isMobile
-					? "relative h-[min(72vw,360px)] w-full overflow-hidden bg-white"
+					? "relative h-[min(88vw,360px)] w-full overflow-hidden bg-white"
 					: [
 							"group relative min-h-[200px] min-w-0 shrink basis-0 overflow-hidden bg-white sm:min-h-0",
 						],
@@ -220,7 +220,7 @@ function ReasonsToJoinMobileCarousel() {
 
 	return (
 		<div
-			className="mt-4 sm:hidden"
+			className="mt-8 sm:hidden"
 			aria-roledescription="carousel"
 			aria-label="Reasons to join"
 		>
@@ -271,10 +271,13 @@ function ReasonsToJoinMobileCarousel() {
 
 export function ReasonsToJoin() {
 	return (
-		<section className="bg-white" aria-labelledby="reasons-heading">
+		<section
+			className="bg-white pt-6 pb-6 sm:pt-0 sm:pb-0 "
+			aria-labelledby="reasons-heading"
+		>
 			<Container>
 				<ScrollReveal direction="up" distance={30}>
-					<h2 className="qs-reg text-center uppercase tracking-[0.05em] text-[clamp(1.75rem,3.5vw,3.125rem)] leading-tight text-[#000000]">
+					<h2 className="qs-reg mx-auto max-w-[330px] text-center text-[30px] uppercase leading-[36px] tracking-[0.05em] text-[#000000] sm:max-w-none sm:text-[clamp(1.75rem,3.5vw,3.125rem)] sm:leading-tight">
 						Reasons to Join Guardians
 					</h2>
 				</ScrollReveal>

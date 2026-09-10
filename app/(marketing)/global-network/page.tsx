@@ -54,6 +54,7 @@ export default function GlobalNetworkPage() {
 			<InternationalSales />
 
 			<GlobalNetworks
+				className="pt-2 sm:pt-0"
 				heading="WHAT WE DO"
 				showKnowMore={false}
 				frontSide={globalNetworkFront1}

@@ -15,7 +15,7 @@ export function BlogHero() {
 			shiftExtraContentTopPx={200}
 			mobileShiftExtraContentTopPx={0}
 			negativePadding={50}
-			mobileNegativePadding={80}
+			mobileNegativePadding={false}
 		/>
 	);
 }

@@ -62,14 +62,14 @@ function PartnerLogoCell({ logo }: { logo: PartnersGridLogo | null }) {
 		<li className="bg-white">
 			<div
 				className={cn(
-					"flex h-full min-h-[5.5rem] items-center justify-center",
-					"px-4 py-6 sm:min-h-[6.25rem] sm:px-6 sm:py-8",
+					"flex h-full min-h-[4.75rem] items-center justify-center",
+					"px-3 py-5 sm:min-h-[6.25rem] sm:px-6 sm:py-8",
 					"md:min-h-[7rem] md:px-8 md:py-9",
 					"lg:min-h-[7.75rem] lg:px-10 lg:py-10",
 				)}
 			>
 				{logo ? (
-					<div className="relative h-11 w-full max-w-[11rem] sm:h-12 sm:max-w-[12rem] md:h-[3.25rem] md:max-w-[13.5rem] lg:h-14 lg:max-w-[15rem]">
+					<div className="relative h-9 w-full max-w-[8.75rem] sm:h-12 sm:max-w-[12rem] md:h-[3.25rem] md:max-w-[13.5rem] lg:h-14 lg:max-w-[15rem]">
 						<Image
 							src={logo.src}
 							alt={logo.name}
@@ -127,7 +127,7 @@ export function PartnersLogoGrid() {
 
 	return (
 		<section
-			className="bg-white py-10 sm:py-14 lg:py-25"
+			className="bg-white py-12 sm:py-14 lg:py-25"
 			aria-label="Partner brands"
 			aria-roledescription="carousel"
 		>
@@ -158,7 +158,7 @@ export function PartnersLogoGrid() {
 					<GridDividers columns={4} rows={4} className="hidden md:block" />
 				</div>
 
-				<div className="mt-8 flex justify-center">
+				<div className="mt-6 flex justify-center sm:mt-8">
 					<CarouselControls
 						currentIndex={page}
 						total={pageCount}

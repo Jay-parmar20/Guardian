@@ -23,7 +23,9 @@ export default function AboutPage() {
 					shiftUnderHeader={true}
 					shiftTillSearch={false}
 					shiftExtraContentTopPx={44}
+					mobileShiftExtraContentTopPx={0}
 					negativePadding={16}
+					mobileNegativePadding={false}
 				/>
 			</section>
 

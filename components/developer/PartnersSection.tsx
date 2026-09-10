@@ -44,14 +44,36 @@ export function PartnersSection({
 
 			<Container>
 				<StaggerContainer
-					className="mt-12 flex flex-col items-center justify-center gap-4 px-1 sm:mt-16 sm:flex-row sm:flex-wrap sm:gap-6"
+					className="
+		mt-8
+		flex
+		w-full
+		flex-col
+		items-center
+		justify-center
+		gap-4
+		px-4
+
+		sm:mt-16
+		sm:flex-row
+		sm:flex-wrap
+		sm:gap-6
+		sm:px-1
+	"
 					staggerChildren={0.14}
 				>
 					<ScrollReveal direction="up" delay={0.08} distance={20}>
 						<OutlineArrowButton
 							href={content.ctaHref}
-							iconClassName={audienceMarketingOutlineCtaIconClass}
-							className={audienceMarketingOutlineCtaClass}
+							iconClassName={cn(
+								audienceMarketingOutlineCtaIconClass,
+								"h-[10px] w-[10px] sm:h-[15px] sm:w-[15px]",
+							)}
+							className={cn(
+								audienceMarketingOutlineCtaClass,
+								"h-[44px] w-fit max-w-full px-6 py-0 text-[12px] leading-none",
+								"sm:h-[55px] sm:px-[45px] sm:text-base",
+							)}
 						>
 							READ MORE
 						</OutlineArrowButton>

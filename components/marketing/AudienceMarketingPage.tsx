@@ -100,16 +100,18 @@ export function AudienceMarketingPage({
 						<ScrollReveal direction="up" distance={32} className="w-full">
 							<h2
 								id="partners-heading"
-								className="mb-12.5 mx-auto text-center uppercase text-brand-text-primary qs-reg font-normal text-[32px] sm:text-[40px] md:text-[50px]  leading-[1.1] tracking-[0.05em]"
+								className="mb-8 mt-14 md:mt-0 mx-auto text-center uppercase text-brand-text-primary qs-reg font-normal text-[32px] sm:text-[40px] md:text-[50px]  leading-[1.1] tracking-[0.05em]"
 							>
 								{content.partners.headlineLine1.trim()}
 							</h2>
 						</ScrollReveal>
 
-						<PartnersSection
-							content={content.partners}
-							isBuyer={content.hero.isBuyer}
-						/>
+						<div className="mb-14 md:mb-0">
+							<PartnersSection
+								content={content.partners}
+								isBuyer={content.hero.isBuyer}
+							/>
+						</div>
 					</>
 				) : null}
 

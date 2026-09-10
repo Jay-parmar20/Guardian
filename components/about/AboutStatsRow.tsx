@@ -133,20 +133,22 @@ export function AboutStatsRow({ content }: { content: StatsSectionContent }) {
 		<div
 			ref={ref}
 			className="
-		grid
-		w-full
-		grid-cols-1
-		gap-y-7
+	grid
+	w-full
+	grid-cols-[max-content_max-content]
+	justify-center
+	gap-x-[48px]
+	gap-y-8
 
-		sm:grid-cols-2
-		sm:gap-x-10
-		sm:gap-y-10
+	sm:grid-cols-2
+	sm:gap-x-10
+	sm:gap-y-10
 
-		lg:grid-cols-[max-content_max-content_max-content_max-content]
-		lg:justify-center
-		lg:gap-x-[120px]
-		lg:gap-y-0
-	"
+	lg:grid-cols-[max-content_max-content_max-content_max-content]
+	lg:justify-center
+	lg:gap-x-[120px]
+	lg:gap-y-0
+"
 		>
 			{metrics.map((stat, idx) => (
 				<ScrollReveal
@@ -157,16 +159,16 @@ export function AboutStatsRow({ content }: { content: StatsSectionContent }) {
 				>
 					<div
 						className="
-					relative
-					mx-auto
-					flex
-					min-w-0
-					flex-col
-					items-start
-					text-left
+	relative
+	flex
+	min-w-0
+	flex-col
+	items-start
+	text-left
 
-					lg:mx-0
-				"
+	sm:mx-auto
+	lg:mx-0
+"
 					>
 						{/* Tablet divider */}
 						{idx % 2 === 1 && (

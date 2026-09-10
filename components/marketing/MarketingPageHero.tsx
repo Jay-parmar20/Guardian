@@ -952,7 +952,9 @@ function CareerHero({
 			{/* Same content position as About */}
 			<div
 				className={cn(
-					"absolute inset-x-0 top-[6%] z-10 text-center sm:top-[7%] lg:top-[7.5%]",
+					"absolute inset-0 z-10 flex items-center justify-center px-4 text-center",
+					"max-lg:!pt-0",
+					"lg:inset-x-0 lg:top-[7.5%] lg:block lg:px-0",
 					!shiftUnderHeader && "lg:pt-25",
 					contentPad.className,
 				)}
@@ -1034,11 +1036,16 @@ function NewsroomHero({
 					sizes="100vw"
 					priority
 				/>
-				<div className="absolute inset-0" />
+				<div
+					className="pointer-events-none absolute inset-0 bg-white/35 lg:hidden"
+					aria-hidden
+				/>
 			</div>
 			<div
 				className={cn(
-					"relative z-10 flex h-full items-center justify-center px-4 lg:mt-[150px] lg:items-start",
+					"relative z-10 flex h-full items-center justify-center px-4",
+					"max-lg:!pt-0",
+					"lg:mt-[150px] lg:items-start",
 					contentPad.className,
 				)}
 				style={contentPad.style}
@@ -1116,6 +1123,7 @@ function PartnersHero({
 			<div
 				className={cn(
 					"relative z-10 flex h-full w-full items-center justify-center px-4 text-center",
+					"max-lg:!pt-0",
 					contentPad.className,
 				)}
 				style={contentPad.style}
@@ -1344,14 +1352,21 @@ function AboutHero({
 			<Image
 				src={config["backgroundImage"] as string}
 				alt={(config["imageAlt"] as string) || ""}
-				className={HERO_BG_IMAGE_CLASS}
+				className="object-cover object-center max-lg:translate-y-[28px] lg:translate-y-0"
 				sizes="100vw"
 				fill
 				priority
 			/>
+
+			{/* <div
+				className="pointer-events-none absolute inset-0 bg-white/50 lg:hidden"
+				aria-hidden
+			/> */}
 			<div
 				className={cn(
-					"absolute inset-x-0 top-[6%] text-center sm:top-[7%] lg:top-[7.5%]",
+					"absolute inset-0 z-10 flex items-center justify-center px-4 text-center",
+					"max-lg:!pt-0",
+					"lg:inset-x-0 lg:top-[7.5%] lg:block lg:px-0",
 					/* `lg:pt-25` would override `getHeroContentPad`’s `pt-[calc(…+var(--shift-extra))]` at lg+ */
 					!shiftUnderHeader && "lg:pt-25",
 					contentPad.className,
@@ -1363,7 +1378,7 @@ function AboutHero({
 						<h1
 							className={marketingHeroTitleClass(
 								HERO_TITLE_CLAMP_LARGE,
-								"break-words px-1 tracking-[0.02em] text-[#202225]",
+								"mx-auto max-w-[330px] break-words px-1 text-center tracking-[0.02em] text-[#202225] sm:max-w-none",
 							)}
 						>
 							<span className="ml-2 inline-block sm:ml-3 sm:inline text-[#202225]">

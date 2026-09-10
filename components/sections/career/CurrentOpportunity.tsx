@@ -149,7 +149,7 @@ function OpportunityCard({ job }: { job: Opportunity }) {
 	return (
 		<article
 			className={cn(
-				"relative h-[305px] w-full overflow-hidden",
+				"relative h-[285px] w-full overflow-hidden sm:h-[305px]",
 				"bg-[radial-gradient(290.48%_141.42%_at_0%_0%,rgba(188,189,192,0.20)_0%,rgba(143,129,131,0.20)_100%)]",
 			)}
 		>
@@ -157,7 +157,7 @@ function OpportunityCard({ job }: { job: Opportunity }) {
 			<h3
 				className={cn(
 					"absolute left-5 right-5 top-[30px]",
-					"truncate font-productSans text-[24px] font-bold leading-[24px]",
+					"truncate font-productSans text-[20px] font-bold leading-[24px] sm:text-[24px]",
 					"text-[#202225]",
 				)}
 			>
@@ -178,7 +178,7 @@ function OpportunityCard({ job }: { job: Opportunity }) {
 			<p
 				className={cn(
 					"n-reg absolute left-5 right-5 top-[99px]",
-					"line-clamp-4 text-[16px] leading-[20px] text-[#161616]",
+					"line-clamp-4 text-[14px] leading-[19px] text-[#161616] sm:text-[16px] sm:leading-[20px]",
 				)}
 			>
 				{job.description}
@@ -199,14 +199,14 @@ function OpportunityCard({ job }: { job: Opportunity }) {
 				onClick={() => window.dispatchEvent(new Event(OPEN_CAREER_MODAL_EVENT))}
 				className={cn(
 					"absolute bottom-0 left-0",
-					"flex h-[60px] w-full items-center justify-center",
+					"flex h-[54px] w-full items-center justify-center sm:h-[60px]",
 					"gap-5 bg-[#161616] px-[30px]",
 					"cursor-pointer text-white",
 					"transition-colors duration-300",
 					"hover:bg-[#8F8183]",
 				)}
 			>
-				<span className="n-bold whitespace-nowrap text-[20px] leading-none tracking-[0.1em]">
+				<span className="n-bold whitespace-nowrap text-[16px] leading-none tracking-[0.1em] sm:text-[20px]">
 					APPLY NOW
 				</span>
 
@@ -347,20 +347,20 @@ export function CurrentOpportunity() {
 
 	return (
 		<section
-			className="bg-white py-10 sm:py-14 lg:py-[100px]"
+			className="bg-white py-14 sm:py-14 lg:py-[100px]"
 			aria-labelledby="current-opportunity-heading"
 		>
 			<Container className="overflow-visible">
 				{/* Heading */}
 
 				<ScrollReveal direction="up" distance={30}>
-					<h2 className="qs-reg text-center uppercase tracking-[0.05em] text-[clamp(1.75rem,3.5vw,3.125rem)] leading-tight text-[#000000]">
+					<h2 className="qs-reg mx-auto max-w-[330px] text-center text-[30px] uppercase leading-[36px] tracking-[0.05em] text-[#000000] sm:max-w-none sm:text-[clamp(1.75rem,3.5vw,3.125rem)] sm:leading-tight">
 						Current Opportunity
 					</h2>
 				</ScrollReveal>
 
 				{/* Carousel area */}
-				<div className="relative mx-auto mt-10 max-w-[1196px] lg:mt-[50px]">
+				<div className="relative mx-auto mt-8 max-w-[1196px] lg:mt-[50px]">
 					{/* Desktop LEFT arrow */}
 					<CarouselArrow
 						direction="left"

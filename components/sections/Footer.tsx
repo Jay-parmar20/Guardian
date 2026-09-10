@@ -399,15 +399,85 @@ export function Footer() {
 							{/* Quick links */}
 							<div className={footerBottomSectionCls}>
 								<h3 className={sectionTitleCls}>Quick links</h3>
-								<div className="mt-2 flex flex-col justify-center gap-1.5 sm:gap-1">
-									<QuickLinkRow
-										items={[
-											{ label: "About", href: "/about", showDot: false },
-											{ label: "Brands", href: "/about#brands" },
-											{ label: "Services", href: "/services" },
-										]}
-									/>
-									<div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 n-book text-[13px] leading-[1.7]">
+
+								{/* Mobile: clean 2-column grid. Desktop/tablet: original row layout. */}
+								<div
+									className="
+	mt-3
+	flex
+	flex-col
+	items-center
+	gap-2.5
+	text-center
+
+	sm:mt-2
+	sm:items-start
+	sm:justify-center
+	sm:gap-1
+"
+								>
+									{/* Mobile links */}
+									<Link
+										href="/about"
+										className="n-book text-[13px] leading-[1.6] text-white transition-colors hover:text-white/80 sm:hidden"
+									>
+										About
+									</Link>
+
+									<Link
+										href="/about#brands"
+										className="n-book text-[13px] leading-[1.6] text-white transition-colors hover:text-white/80 sm:hidden"
+									>
+										Brands
+									</Link>
+
+									<Link
+										href="/services"
+										className="n-book text-[13px] leading-[1.6] text-white transition-colors hover:text-white/80 sm:hidden"
+									>
+										Services
+									</Link>
+
+									<Link
+										href="/global-networks"
+										className="n-book text-[13px] leading-[1.6] text-white transition-colors hover:text-white/80 sm:hidden"
+									>
+										Global Networks
+									</Link>
+
+									<div className="sm:hidden">
+										<FooterPopoverDropdown
+											label="Media"
+											items={footerMediaItems}
+										/>
+									</div>
+
+									<Link
+										href="/career"
+										className="n-book text-[13px] leading-[1.6] text-white transition-colors hover:text-white/80 sm:hidden"
+									>
+										Career
+									</Link>
+
+									<Link
+										href="/partners"
+										className="n-book text-[13px] leading-[1.6] text-white transition-colors hover:text-white/80 sm:hidden"
+									>
+										Partners & Clients
+									</Link>
+
+									{/* Desktop/tablet original layout */}
+									<div className="hidden sm:block">
+										<QuickLinkRow
+											items={[
+												{ label: "About", href: "/about", showDot: false },
+												{ label: "Brands", href: "/about#brands" },
+												{ label: "Services", href: "/services" },
+											]}
+										/>
+									</div>
+
+									<div className="hidden flex-wrap items-center gap-x-4 gap-y-1.5 n-book text-[13px] leading-[1.7] sm:flex">
 										<Link
 											href="/global-networks"
 											className="inline-flex items-center text-white transition-colors hover:text-white/80"
@@ -425,12 +495,15 @@ export function Footer() {
 											items={footerMediaItems}
 										/>
 									</div>
-									<QuickLinkRow
-										items={[
-											{ label: "Career", href: "/career", showDot: false },
-											{ label: "Partners & Clients", href: "/partners" },
-										]}
-									/>
+
+									<div className="hidden sm:block">
+										<QuickLinkRow
+											items={[
+												{ label: "Career", href: "/career", showDot: false },
+												{ label: "Partners & Clients", href: "/partners" },
+											]}
+										/>
+									</div>
 								</div>
 							</div>
 						</div>

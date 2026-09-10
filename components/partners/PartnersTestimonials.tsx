@@ -145,7 +145,7 @@ export const TestimonialCard = memo(function TestimonialCard({
 				</div>
 			) : (
 				/* EXISTING TEXT TESTIMONIAL — unchanged */
-				<div className="flex min-h-0 flex-1 flex-col p-6 sm:p-8 lg:p-10">
+				<div className="flex min-h-0 flex-1 flex-col p-5 sm:p-8 lg:p-10">
 					<div className="flex w-fit max-w-full min-w-[9.5rem] items-center justify-center rounded-full bg-white px-5 py-2 shadow-sm transition-transform duration-300 group-hover:scale-[1.02]">
 						<Image
 							src={item.brandLogoSrc}
@@ -166,14 +166,14 @@ export const TestimonialCard = memo(function TestimonialCard({
 						/>
 					</span>
 
-					<p className="mt-4 flex-1 n-bold text-[clamp(0.9375rem,2.5vw,1.125rem)] leading-relaxed text-brand-text-primary sm:mt-5 sm:leading-6">
+					<p className="mt-4 flex-1 n-bold text-[14px] leading-[22px] text-brand-text-primary sm:mt-5 sm:text-[clamp(0.9375rem,2.5vw,1.125rem)] sm:leading-6">
 						{item.quote}
 					</p>
 				</div>
 			)}
 
 			{/* Footer — same for text + video */}
-			<div className="mt-auto shrink-0 border-t border-black/10 bg-[#161616] px-6 py-4 sm:px-8 sm:py-5 lg:px-10">
+			<div className="mt-auto shrink-0 border-t border-black/10 bg-[#161616] px-5 py-4 sm:px-8 sm:py-5 lg:px-10">
 				<p className="n-bold text-sm text-[#BCBDC0]">{item.name}</p>
 
 				<p className="mt-0.5 n-reg text-sm text-[#BCBDC0]">{item.role}</p>
@@ -271,15 +271,18 @@ export function PartnersTestimonials() {
 
 	return (
 		<section
-			className="bg-brand-background pb-10 sm:pb-14 lg:pb-25"
+			className="bg-brand-background py-12 sm:pt-0 sm:pb-14 lg:pb-25"
 			aria-labelledby="pc-testimonials-heading"
 		>
 			<Container>
 				<ScrollReveal direction="up" duration={0.6} distance={40}>
-					<div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+					<div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
 						<h2
 							id="pc-testimonials-heading"
-							className={cn(marketingClasses.headingDisplayMd, "max-w-full")}
+							className={cn(
+								marketingClasses.headingDisplayMd,
+								"max-w-[330px] text-[30px] leading-[36px] sm:max-w-full sm:text-[clamp(1.75rem,3vw,2.625rem)] sm:leading-tight",
+							)}
 						>
 							What Our Clients Say
 						</h2>
@@ -314,7 +317,7 @@ export function PartnersTestimonials() {
 				</div>
 
 				{/* Mobile: one card per step (1 / n) */}
-				<div className="mt-6 sm:hidden">
+				<div className="mt-8 sm:hidden">
 					<ScrollReveal
 						key={items[mobileIndex]!.id}
 						direction="up"

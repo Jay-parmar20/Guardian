@@ -76,8 +76,8 @@ function BrandNavigation() {
 	};
 
 	return (
-		<nav aria-label="Our brands" className="w-full py-12 sm:py-25">
-			<div className="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-[repeat(3,430px)] lg:justify-center">
+		<nav aria-label="Our brands" className="w-full py-10 sm:py-16 lg:py-25">
+			<div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-0 lg:grid-cols-[repeat(3,430px)] lg:justify-center">
 				{brands.map((brand) => (
 					<a
 						key={brand.id}
@@ -86,7 +86,7 @@ function BrandNavigation() {
 						aria-label={`Go to ${brand.name}`}
 						className={cn(
 							"group flex w-full items-center justify-center",
-							"h-[120px] sm:h-[150px]",
+							"h-[105px] sm:h-[150px]",
 							"lg:h-[180px] lg:w-[430px]",
 							"px-5 py-5",
 							"bg-[radial-gradient(290.48%_141.42%_at_0%_0%,rgba(188,189,192,0.20)_0%,rgba(143,129,131,0.20)_100%)]",
@@ -99,17 +99,21 @@ function BrandNavigation() {
 							alt={brand.name}
 							width={258}
 							height={80}
-							className="
-								h-auto
-								max-h-[80px]
-								w-auto
-								max-w-[80%]
-								object-contain
-								transition-all
-								duration-300
-								group-hover:brightness-0
-								group-hover:invert
-							"
+							className=" 
+	h-auto 
+	max-h-[58px] 
+	w-auto 
+	max-w-[78%] 
+	object-contain 
+	transition-all 
+	duration-300 
+
+	sm:max-h-[80px]
+	sm:max-w-[80%]
+
+	group-hover:brightness-0 
+	group-hover:invert 
+"
 						/>
 					</a>
 				))}
@@ -121,14 +125,14 @@ function BrandNavigation() {
 export function TGREABrands() {
 	return (
 		<section
-			className="bg-white lg:mb-25"
+			className="bg-white mb-14 lg:mb-25"
 			aria-labelledby="our-brands-heading "
 		>
 			<Container>
 				<BrandNavigation />
 
 				{/* Brand rows */}
-				<StaggerContainer className=" space-y-9 sm:space-y-12 lg:space-y-25">
+				<StaggerContainer className="space-y-10 sm:space-y-12 lg:space-y-25">
 					{brands.map(({ id, reverse, href, logoBG, logo, description }) => (
 						<div
 							key={id}
@@ -144,8 +148,8 @@ export function TGREABrands() {
 									alt: "Construction site at sunset",
 								}}
 								contentClassName="flex items-center"
-								titleClassName="mb-[19px] sm:mb-[29px] lg:mb-[66px]"
-								descriptionClassName="max-w-[488px] text-[clamp(0.875rem,3vw,1rem)] leading-[1.5] sm:text-base"
+								titleClassName="mb-5 sm:mb-[29px] lg:mb-[66px]"
+								descriptionClassName="max-w-[488px] text-[14px] leading-[22px] sm:text-base sm:leading-[1.5]"
 								imageClassName="h-[420px] rounded-none max-md:h-auto max-md:min-h-[220px] max-md:aspect-[488/434]"
 							/>
 						</div>

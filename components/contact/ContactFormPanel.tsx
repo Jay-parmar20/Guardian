@@ -42,16 +42,16 @@ const CONNECT_INTRO =
 	"Whether you’re exploring an opportunity or looking to take one forward, we’re here to help you move ahead with clarity.";
 
 const enquiryLinkCls =
-	"n-book fs-18 flex items-center gap-2 break-words text-sm leading-[1.35] text-[#161616] transition-opacity hover:opacity-70 sm:items-center sm:text-base md:text-lg lg:text-[20px] lg:leading-[24px]";
+	"n-book flex w-full min-w-0 items-start gap-2 text-[13px] leading-[18px] text-[#161616] transition-opacity hover:opacity-70 sm:items-center sm:text-base md:text-lg lg:text-[20px] lg:leading-[24px] [&>svg]:mt-0.5 [&>svg]:shrink-0";
 
 function ContactInfoBlock({ block }: { block: ContactEnquiry }) {
 	return (
-		<div className="flex flex-col items-start text-left sm:py-2 md:py-5 lg:items-stretch">
+		<div className="flex w-full min-w-0 flex-col items-start text-left sm:py-2 md:py-5 lg:items-stretch">
 			<h3 className="n-bold fs-20 lh-24 text-[#161616] mb-2">{block.title}</h3>
 			{block.email ? (
 				<a href={`mailto:${block.email}`} className={enquiryLinkCls}>
-					<ContactEnquiryEmailIcon className="mt-0.5 text-[#161616]" />
-					{block.email}
+					<ContactEnquiryEmailIcon className="text-[#161616]" />
+					<span className="min-w-0 flex-1 break-words">{block.email}</span>
 				</a>
 			) : null}
 			{block.phones.map((phone, phoneIdx) => (
@@ -63,8 +63,8 @@ function ContactInfoBlock({ block }: { block: ContactEnquiry }) {
 						(block.email || phoneIdx > 0) && "mt-1",
 					)}
 				>
-					<ContactEnquiryPhoneIcon className="mt-0.5 shrink-0 text-[#161616]" />
-					{phone.display}
+					<ContactEnquiryPhoneIcon className="text-[#161616]" />
+					<span className="min-w-0 flex-1 break-words">{phone.display}</span>
 				</a>
 			))}
 		</div>
@@ -90,7 +90,7 @@ function RadioOption({
 		<button
 			type="button"
 			onClick={onClick}
-			className="flex items-center gap-2 n-reg  text-base text-[#202225] tracking-[-0.01em]"
+			className="flex items-center gap-2 n-reg text-[14px] tracking-[-0.01em] text-[#202225] sm:text-base"
 		>
 			<span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#202225]">
 				{selected && (
@@ -106,8 +106,7 @@ function RadioOption({
 
 /** Figma: panel #F2F2F2; fields one step darker for contrast */
 const inputCls =
-	"w-full border border-black/[0.14] bg-[#E8E8E8] px-3.5 py-3 n-reg text-base text-[#161616] placeholder:text-[#161616]/50 focus:outline-none focus:border-black/35 transition-colors";
-
+	"w-full border border-black/[0.14] bg-[#E8E8E8] px-3.5 py-3 n-reg text-[14px] leading-[20px] text-[#161616] placeholder:text-[#161616]/50 transition-colors focus:border-black/35 focus:outline-none sm:text-base";
 // ─── Main panel ──────────────────────────────────────────────────────────────
 
 export function ContactFormPanel() {
@@ -135,22 +134,25 @@ export function ContactFormPanel() {
 	}
 
 	return (
-		<section className="bg-white lg:py-25" aria-label="Contact form">
+		<section
+			className="bg-white py-14 sm:py-20 lg:py-25"
+			aria-label="Contact form"
+		>
 			<Container>
 				{/* Figma: single #F2F2F2 card on white, generous inner padding */}
-				<div className="mx-autow-full min-w-0  bg-[#F2F2F2] p-7.5">
+				<div className="mx-auto w-full min-w-0 bg-[#F2F2F2] p-5 sm:p-7.5">
 					<div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12 xl:gap-16">
 						{/* ── Left: contact info ─────────────────────────────────────── */}
-						<div className="flex flex-col justify-center gap-8 lg:w-[45%] lg:shrink-0 lg:gap-10">
+						<div className="flex flex-col justify-center gap-6 lg:w-[45%] lg:shrink-0 lg:gap-10">
 							<header className="text-left">
-								<h2 className="qs-reg text-[clamp(2rem,4vw,3.125rem)] uppercase leading-[1.05] tracking-[0.05em] text-[#202225]">
+								<h2 className="qs-reg text-[30px] uppercase leading-[36px] tracking-[0.05em] text-[#202225] sm:text-[clamp(2rem,4vw,3.125rem)] sm:leading-[1.05]">
 									Let&apos;s connect!
 								</h2>
-								<p className="mt-3 n-book text-sm  text-[#161616] sm:mt-6 ">
+								<p className="mt-3 n-book text-[14px] leading-[22px] text-[#161616] sm:mt-6 sm:text-base sm:leading-[24px]">
 									{CONNECT_INTRO}
 								</p>
 							</header>
-							<div className="flex flex-col gap-6 sm:gap-7">
+							<div className="flex flex-col gap-5 sm:gap-7">
 								{CONTACT_ENQUIRIES.map((block) => (
 									<ContactInfoBlock key={block.title} block={block} />
 								))}
@@ -158,7 +160,7 @@ export function ContactFormPanel() {
 						</div>
 
 						{/* ── Right: enquiry form ────────────────────────────────────── */}
-						<div className="min-w-0 flex-1 mt-4 md:mt-10 lg:mt-16 ">
+						<div className="mt-2 min-w-0 flex-1 md:mt-10 lg:mt-16">
 							<form
 								onSubmit={handleSubmit}
 								noValidate
@@ -294,8 +296,15 @@ export function ContactFormPanel() {
 								<div className="flex justify-center max-lg:[&_button]:w-fit lg:justify-start">
 									<OutlineArrowButton
 										type="submit"
-										className={publicationCardOutlineCtaClassLgStart}
-										iconClassName={audienceMarketingOutlineCtaIconClass}
+										className={cn(
+											publicationCardOutlineCtaClassLgStart,
+											"h-[44px] w-fit max-w-full px-6 py-0 text-[12px] leading-none",
+											"sm:h-[55px] sm:px-[45px] sm:text-base",
+										)}
+										iconClassName={cn(
+											audienceMarketingOutlineCtaIconClass,
+											"h-[10px] w-[10px] sm:h-[15px] sm:w-[15px]",
+										)}
 										iconAlt=""
 									>
 										Submit

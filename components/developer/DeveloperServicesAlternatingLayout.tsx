@@ -77,12 +77,12 @@ export function DeveloperServicesAlternatingLayout({
 
 	return (
 		<section
-			className="bg-white py-12 sm:py-16 lg:py-[100px]"
+			className="bg-white py-10 sm:py-16 lg:py-[100px]"
 			aria-label={ariaLabel}
 		>
 			<Container>
 				{/* Exactly 50px between every service article */}
-				<div className="flex flex-col gap-[50px]">
+				<div className="flex flex-col gap-10 sm:gap-[50px]">
 					{services.map((service, index) => {
 						const isImageLeft = index % 2 === 0;
 						const [introItem, ...accordionItems] = service.items;
@@ -142,15 +142,18 @@ function DeveloperServiceRow({
 			========================= */}
 			<div
 				className={`
-					relative
-					aspect-[3/2]
-					w-full
-					min-w-0
-					overflow-hidden
-					lg:aspect-auto
-					lg:min-h-[540px]
-					${isImageLeft ? "lg:order-1" : "lg:order-2"}
-				`}
+	relative
+	aspect-[16/10]
+	w-full
+	min-w-0
+	overflow-hidden
+
+	sm:aspect-[3/2]
+
+	lg:aspect-auto
+	lg:min-h-[540px]
+	${isImageLeft ? "lg:order-1" : "lg:order-2"}
+`}
 			>
 				<Image
 					src={service.imageSrc}
@@ -178,15 +181,19 @@ function DeveloperServiceRow({
 				<div className="absolute inset-0 flex items-center justify-center px-6">
 					<h3
 						className="
-							n-bold
-							max-w-[340px]
-							text-center
-							text-[20px]
-							leading-[24px]
-							tracking-[0.1em]
-							text-white
-							uppercase
-						"
+	n-bold
+	max-w-[280px]
+	text-center
+	text-[16px]
+	leading-[21px]
+	tracking-[0.1em]
+	text-white
+	uppercase
+
+	sm:max-w-[340px]
+	sm:text-[20px]
+	sm:leading-[24px]
+"
 					>
 						{service.title}
 					</h3>
@@ -206,20 +213,24 @@ function DeveloperServiceRow({
 			>
 				<div
 					className="
-		flex
-		h-full
-		flex-col
-		justify-start
-		items-start
-		px-5
-		py-2
-		sm:px-8
-		sm:py-4
-		lg:px-10
-		lg:py-16
-		xl:px-12.5
-		xl:py-8
-	"
+	flex
+	h-full
+	flex-col
+	items-start
+	justify-start
+
+	px-4
+	py-5
+
+	sm:px-8
+	sm:py-4
+
+	lg:px-10
+	lg:py-16
+
+	xl:px-12.5
+	xl:py-8
+"
 				>
 					{/* =========================
 					    INTRODUCTION
@@ -241,13 +252,13 @@ function DeveloperServiceRow({
 						>
 							<span
 								className="
-									n-bold
-									min-w-0
-									flex-1
-									text-[20px]
-									leading-[24px]
-									text-[#000000]
-								"
+		n-bold
+		min-w-0
+		flex-1
+		text-[20px]
+		leading-[24px]
+		text-[#000000]
+	"
 							>
 								{introItem.title}
 							</span>
@@ -261,8 +272,11 @@ function DeveloperServiceRow({
 									shrink-0
 									items-center
 									justify-center
-									text-[20px]
-									leading-[24px]
+									text-[18px]
+leading-[22px]
+
+sm:text-[20px]
+sm:leading-[24px]
 									text-[#000000]
 								"
 								aria-hidden
@@ -291,13 +305,17 @@ function DeveloperServiceRow({
 							{introItem.description ? (
 								<p
 									className="
-										n-reg
-										mt-[10px]
-										max-w-[533px]
-										text-[16px]
-										leading-[24px]
-										text-[#000000]
-									"
+	n-reg
+	mt-[8px]
+	max-w-[533px]
+	text-[14px]
+	leading-[22px]
+	text-[#000000]
+
+	sm:mt-[10px]
+	sm:text-[16px]
+	sm:leading-[24px]
+"
 								>
 									{introItem.description}
 								</p>
@@ -306,7 +324,7 @@ function DeveloperServiceRow({
 					</div>
 
 					{/* 20px below intro description */}
-					<div className="mt-[20px]">
+					<div className="mt-[16px] sm:mt-[20px]">
 						{accordionItems.map((item, i) => {
 							const itemIndex = i + 1;
 							const isOpen = openIndex === itemIndex;
@@ -326,7 +344,7 @@ function DeveloperServiceRow({
 											items-center
 											justify-between
 											gap-5
-											py-[15px]
+											py-[12px] sm:py-[15px]
 											text-left
 										"
 									>
@@ -385,13 +403,17 @@ function DeveloperServiceRow({
 										>
 											<p
 												className="
-													n-reg
-													max-w-[533px]
-													pb-[20px]
-													text-[16px]
-													leading-[24px]
-													text-[#000000]
-												"
+	n-reg
+	max-w-[533px]
+	pb-[16px]
+	text-[14px]
+	leading-[22px]
+	text-[#000000]
+
+	sm:pb-[20px]
+	sm:text-[16px]
+	sm:leading-[24px]
+"
 											>
 												{item.description}
 											</p>

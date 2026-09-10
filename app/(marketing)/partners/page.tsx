@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PartnersClientsPage() {
 	return (
-		<div className="min-w-0 bg-white md:mb-25">
+		<div className="min-w-0 bg-white mb-14 md:mb-25">
 			{/* Partners Hero */}
 			<MarketingPageHero
 				heroId="partners"
@@ -23,7 +23,9 @@ export default function PartnersClientsPage() {
 				shiftUnderHeader={true}
 				shiftTillSearch={false}
 				shiftExtraContentTopPx={44}
+				mobileShiftExtraContentTopPx={0}
 				negativePadding={16}
+				mobileNegativePadding={false}
 			/>
 
 			{/* Partners content */}

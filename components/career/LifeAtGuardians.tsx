@@ -40,7 +40,7 @@ function CareerImageCarousel() {
 		<ScrollReveal direction="up" delay={0.1} distance={28}>
 			<div
 				className="relative w-full overflow-hidden bg-[#BCBDC0]"
-				style={{ height: "clamp(200px, 32vw, 400px)" }}
+				style={{ height: "clamp(240px, 62vw, 400px)" }}
 			>
 				{/* Slides */}
 				<AnimatePresence mode="wait" initial={false}>
@@ -71,7 +71,7 @@ function CareerImageCarousel() {
 						onClick={() => advance(-1)}
 						className={cn(
 							"absolute left-4 top-1/2 z-20 -translate-y-1/2",
-							"flex h-[42px] w-[42px] items-center justify-center",
+							"flex h-[34px] w-[34px] items-center justify-center sm:h-[42px] sm:w-[42px]",
 							"sm:left-8",
 						)}
 					>
@@ -101,7 +101,7 @@ function CareerImageCarousel() {
 						onClick={() => advance(1)}
 						className={cn(
 							"absolute right-4 top-1/2 z-20 -translate-y-1/2",
-							"flex h-[42px] w-[42px] items-center justify-center",
+							"flex h-[34px] w-[34px] items-center justify-center sm:h-[42px] sm:w-[42px]",
 							"sm:right-8",
 						)}
 					>
@@ -164,16 +164,19 @@ function CareerImageCarousel() {
 
 export function LifeAtGuardians() {
 	return (
-		<section className="bg-white lg:py-25" aria-labelledby="life-heading">
+		<section
+			className="bg-white py-14 sm:py-20 lg:py-25"
+			aria-labelledby="life-heading"
+		>
 			<Container>
 				<ScrollReveal direction="up" distance={30}>
-					<h2 className="qs-reg text-center uppercase tracking-[0.05em] text-[clamp(1.75rem,3.5vw,3.125rem)] leading-tight text-[#000000]">
+					<h2 className="qs-reg text-center text-[30px] uppercase leading-[36px] tracking-[0.05em] text-[#000000] sm:text-[clamp(1.75rem,3.5vw,3.125rem)] sm:leading-tight">
 						Life at Guardians
 					</h2>
 				</ScrollReveal>
 
 				<ScrollReveal direction="up" delay={0.08} distance={30}>
-					<p className="n-book mx-auto text-center text-[20px] leading-[24px] tracking-[0%] text-[#161616] lg:my-12.5">
+					<p className="n-book mx-auto my-5 max-w-[330px] text-center text-[14px] leading-[22px] tracking-[0%] text-[#161616] sm:max-w-[760px] sm:text-[16px] sm:leading-[24px] lg:my-12.5 lg:max-w-none lg:text-[20px] lg:leading-[24px]">
 						The Guardians is not only dedicated to work but also provide a
 						healthy work-life balance which is evident through the various fun
 						activities conducted by us. It helps our employees bond better,
