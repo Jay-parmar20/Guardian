@@ -10,6 +10,32 @@ export const metadata: Metadata = {
 		"Our global network partnerships and presence across international markets.",
 };
 
+const globalNetworkFront1 = {
+	imageSrc: "/images/about/INDIANS.png",
+	imageAlt: "For Indians in Dubai",
+	heading: "FOR INDIANS IN DUBAI",
+};
+
+const globalNetworkBack1 = {
+	imageAlt: "For Indians in Dubai",
+	heading: "FOR INDIANS IN DUBAI",
+	description:
+		"A growing base of Indian professionals and investors in Dubai are looking to invest back home. We give them direct access to vetted Indian developments, transparent pricing and a team that handles the entire process remotely, from shortlisting to registration.",
+};
+
+const globalNetworkFront2 = {
+	imageSrc: "/images/about/NRIS.png",
+	imageAlt: "For NRIs in India",
+	heading: "FOR NRIS IN INDIA",
+};
+
+const globalNetworkBack2 = {
+	imageAlt: "For NRIs in India",
+	heading: "FOR NRIS IN INDIA",
+	description:
+		"Buying property back home shouldn't mean navigating it alone from thousands of miles away. We give NRIs verified project access, on-ground diligence and a single point of contact for the entire journey, from shortlisting to final registration.",
+};
+
 export default function GlobalNetworkPage() {
 	return (
 		<>
@@ -27,7 +53,14 @@ export default function GlobalNetworkPage() {
 
 			<InternationalSales />
 
-			<GlobalNetworks heading="WHAT WE DO" showKnowMore={false} />
+			<GlobalNetworks
+				heading="WHAT WE DO"
+				showKnowMore={false}
+				frontSide={globalNetworkFront1}
+				backSide={globalNetworkBack1}
+				frontSide2={globalNetworkFront2}
+				backSide2={globalNetworkBack2}
+			/>
 
 			<MarketsWeServe />
 		</>

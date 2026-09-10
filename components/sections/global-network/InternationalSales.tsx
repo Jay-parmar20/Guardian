@@ -98,12 +98,10 @@ export function InternationalSales() {
 
 					<ScrollReveal direction="up" distance={40} delay={0.2} duration={0.6}>
 						<p className="n-book mx-auto text-center text-[16px] leading-[24px] tracking-[0%] text-[#3C393A]">
-							Our international sales division bridges borders, connecting
-							premium Indian real estate with qualified global buyers. With a
-							presence across key international markets, we deploy localised
-							strategies — from market-specific positioning and regulatory
-							navigation to cultural nuance in negotiations — ensuring every
-							project reaches the right audience with maximum impact.
+							Every market has its own buyer psychology, regulatory landscape
+							and deal structure. We build a dedicated go-to-market plan for
+							each one, backed by local partners on the ground and a sales
+							process built for cross-border trust.
 						</p>
 					</ScrollReveal>
 				</div>

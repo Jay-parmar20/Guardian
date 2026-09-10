@@ -16,10 +16,12 @@ interface SplitSectionImage {
 export interface SplitSectionProps {
 	title: ReactNode;
 	description: ReactNode;
-	buttonText: string;
 	image: SplitSectionImage;
-	reverse?: boolean;
+
+	buttonText?: string;
 	href?: string;
+
+	reverse?: boolean;
 	className?: string;
 	contentClassName?: string;
 	titleClassName?: string;
@@ -32,10 +34,10 @@ export interface SplitSectionProps {
 export function SplitSection({
 	title,
 	description,
-	buttonText,
 	image,
+	buttonText,
+	href,
 	reverse = false,
-	href = "#",
 	className,
 	contentClassName,
 	titleClassName,
@@ -47,9 +49,12 @@ export function SplitSection({
 	const textDirection = reverse ? "right" : "left";
 	const imageDirection = reverse ? "left" : "right";
 
+	const showButton = Boolean(buttonText && href);
+
 	return (
-		<section>
+		<section className={className}>
 			<div className="mx-auto grid max-w-7xl items-center gap-8 sm:gap-10 md:grid-cols-2 md:gap-16">
+				{/* Content */}
 				<ScrollReveal
 					direction={textDirection}
 					delay={0.2}
@@ -68,6 +73,7 @@ export function SplitSection({
 						>
 							{title}
 						</div>
+
 						<p
 							className={cn(
 								"n-reg text-base leading-relaxed text-[#161616] md:min-h-[200px]",
@@ -76,21 +82,26 @@ export function SplitSection({
 						>
 							{description}
 						</p>
-						<OutlineArrowButton
-							href={href}
-							target="_blank"
-							iconClassName={audienceMarketingOutlineCtaIconClass}
-							className={cn(
-								audienceMarketingOutlineCtaClass,
-								buttonClassName,
-								"mt-6 hidden md:inline-flex",
-							)}
-						>
-							{buttonText}
-						</OutlineArrowButton>
+
+						{/* Desktop CTA */}
+						{showButton ? (
+							<OutlineArrowButton
+								href={href!}
+								target="_blank"
+								iconClassName={audienceMarketingOutlineCtaIconClass}
+								className={cn(
+									audienceMarketingOutlineCtaClass,
+									buttonClassName,
+									"mt-6 hidden md:inline-flex",
+								)}
+							>
+								{buttonText}
+							</OutlineArrowButton>
+						) : null}
 					</div>
 				</ScrollReveal>
 
+				{/* Image */}
 				<ScrollReveal
 					direction={imageDirection}
 					delay={0.4}
@@ -118,27 +129,36 @@ export function SplitSection({
 					</div>
 				</ScrollReveal>
 
-				<ScrollReveal
-					direction="up"
-					delay={0.45}
-					duration={0.65}
-					className={cn(
-						"flex w-full justify-center md:col-span-2 md:hidden [&_a]:w-fit [&_a]:max-w-full",
-						reverse ? "md:order-3" : "md:order-3",
-					)}
-				>
-					<OutlineArrowButton
-						href={href}
-						iconClassName={audienceMarketingOutlineCtaIconClass}
-						className={cn(
-							audienceMarketingOutlineCtaClass,
-							"max-lg:!w-fit max-lg:!max-w-full",
-							buttonClassName,
-						)}
+				{/* Mobile CTA */}
+				{showButton ? (
+					<ScrollReveal
+						direction="up"
+						delay={0.45}
+						duration={0.65}
+						className="
+							flex
+							w-full
+							justify-center
+							md:order-3
+							md:col-span-2
+							md:hidden
+							[&_a]:w-fit
+							[&_a]:max-w-full
+						"
 					>
-						{buttonText}
-					</OutlineArrowButton>
-				</ScrollReveal>
+						<OutlineArrowButton
+							href={href!}
+							iconClassName={audienceMarketingOutlineCtaIconClass}
+							className={cn(
+								audienceMarketingOutlineCtaClass,
+								"max-lg:!w-fit max-lg:!max-w-full",
+								buttonClassName,
+							)}
+						>
+							{buttonText}
+						</OutlineArrowButton>
+					</ScrollReveal>
+				) : null}
 			</div>
 		</section>
 	);

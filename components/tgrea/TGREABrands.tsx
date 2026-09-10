@@ -137,10 +137,8 @@ export function TGREABrands() {
 						>
 							<SplitSection
 								reverse={reverse}
-								href={href}
 								title={<BrandTitle src={logoBG} />}
 								description={description}
-								buttonText="Read more"
 								image={{
 									src: logo,
 									alt: "Construction site at sunset",
@@ -148,7 +146,6 @@ export function TGREABrands() {
 								contentClassName="flex items-center"
 								titleClassName="mb-[19px] sm:mb-[29px] lg:mb-[66px]"
 								descriptionClassName="max-w-[488px] text-[clamp(0.875rem,3vw,1rem)] leading-[1.5] sm:text-base"
-								buttonClassName="mt-4 h-[50px] w-full max-w-xs items-center justify-center text-[clamp(0.8125rem,3vw,1.25rem)] leading-none sm:mt-10 sm:w-auto sm:max-w-none sm:px-12 sm:py-5"
 								imageClassName="h-[420px] rounded-none max-md:h-auto max-md:min-h-[220px] max-md:aspect-[488/434]"
 							/>
 						</div>

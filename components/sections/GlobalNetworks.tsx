@@ -20,6 +20,10 @@ interface GlobalNetworksSide {
 interface GlobalNetworksProps {
 	frontSide?: GlobalNetworksSide;
 	backSide?: GlobalNetworksSide;
+
+	frontSide2?: GlobalNetworksSide;
+	backSide2?: GlobalNetworksSide;
+
 	className?: string;
 	heading?: string;
 	showHeadingAbove?: boolean;
@@ -70,7 +74,14 @@ function FlipCard({
 
 	return (
 		<div
-			className="relative w-full min-w-0 cursor-pointer"
+			className="
+				relative
+				w-full
+				min-w-0
+				cursor-pointer
+				overflow-hidden
+				isolate
+			"
 			style={{
 				perspective: "1400px",
 				WebkitPerspective: "1400px",
@@ -100,13 +111,13 @@ function FlipCard({
 				<div
 					className="
 						absolute
-						inset-0
+						inset-[-1px]
 						overflow-hidden
 					"
 					style={{
 						backfaceVisibility: "hidden",
 						WebkitBackfaceVisibility: "hidden",
-						transform: "translateZ(0.1px)",
+						transform: "translateZ(0)",
 					}}
 				>
 					{/* Image */}
@@ -178,14 +189,14 @@ function FlipCard({
 				<div
 					className="
 						absolute
-						inset-0
+						inset-[-1px]
 						overflow-hidden
 						bg-[#F2F2F2]
 					"
 					style={{
 						backfaceVisibility: "hidden",
 						WebkitBackfaceVisibility: "hidden",
-						transform: "rotateY(180deg) translateZ(0.1px)",
+						transform: "rotateY(180deg) translateZ(0)",
 					}}
 				>
 					{/* Figma faint image — same orientation, NOT reversed */}
@@ -283,6 +294,8 @@ function FlipCard({
 export function GlobalNetworks({
 	frontSide,
 	backSide,
+	frontSide2,
+	backSide2,
 	className,
 	heading = "GLOBAL NETWORKS",
 	showHeadingAbove = true,
@@ -300,10 +313,12 @@ export function GlobalNetworks({
 
 	const front2 = {
 		...defaultFront2,
+		...frontSide2,
 	};
 
 	const back2 = {
 		...defaultBack2,
+		...backSide2,
 	};
 
 	return (
