@@ -17,7 +17,10 @@ export const CONTACT_ENQUIRIES: readonly ContactEnquiry[] = [
 		label: "Business",
 		title: "Business Related Enquiries",
 		email: "business@theguardiansindia.com",
-		phones: [{ display: "+91 86579 10503", telHref: "tel:+918657910503" }],
+		phones: [
+			{ display: "+91 22 4890 3333", telHref: "tel:+912248903333" },
+			{ display: "+91 86579 10503", telHref: "tel:+918657910503" },
+		],
 	},
 	{
 		label: "Channel Partner",

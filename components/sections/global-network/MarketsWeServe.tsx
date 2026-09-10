@@ -12,19 +12,44 @@ interface MarketCard {
 
 const MARKETS: MarketCard[] = [
 	{
-		imageSrc: "/images/global-network/canada.png",
+		imageSrc: "/images/global-network/Australia.jpg",
+		imageAlt: "Australia",
+		countryName: "AUSTRALIA",
+	},
+	{
+		imageSrc: "/images/global-network/Canada.jpg",
 		imageAlt: "Canada",
 		countryName: "CANADA",
 	},
 	{
-		imageSrc: "/images/global-network/singapore.png",
+		imageSrc: "/images/global-network/Qatar.jpg",
+		imageAlt: "Qatar",
+		countryName: "QATAR",
+	},
+	{
+		imageSrc: "/images/global-network/Saudi%20Arabia.jpg",
+		imageAlt: "Saudi Arabia",
+		countryName: "SAUDI ARABIA",
+	},
+	{
+		imageSrc: "/images/global-network/Singapore.jpg",
 		imageAlt: "Singapore",
 		countryName: "SINGAPORE",
 	},
 	{
-		imageSrc: "/images/global-network/austraila.png",
-		imageAlt: "Australia",
-		countryName: "AUSTRALIA",
+		imageSrc: "/images/global-network/UAE.jpg",
+		imageAlt: "United Arab Emirates",
+		countryName: "UAE",
+	},
+	{
+		imageSrc: "/images/global-network/UK.jpg",
+		imageAlt: "United Kingdom",
+		countryName: "UK",
+	},
+	{
+		imageSrc: "/images/global-network/usa.jpg",
+		imageAlt: "United States of America",
+		countryName: "USA",
 	},
 ];
 
@@ -50,29 +75,35 @@ function MarketCardItem({ market }: { market: MarketCard }) {
 				sizes="385px"
 			/>
 
-			{/* Black overlay */}
+			{/* Black overlay — Figma 30% */}
 			<div
-				className="pointer-events-none absolute inset-0 z-10 bg-black/30"
 				aria-hidden="true"
+				className="
+		pointer-events-none
+		absolute
+		inset-0
+		z-10
+		bg-[#000000]
+		opacity-30
+	"
 			/>
 
 			{/* Country name */}
 			<div className="absolute inset-0 z-20 flex items-center justify-center px-8">
 				<span
 					className="
-						n-bold
-						w-full
-						cursor-text
-						select-text
-						text-center
-						text-[20px]
-						font-extrabold
-						uppercase
-						leading-[24px]
-						tracking-[0.1em]
-						text-white
-						[text-shadow:0_2px_8px_rgba(0,0,0,0.55)]
-					"
+		n-bold
+		w-full
+		cursor-text
+		select-text
+		text-center
+		text-[20px]
+		font-extrabold
+		uppercase
+		leading-[24px]
+		tracking-[0.1em]
+		text-white
+	"
 				>
 					{market.countryName}
 				</span>

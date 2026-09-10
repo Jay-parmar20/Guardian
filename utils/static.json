@@ -14,12 +14,12 @@
 			"cta": { "href": "/about", "label": "Experience Us" }
 		},
 		"blog": {
-			"variant": "overlayTitle",
+			"variant": "newsroom",
 			"headingId": "blog-hero-heading",
-			"backgroundImage": "/images/blog.svg",
+			"backgroundImage": "/images/blog-hero.jpg",
+			"imageAlt": "Blog",
 			"title": "BLOG",
-			"overlayClassName": "bg-black/40",
-			"titleClassName": "qs-reg uppercase"
+			"imageClassName": "object-cover object-center "
 		},
 		"contact": {
 			"variant": "contact",
@@ -42,12 +42,12 @@
 			"backgroundImage": "/images/newsroom.svg",
 			"imageAlt": "Newsroom",
 			"title": "Newsroom",
-			"imageClassName": "object-cover object-center mt-[-1.6rem]"
+			"imageClassName": "object-cover object-center "
 		},
 		"partners": {
 			"variant": "partners",
 			"headingId": "partners-hero-heading",
-			"backgroundImage": "/images/partners/partners-hero.png",
+			"backgroundImage": "/images/partners/partners-hero.svg",
 			"imageAlt": "Partners and Clients",
 			"title": "PARTNERS & CLIENTS",
 			"imageClassName": "object-cover object-center"
@@ -105,11 +105,11 @@
 		"globalNetwork": {
 			"variant": "overlayTitle",
 			"headingId": "global-network-hero-heading",
-			"backgroundImage": "/images/global-network/home.png",
+			"backgroundImage": "/images/global-network/global-network-hero.svg",
 			"imageAlt": "Global Network",
 			"title": "GLOBAL NETWORKS",
 			"subtitle": "Connecting Indian Real Estate with Global Investors",
-			"overlayClassName": "",
+			"overlayClassName": "bg-transparent",
 			"titleClassName": "qs-reg uppercase lg:!text-[70px] lg:!leading-[70px]"
 		}
 	},

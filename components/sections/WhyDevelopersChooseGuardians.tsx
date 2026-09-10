@@ -16,13 +16,12 @@ const defaultHeading = "WHY DEVELOPERS CHOOSE GUARDIANS";
 
 const defaultDescription = (
 	<>
-		<strong>The Guardians</strong> mark the coming together of the best of minds
-		from the Indian real estate industry, a set of professionals who have played
-		diverse roles across their careers. Their collective experience spans{" "}
-		<strong>over 12 decades</strong> and extends to a pan India portfolio of the
-		best of both regional and national real estate brands. The team has till
-		date sold <strong>over 17.3 Million of sq.ft.</strong> of projects in both
-		residential and commercial real estate categories.
+		We don&apos;t just advise, we embed ourselves in your project&apos;s
+		success. From <strong>pricing intelligence and launch strategy</strong> to
+		on-ground sales execution and channel partner management, we bring every
+		function a developer needs under <strong>one accountable team</strong>. No
+		fragmented vendors, no guesswork, just a{" "}
+		<strong>single partner measured on your outcomes.</strong>
 	</>
 );
 

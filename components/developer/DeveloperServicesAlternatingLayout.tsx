@@ -5,7 +5,7 @@ import type { ServicePanel } from "@/components/services/ServicesGrid";
 import { SERVICE_PANELS } from "@/data/services";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Props = {
 	panels?: ServicePanel[];
@@ -17,11 +17,63 @@ const accordionTransition = {
 	ease: [0.22, 1, 0.36, 1] as const,
 };
 
+function getServiceAnchor(title: string) {
+	return title
+		.replace(/\s+Services$/i, "")
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, "-")
+		.replace(/^-|-$/g, "");
+}
+
 export function DeveloperServicesAlternatingLayout({
 	panels,
 	ariaLabel = "Developer services",
 }: Props) {
 	const services = panels ?? SERVICE_PANELS;
+
+	useEffect(() => {
+		const scrollToService = () => {
+			// If an old bad URL exists like #land#financial,
+			// always use only the LAST hash value.
+			const rawHash = window.location.hash;
+
+			if (!rawHash) return;
+
+			const id = rawHash.split("#").filter(Boolean).pop();
+
+			if (!id) return;
+
+			const element = document.getElementById(id);
+
+			if (!element) return;
+
+			// Clean old bad URLs:
+			// /services#land#financial -> /services#financial
+			window.history.replaceState(null, "", `/services#${id}`);
+
+			const headerOffset = 120;
+
+			const top =
+				element.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+			window.scrollTo({
+				top,
+				behavior: "smooth",
+			});
+		};
+
+		// Wait for service blocks to exist in DOM
+		const timeout = window.setTimeout(() => {
+			scrollToService();
+		}, 100);
+
+		window.addEventListener("hashchange", scrollToService);
+
+		return () => {
+			window.clearTimeout(timeout);
+			window.removeEventListener("hashchange", scrollToService);
+		};
+	}, []);
 
 	return (
 		<section
@@ -75,13 +127,15 @@ function DeveloperServiceRow({
 
 	return (
 		<article
+			id={getServiceAnchor(service.title)}
 			className="
-				grid
-				w-full
-				grid-cols-1
-				overflow-hidden
-				lg:grid-cols-[45%_55%]
-			"
+		grid
+		w-full
+		scroll-mt-[120px]
+		grid-cols-1
+		overflow-hidden
+		lg:grid-cols-[45%_55%]
+	"
 		>
 			{/* =========================
 			    IMAGE SIDE

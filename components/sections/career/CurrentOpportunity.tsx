@@ -207,7 +207,7 @@ function OpportunityCard({ job }: { job: Opportunity }) {
 				)}
 			>
 				<span className="n-bold whitespace-nowrap text-[20px] leading-none tracking-[0.1em]">
-					Apply Now
+					APPLY NOW
 				</span>
 
 				<ApplyArrow />

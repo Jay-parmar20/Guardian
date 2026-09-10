@@ -119,12 +119,24 @@ function LogoTile({
 				"w-[8.5rem] sm:w-[9.5rem] md:w-[10.75rem] lg:w-[13.9375rem]",
 			)}
 		>
-			<div className="absolute inset-[8px_12px] sm:inset-[9px_16px] lg:inset-[10px_20px]">
+			{/* Consistent inner spacing for every logo */}
+			<div
+				className="
+					absolute
+					inset-[12px_16px]
+					sm:inset-[14px_20px]
+					lg:inset-[16px_24px]
+				"
+			>
 				<Image
 					src={item.src}
 					alt={decorative ? "" : item.alt}
 					fill
-					sizes="(max-width: 639px) 136px, (max-width: 768px) 160px, 223px"
+					sizes="
+						(max-width: 639px) 136px,
+						(max-width: 768px) 160px,
+						223px
+					"
 					className="object-contain object-center"
 				/>
 			</div>

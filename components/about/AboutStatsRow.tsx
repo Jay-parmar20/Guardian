@@ -58,15 +58,31 @@ function StatItem({
 		countUp && animate ? formatCountUpValue(count, countUp) : stat.value;
 
 	return (
-		<div className="text-center">
+		<div
+			className="
+				flex
+				w-full
+				flex-col
+				items-start
+				text-left
+			"
+		>
 			{/* Value */}
 			<p
 				className={cn(
-					"n-bold tabular-nums whitespace-nowrap text-brand-footer",
-					"font-extrabold leading-none tracking-normal",
+					"n-bold",
+					"w-fit",
+					"whitespace-nowrap",
+					"tabular-nums",
+					"text-left",
+					"font-extrabold",
+					"leading-none",
+					"tracking-normal",
+					"text-brand-footer",
 					"text-[28px]",
 					"sm:text-[36px]",
-					"md:text-[48px]",
+					"md:text-[44px]",
+					"lg:text-[56px]",
 					stat.customClass,
 				)}
 			>
@@ -76,8 +92,10 @@ function StatItem({
 			{/* Label */}
 			<p
 				className="
-				
 					n-bold
+					
+					w-full
+					max-w-[230px]
 					text-left
 					text-[12px]
 					font-bold
@@ -85,11 +103,9 @@ function StatItem({
 					tracking-normal
 					text-black
 
-				
 					sm:text-[14px]
 					sm:leading-[18px]
 
-					
 					lg:text-[16px]
 					lg:leading-[20px]
 				"
@@ -117,22 +133,20 @@ export function AboutStatsRow({ content }: { content: StatsSectionContent }) {
 		<div
 			ref={ref}
 			className="
-				flex
-				flex-col
-				items-center
-				justify-center
-				gap-6
-			
+		grid
+		w-full
+		grid-cols-1
+		gap-y-7
 
-				sm:flex-row
-				sm:flex-nowrap
-				sm:gap-10
+		sm:grid-cols-2
+		sm:gap-x-10
+		sm:gap-y-10
 
-				md:gap-14
-
-				lg:gap-16
-				
-			"
+		lg:grid-cols-[max-content_max-content_max-content_max-content]
+		lg:justify-center
+		lg:gap-x-[120px]
+		lg:gap-y-0
+	"
 		>
 			{metrics.map((stat, idx) => (
 				<ScrollReveal
@@ -143,27 +157,60 @@ export function AboutStatsRow({ content }: { content: StatsSectionContent }) {
 				>
 					<div
 						className="
-							flex
-							items-center
-							gap-6
+					relative
+					mx-auto
+					flex
+					min-w-0
+					flex-col
+					items-start
+					text-left
 
-							sm:gap-10
-							md:gap-14
-							lg:gap-16
-						"
+					lg:mx-0
+				"
 					>
-						{/* Only ONE divider between stats */}
-						{idx > 0 && (
-							<div
+						{/* Tablet divider */}
+						{idx % 2 === 1 && (
+							<span
 								aria-hidden="true"
 								className="
-									hidden
-									h-10
-									w-px
-									shrink-0
-									bg-[#ccc]
-									sm:block
-								"
+							absolute
+							left-[-20px]
+							top-1/2
+							hidden
+							h-0
+							w-[40px]
+							-translate-x-1/2
+							-translate-y-1/2
+							rotate-90
+							border-t-[0.5px]
+							border-black
+							opacity-50
+
+							sm:max-lg:block
+						"
+							/>
+						)}
+
+						{/* Desktop divider */}
+						{idx > 0 && (
+							<span
+								aria-hidden="true"
+								className="
+							absolute
+							left-[-60px]
+							top-1/2
+							hidden
+							h-0
+							w-[40px]
+							-translate-x-1/2
+							-translate-y-1/2
+							rotate-90
+							border-t-[0.5px]
+							border-black
+							opacity-50
+
+							lg:block
+						"
 							/>
 						)}
 

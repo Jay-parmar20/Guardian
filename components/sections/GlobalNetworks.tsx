@@ -1,7 +1,7 @@
 "use client";
 
-import { Container } from "@/components/common/Container";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
+import { Container } from "@/components/common/Container";
 import { OutlineArrowButton } from "@/components/common/OutlineArrowButton";
 import {
 	audienceMarketingOutlineCtaClass,
@@ -11,7 +11,7 @@ import { cn } from "@/utils/cn";
 import { useState } from "react";
 
 interface GlobalNetworksSide {
-	imageSrc: string;
+	imageSrc?: string;
 	imageAlt: string;
 	heading: string;
 	description?: string;
@@ -27,29 +27,29 @@ interface GlobalNetworksProps {
 }
 
 const defaultFront: GlobalNetworksSide = {
-	imageSrc: "/images/about/GN-1.png",
-	imageAlt: "NRIs in India",
-	heading: "NRIs IN INDIA",
+	imageSrc: "/images/about/INDIANS.png",
+	imageAlt: "For Indians in Dubai",
+	heading: "FOR INDIANS IN DUBAI",
 };
 
 const defaultBack: GlobalNetworksSide = {
-	imageSrc: "/images/about/GN-2.png",
-	imageAlt: "Indians in Dubai",
+	imageAlt: "For Indians in Dubai",
 	heading: "FOR INDIANS IN DUBAI",
-	description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	description:
+		"We open the door to real estate opportunities beyond India, helping Indian investors explore global markets with the right insight and access at every step.",
 };
 
 const defaultFront2: GlobalNetworksSide = {
-	imageSrc: "/images/about/GN-1.png",
-	imageAlt: "NRIs in India",
-	heading: "NRIs IN INDIA",
+	imageSrc: "/images/about/NRIS.png",
+	imageAlt: "For NRIs in India",
+	heading: "FOR NRIS IN INDIA",
 };
 
 const defaultBack2: GlobalNetworksSide = {
-	imageSrc: "/images/about/GN-2.png",
-	imageAlt: "Global Network 2 Back",
-	heading: "WORLDWIDE REACH",
-	description: "Connecting markets across the globe.",
+	imageAlt: "For NRIs in India",
+	heading: "FOR NRIS IN INDIA",
+	description:
+		"We connect NRIs to real estate opportunities back home in India, with the same rigour and guidance throughout the transaction.",
 };
 
 function FlipCard({
@@ -61,58 +61,219 @@ function FlipCard({
 }) {
 	const [isFlipped, setIsFlipped] = useState(false);
 
+	const handleClick = () => {
+		// Mobile/tablet touch devices: tap to flip
+		if (window.matchMedia("(hover: none)").matches) {
+			setIsFlipped((prev) => !prev);
+		}
+	};
+
 	return (
 		<div
-			className="group relative w-full min-w-0 cursor-pointer"
-			style={{ perspective: "1200px" }}
+			className="relative w-full min-w-0 cursor-pointer"
+			style={{
+				perspective: "1400px",
+				WebkitPerspective: "1400px",
+			}}
+			onMouseEnter={() => setIsFlipped(true)}
+			onMouseLeave={() => setIsFlipped(false)}
+			onClick={handleClick}
 		>
 			<div
-				className={cn(
-					"relative aspect-[578/400] w-full transition-transform duration-700 ease-in-out",
-					isFlipped
-						? "[transform:rotateY(180deg)]"
-						: "[transform:rotateY(0deg)]",
-				)}
+				className="
+					relative
+					aspect-[578/400]
+					w-full
+				"
 				style={{
 					transformStyle: "preserve-3d",
+					WebkitTransformStyle: "preserve-3d",
+					transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+					transformOrigin: "center center",
+					transition: "transform 650ms cubic-bezier(0.22, 1, 0.36, 1)",
+					willChange: "transform",
 				}}
-				onMouseEnter={() => setIsFlipped(true)}
-				onMouseLeave={() => setIsFlipped(false)}
-				onClick={() => setIsFlipped((prev) => !prev)}
 			>
-				{/* Front */}
+				{/* =========================
+				    FRONT / NORMAL
+				========================= */}
 				<div
-					className="absolute inset-0 overflow-hidden"
-					style={{ backfaceVisibility: "hidden" }}
+					className="
+						absolute
+						inset-0
+						overflow-hidden
+					"
+					style={{
+						backfaceVisibility: "hidden",
+						WebkitBackfaceVisibility: "hidden",
+						transform: "translateZ(0.1px)",
+					}}
 				>
+					{/* Image */}
 					{front.imageSrc ? (
 						<img
 							src={front.imageSrc}
 							alt={front.imageAlt}
-							className="h-full w-full object-cover"
+							draggable={false}
+							className="
+								h-full
+								w-full
+								select-none
+								object-cover
+								object-center
+							"
 						/>
 					) : (
-						<div className="h-full w-full bg-neutral-300" />
+						<div className="h-full w-full bg-[#D1D1D1]" />
 					)}
+
+					{/* Figma black overlay 30% */}
+					<div
+						className="
+							pointer-events-none
+							absolute
+							inset-0
+							bg-black/30
+						"
+					/>
+
+					{/* Center title */}
+					<div
+						className="
+							pointer-events-none
+							absolute
+							inset-0
+							flex
+							items-center
+							justify-center
+							px-5
+						"
+					>
+						<h3
+							className="
+								n-bold
+								text-center
+								text-[16px]
+								font-extrabold
+								leading-[20px]
+								tracking-[0.1em]
+								text-white
+								uppercase
+
+								sm:text-[18px]
+								sm:leading-[22px]
+
+								lg:text-[20px]
+								lg:leading-[24px]
+							"
+						>
+							{front.heading}
+						</h3>
+					</div>
 				</div>
 
-				{/* Back */}
+				{/* =========================
+				    BACK / HOVER — FIGMA
+				========================= */}
 				<div
-					className="absolute inset-0 overflow-hidden"
+					className="
+						absolute
+						inset-0
+						overflow-hidden
+						bg-[#F2F2F2]
+					"
 					style={{
 						backfaceVisibility: "hidden",
-						transform: "rotateY(180deg)",
+						WebkitBackfaceVisibility: "hidden",
+						transform: "rotateY(180deg) translateZ(0.1px)",
 					}}
 				>
-					{back.imageSrc ? (
+					{/* Figma faint image — same orientation, NOT reversed */}
+					{front.imageSrc ? (
 						<img
-							src={back.imageSrc}
-							alt={back.imageAlt}
-							className="h-full w-full object-cover"
+							src={front.imageSrc}
+							alt=""
+							aria-hidden="true"
+							draggable={false}
+							className="
+								pointer-events-none
+								absolute
+								left-[-6.23%]
+								top-0
+								h-[108.25%]
+								w-[112.46%]
+								max-w-none
+								select-none
+								object-cover
+								opacity-10
+							"
 						/>
-					) : (
-						<div className="h-full w-full bg-neutral-200" />
-					)}
+					) : null}
+
+					{/* Figma overlay = opacity 0 */}
+					<div
+						className="
+							pointer-events-none
+							absolute
+							inset-0
+							bg-black
+							opacity-0
+						"
+					/>
+
+					{/* Title */}
+					<h3
+						className="
+							n-bold
+							absolute
+							left-1/2
+							top-[12.5%]
+							w-[46.71%]
+							-translate-x-1/2
+							text-center
+							text-[16px]
+							font-extrabold
+							leading-[20px]
+							tracking-[0.1em]
+							text-[#161616]
+							uppercase
+
+							sm:text-[18px]
+							sm:leading-[22px]
+
+							lg:text-[20px]
+							lg:leading-[24px]
+						"
+					>
+						{back.heading}
+					</h3>
+
+					{/* Description */}
+					{back.description ? (
+						<p
+							className="
+								n-reg
+								absolute
+								left-1/2
+								top-[54.25%]
+								w-[82.7%]
+								-translate-x-1/2
+								text-center
+								text-[13px]
+								font-normal
+								leading-[20px]
+								text-[#161616]
+
+								sm:text-[14px]
+								sm:leading-[22px]
+
+								lg:text-[16px]
+								lg:leading-[24px]
+							"
+						>
+							{back.description}
+						</p>
+					) : null}
 				</div>
 			</div>
 		</div>
@@ -127,25 +288,61 @@ export function GlobalNetworks({
 	showHeadingAbove = true,
 	showKnowMore = true,
 }: GlobalNetworksProps) {
-	const front = { ...defaultFront, ...frontSide };
-	const back = { ...defaultBack, ...backSide };
-	const front2 = { ...defaultFront2 };
-	const back2 = { ...defaultBack2 };
+	const front = {
+		...defaultFront,
+		...frontSide,
+	};
+
+	const back = {
+		...defaultBack,
+		...backSide,
+	};
+
+	const front2 = {
+		...defaultFront2,
+	};
+
+	const back2 = {
+		...defaultBack2,
+	};
 
 	return (
 		<section className={cn("py-0", className)} aria-label="Global Networks">
 			<Container>
 				{showHeadingAbove && (
 					<ScrollReveal direction="up" distance={40} duration={0.6}>
-						<h2 className=" mb-12.5 qs-reg text-center text-[clamp(1.75rem,3.5vw,3.125rem)] uppercase leading-tight tracking-[0.05em] text-brand-text-primary">
+						<h2
+							className="
+								qs-reg
+								mb-12.5
+								text-center
+								text-[clamp(1.75rem,3.5vw,3.125rem)]
+								leading-tight
+								tracking-[0.05em]
+								text-brand-text-primary
+								uppercase
+							"
+						>
 							{heading}
 						</h2>
 					</ScrollReveal>
 				)}
 
 				<ScrollReveal direction="up" distance={40} delay={0.15} duration={0.6}>
-					<div className="flex lg:gap-8">
+					<div
+						className="
+							flex
+							flex-col
+							gap-5
+
+							sm:gap-6
+
+							lg:flex-row
+							lg:gap-8
+						"
+					>
 						<FlipCard front={front} back={back} />
+
 						<FlipCard front={front2} back={back2} />
 					</div>
 				</ScrollReveal>

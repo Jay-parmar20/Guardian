@@ -80,32 +80,57 @@ export function ReasonCard({
 	const isMobile = variant === "mobile";
 
 	return (
-		<div
+		<motion.div
 			className={cn(
 				isMobile
 					? "relative h-[min(72vw,360px)] w-full overflow-hidden bg-white"
 					: [
 							"group relative min-h-[200px] min-w-0 shrink basis-0 overflow-hidden bg-white sm:min-h-0",
-							"grow-(--reason-grow) sm:hover:grow-900",
-							"transition-[flex-grow] duration-1100 ease-[cubic-bezier(0.22,1,0.36,1)]",
-							"will-change-[flex-grow]",
 						],
 			)}
 			style={
 				isMobile
 					? undefined
-					: ({ ["--reason-grow" as string]: card.flex } as React.CSSProperties)
+					: {
+							flexGrow: card.flex,
+							flexBasis: 0,
+							willChange: "flex-grow",
+						}
+			}
+			whileHover={
+				isMobile
+					? undefined
+					: {
+							flexGrow: 900,
+						}
+			}
+			transition={
+				isMobile
+					? undefined
+					: {
+							flexGrow: {
+								duration: 0.7,
+								ease: [0.22, 1, 0.36, 1],
+							},
+						}
 			}
 		>
-			<div className="absolute inset-0 z-0">
+			{/* Image */}
+			<div className="absolute inset-0 z-0 overflow-hidden">
 				<Image
 					src={card.imageSrc}
 					alt={card.imageAlt}
 					fill
 					className={cn(
-						"object-cover object-center",
-						!isMobile &&
-							"transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]",
+						"select-none object-cover object-center",
+						!isMobile && [
+							"transform-gpu",
+							"transition-transform",
+							"duration-700",
+							"ease-[cubic-bezier(0.22,1,0.36,1)]",
+							"will-change-transform",
+							"group-hover:scale-[1.06]",
+						],
 					)}
 					sizes={
 						isMobile
@@ -113,21 +138,32 @@ export function ReasonCard({
 							: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 					}
 				/>
+
+				{/* Existing gradient */}
 				<div
 					className={cn(
 						"absolute inset-0 bg-linear-to-t to-transparent",
-						!isMobile &&
-							"transition-colors duration-900 ease-[cubic-bezier(0.22,1,0.36,1)]",
+						!isMobile && [
+							"transition-opacity",
+							"duration-700",
+							"ease-[cubic-bezier(0.22,1,0.36,1)]",
+						],
 					)}
 				/>
 			</div>
 
+			{/* Content */}
 			<div className="absolute inset-x-0 bottom-0 z-10 p-5">
 				<h3
 					className={cn(
 						"n-bold text-xl leading-snug text-brand-text-primary",
-						!isMobile &&
-							"transition-transform duration-850 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5",
+						!isMobile && [
+							"transform-gpu",
+							"transition-transform",
+							"duration-500",
+							"ease-[cubic-bezier(0.22,1,0.36,1)]",
+							"group-hover:-translate-y-0.5",
+						],
 					)}
 				>
 					{card.title}
@@ -136,43 +172,49 @@ export function ReasonCard({
 				{card.subtitle ? (
 					<p
 						className={cn(
-							"mt-1 n-book text-sm leading-normal text-brand-text-primary",
+							"n-book text-sm leading-normal text-brand-text-primary",
 							isMobile
 								? "mt-2 opacity-100"
 								: [
-										"transition-all duration-900 ease-[cubic-bezier(0.22,1,0.36,1)]",
-										"max-h-0 -translate-y-1 overflow-hidden opacity-0 group-hover:max-h-20 group-hover:translate-y-0 group-hover:opacity-100",
+										"mt-1",
+										"max-h-0",
+										"-translate-y-1",
+										"overflow-hidden",
+										"opacity-0",
+
+										"transition-[max-height,opacity,transform]",
+										"duration-500",
+										"ease-[cubic-bezier(0.22,1,0.36,1)]",
+
+										"group-hover:max-h-20",
+										"group-hover:translate-y-0",
+										"group-hover:opacity-100",
 									],
 						)}
 					>
 						{card.subtitle}
 					</p>
 				) : null}
-
-				{/* <div
-          className={cn(
-            "mt-3",
-            isMobile || card.showArrow
-              ? "opacity-100"
-              : "translate-y-2 opacity-0 transition-all duration-900 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100",
-          )}
-        >
-          <ReasonCardArrow />
-        </div> */}
 			</div>
-		</div>
+		</motion.div>
 	);
 }
 
 function ReasonsToJoinMobileCarousel() {
 	const [activeIndex, setActiveIndex] = useState(0);
+	const [direction, setDirection] = useState<1 | -1>(1);
+
 	const activeCard = REASONS[activeIndex]!;
 
 	const goPrev = () => {
+		setDirection(-1);
+
 		setActiveIndex((i) => (i - 1 + REASONS.length) % REASONS.length);
 	};
 
 	const goNext = () => {
+		setDirection(1);
+
 		setActiveIndex((i) => (i + 1) % REASONS.length);
 	};
 
@@ -183,13 +225,29 @@ function ReasonsToJoinMobileCarousel() {
 			aria-label="Reasons to join"
 		>
 			<div className="overflow-hidden">
-				<AnimatePresence mode="wait" initial={false}>
+				<AnimatePresence initial={false} mode="sync" custom={direction}>
 					<motion.div
 						key={activeCard.id}
-						initial={{ opacity: 0, x: 16 }}
-						animate={{ opacity: 1, x: 0 }}
-						exit={{ opacity: 0, x: -16 }}
-						transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+						custom={direction}
+						initial={{
+							opacity: 0,
+							x: direction === 1 ? 24 : -24,
+						}}
+						animate={{
+							opacity: 1,
+							x: 0,
+						}}
+						exit={{
+							opacity: 0,
+							x: direction === 1 ? -24 : 24,
+						}}
+						transition={{
+							duration: 0.4,
+							ease: [0.22, 1, 0.36, 1],
+						}}
+						style={{
+							willChange: "transform, opacity",
+						}}
 					>
 						<ReasonCard card={activeCard} variant="mobile" />
 					</motion.div>

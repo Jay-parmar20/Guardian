@@ -161,7 +161,9 @@ export const HOME_MARKETING_PAGE = {
 		enquireLabel: "Let's Connect",
 		ariaHeadingId: "home-hero-heading",
 	},
+
 	stickyScroll: true,
+
 	heroHeightPx: 600,
 	heroMobileHeightPx: 400,
 	services: {
@@ -172,25 +174,46 @@ export const HOME_MARKETING_PAGE = {
 		knowMoreLabel: "KNOW MORE",
 		cards: [
 			{
-				id: "residential",
-				title: "RESIDENTIAL SERVICES",
-				src: "/images/OurServices/Residential Services.jpg",
+				id: "land",
+				title: "LAND SERVICES",
+				src: "/images/OurServices/Land-Services.png",
 				description:
-					"End-to-end advisory covering market analysis, micro-market dynamics, unit mix planning, pricing strategy, channel partner mapping and sales lifecycle management for residential developments.",
+					"Whether you are acquiring a site, planning a development or navigating approvals, our land advisory team brings the expertise to move your project forward.",
 			},
 			{
-				id: "commercial",
-				title: "COMMERCIAL SERVICES",
-				src: "/images/OurServices/Business Solutions.jpg",
+				id: "financial",
+				title: "FINANCIAL SERVICES",
+				src: "/images/OurServices/FINANCIAL-Services.png",
 				description:
-					"Consulting solutions for commercial, retail and mixed-use assets including absorption strategy, investor targeting, tenant profiling, product positioning and long-term revenue planning.",
+					"The right financing structure can make or break a project. We help you find the right financial solution for your development.",
+			},
+			{
+				id: "residential",
+				title: "RESIDENTIAL SERVICES",
+				src: "/images/OurServices/Residential-Services.png",
+				description:
+					"End-to-end advisory covering market analysis, product planning, pricing strategy, channel partner outreach and residential sales execution.",
 			},
 			{
 				id: "retail",
 				title: "RETAIL SERVICES",
-				src: "/images/OurServices/Developer Solutions.jpg",
+				src: "/images/OurServices/Retail-Services.png",
 				description:
-					"Specialised support for developers including launch planning, sales infrastructure setup, project branding coordination, documentation support, inventory planning, channel partner engagement and performance tracking across sales cycles.",
+					"From tenant profiling and absorption strategy to investment advisory and long-term revenue planning, we help unlock the potential of retail assets.",
+			},
+			{
+				id: "marketing-consulting",
+				title: "MARKETING CONSULTING SERVICES",
+				src: "/images/OurServices/Marketing-Consulting -Services.png",
+				description:
+					"Strategy, creativity and execution come together through brand alliances, campaigns, media planning, channel outreach and customer sourcing.",
+			},
+			{
+				id: "commercial",
+				title: "COMMERCIAL SERVICES",
+				src: "/images/OurServices/Commercial-Services.png",
+				description:
+					"Commercial advisory covering transaction management, investment sales, joint ventures, financial modelling and long-term asset strategy.",
 			},
 		],
 	},

@@ -1,3 +1,5 @@
+"use client";
+
 import { StaggerContainer } from "@/components/animations/StaggerContainer";
 import { SplitSection } from "@/components/sections/our-brand/SplitSection";
 import Image from "next/image";
@@ -49,6 +51,30 @@ function BrandTitle({ src }: { src: string }) {
 }
 
 function BrandNavigation() {
+	const handleBrandClick = (
+		event: React.MouseEvent<HTMLAnchorElement>,
+		id: number,
+	) => {
+		event.preventDefault();
+
+		const targetId = `brand-block-${id}`;
+		const target = document.getElementById(targetId);
+
+		if (!target) return;
+
+		// Keep URL clean without triggering the browser's default jump
+		window.history.replaceState(
+			null,
+			"",
+			`${window.location.pathname}${window.location.search}#${targetId}`,
+		);
+
+		target.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
+	};
+
 	return (
 		<nav aria-label="Our brands" className="w-full py-12 sm:py-25">
 			<div className="grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-[repeat(3,430px)] lg:justify-center">
@@ -56,6 +82,7 @@ function BrandNavigation() {
 					<a
 						key={brand.id}
 						href={`#brand-block-${brand.id}`}
+						onClick={(event) => handleBrandClick(event, brand.id)}
 						aria-label={`Go to ${brand.name}`}
 						className={cn(
 							"group flex w-full items-center justify-center",
@@ -90,6 +117,7 @@ function BrandNavigation() {
 		</nav>
 	);
 }
+
 export function TGREABrands() {
 	return (
 		<section
@@ -105,7 +133,7 @@ export function TGREABrands() {
 						<div
 							key={id}
 							id={`brand-block-${id}`}
-							className="relative scroll-mt-24"
+							className="relative scroll-mt-[120px]"
 						>
 							<SplitSection
 								reverse={reverse}

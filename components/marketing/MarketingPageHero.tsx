@@ -1112,12 +1112,6 @@ function PartnersHero({
 				/>
 			</div>
 
-			{/* Dark overlay */}
-			<div
-				className="pointer-events-none absolute inset-0 z-[1] bg-black/30"
-				aria-hidden
-			/>
-
 			{/* Center title */}
 			<div
 				className={cn(
@@ -1562,15 +1556,13 @@ export function MarketingAudienceHero({
 	return (
 		<section
 			className={cn(
-				marketingFirstSectionHeightClass(resolvedHeightPx),
 				"relative isolate w-full min-w-0 overflow-hidden bg-neutral-300",
-				shiftUnderHeader
-					? "pt-0 sm:pt-0 lg:pt-0 2xl:pt-0 pb-28 sm:pb-32 lg:pb-40 2xl:pb-44"
-					: "pt-10 pb-28 sm:pt-14 sm:pb-32 lg:pt-30 lg:pb-40 2xl:pt-36 2xl:pb-44",
+				"h-[400px] min-h-[400px] max-h-[400px]",
+				"lg:h-[600px] lg:min-h-[600px] lg:max-h-[600px]",
+				"box-border",
 				heroNavOverlapClass(shiftUnderHeader, tillSearch),
 				className,
 			)}
-			style={marketingFirstSectionHeightStyle(resolvedHeightPx)}
 			aria-labelledby={content.ariaHeadingId}
 		>
 			<div className="pointer-events-none absolute inset-0 z-0">

@@ -76,87 +76,130 @@ export function PartnersStats() {
 				<div
 					ref={statsRef}
 					className="
-						flex
-						flex-col
-						items-center
-						justify-center
-						gap-4
+						grid
+						w-full
+						grid-cols-1
+						gap-y-7
 
-						sm:flex-row
-						sm:flex-nowrap
-						sm:gap-10
+						sm:grid-cols-2
+						sm:gap-x-10
+						sm:gap-y-10
 
-						md:gap-14
-						lg:gap-16
+						lg:grid-cols-[max-content_max-content_max-content_max-content]
+						lg:justify-center
+						lg:gap-x-[120px]
+						lg:gap-y-0
 					"
 				>
 					{PARTNER_STATS.map((stat, i) => (
 						<div
 							key={stat.label}
 							className="
+								relative
+								mx-auto
 								flex
-								items-center
-								gap-6
+								min-w-0
+								flex-col
+								items-start
+								text-left
 
-								sm:gap-10
-								md:gap-14
-								lg:gap-16
+								lg:mx-0
 							"
 						>
-							{/* Divider */}
-							{i > 0 && (
-								<div
+							{/* Tablet divider */}
+							{i % 2 === 1 && (
+								<span
 									aria-hidden="true"
 									className="
+										absolute
+										left-[-20px]
+										top-1/2
 										hidden
-										h-10
-										w-px
-										shrink-0
-										bg-[#ccc]
-										sm:block
+										h-0
+										w-[40px]
+										-translate-x-1/2
+										-translate-y-1/2
+										rotate-90
+										border-t-[0.5px]
+										border-black
+										opacity-50
+
+										sm:max-lg:block
 									"
 								/>
 							)}
 
-							<div className="text-center">
-								{/* Animated Value */}
-								<div
-									className={cn(
-										"n-bold tabular-nums text-brand-footer",
-										"whitespace-nowrap leading-none tracking-normal",
-										"text-[28px]",
-										"sm:text-[36px]",
-										"md:text-[44px]",
-										"lg:text-[56px]",
-									)}
-								>
-									<AnimatedStatValue
-										stat={stat}
-										animate={statsInView}
-										index={i}
-									/>
-								</div>
-
-								{/* Label */}
-								<div
+							{/* Desktop divider */}
+							{i > 0 && (
+								<span
+									aria-hidden="true"
 									className="
-										n-bold
-										text-left
-										text-[12px]
-										font-bold
-										leading-[16px]
-										tracking-normal
-										text-black
+										absolute
+										left-[-60px]
+										top-1/2
+										hidden
+										h-0
+										w-[40px]
+										-translate-x-1/2
+										-translate-y-1/2
+										rotate-90
+										border-t-[0.5px]
+										border-black
+										opacity-50
 
-										sm:text-[14px]
-										sm:leading-[18px]
-
-										lg:text-[16px]
-										lg:leading-[20px]
+										lg:block
 									"
-								>
-									{stat.label}
-								</div>
+								/>
+							)}
+
+							{/* Number */}
+							<div
+								className={cn(
+									"n-bold",
+									"w-fit",
+									"whitespace-nowrap",
+									"tabular-nums",
+									"text-left",
+									"font-extrabold",
+									"leading-none",
+									"tracking-normal",
+									"text-brand-footer",
+
+									"text-[28px]",
+									"sm:text-[36px]",
+									"md:text-[44px]",
+									"lg:text-[56px]",
+								)}
+							>
+								<AnimatedStatValue
+									stat={stat}
+									animate={statsInView}
+									index={i}
+								/>
+							</div>
+
+							{/* Label */}
+							<div
+								className="
+									n-bold
+								
+									w-full
+									max-w-[230px]
+									text-left
+									text-[12px]
+									font-bold
+									leading-[16px]
+									tracking-normal
+									text-black
+
+									sm:text-[14px]
+									sm:leading-[18px]
+
+									lg:text-[16px]
+									lg:leading-[20px]
+								"
+							>
+								{stat.label}
 							</div>
 						</div>
 					))}
