@@ -77,7 +77,7 @@ function BrandNavigation() {
 
 	return (
 		<nav aria-label="Our brands" className="w-full py-10 sm:py-16 lg:py-25">
-			<div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-0 lg:grid-cols-[repeat(3,430px)] lg:justify-center">
+			<div className="hidden w-full sm:grid sm:grid-cols-3 sm:gap-0 lg:grid-cols-[repeat(3,430px)] lg:justify-center">
 				{brands.map((brand) => (
 					<a
 						key={brand.id}
@@ -133,27 +133,33 @@ export function TGREABrands() {
 
 				{/* Brand rows */}
 				<StaggerContainer className="space-y-10 sm:space-y-12 lg:space-y-25">
-					{brands.map(({ id, reverse, href, logoBG, logo, description }) => (
-						<div
-							key={id}
-							id={`brand-block-${id}`}
-							className="relative scroll-mt-[120px]"
-						>
-							<SplitSection
-								reverse={reverse}
-								title={<BrandTitle src={logoBG} />}
-								description={description}
-								image={{
-									src: logo,
-									alt: "Construction site at sunset",
-								}}
-								contentClassName="flex items-center"
-								titleClassName="mb-5 sm:mb-[29px] lg:mb-[66px]"
-								descriptionClassName="max-w-[488px] text-[14px] leading-[22px] sm:text-base sm:leading-[1.5]"
-								imageClassName="h-[420px] rounded-none max-md:h-auto max-md:min-h-[220px] max-md:aspect-[488/434]"
-							/>
-						</div>
-					))}
+					{brands.map(({ id, reverse, href, logoBG, logo, description }) => {
+						const showButton = id !== 3;
+
+						return (
+							<div
+								key={id}
+								id={`brand-block-${id}`}
+								className="relative scroll-mt-[120px]"
+							>
+								<SplitSection
+									reverse={reverse}
+									title={<BrandTitle src={logoBG} />}
+									description={description}
+									image={{
+										src: logo,
+										alt: "Construction site at sunset",
+									}}
+									buttonText={showButton ? "Know More" : undefined}
+									href={showButton ? href : undefined}
+									contentClassName="flex items-center"
+									titleClassName="mb-5 sm:mb-[29px] lg:mb-[66px]"
+									descriptionClassName="max-w-[488px] text-[14px] leading-[22px] sm:text-base sm:leading-[1.5]"
+									imageClassName="h-[420px] rounded-none max-md:h-auto max-md:min-h-[220px] max-md:aspect-[488/434]"
+								/>
+							</div>
+						);
+					})}
 				</StaggerContainer>
 			</Container>
 		</section>

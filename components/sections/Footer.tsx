@@ -425,7 +425,7 @@ export function Footer() {
 									</Link>
 
 									<Link
-										href="/about#brands"
+										href="/our-brand"
 										className="n-book text-[13px] leading-[1.6] text-white transition-colors hover:text-white/80 sm:hidden"
 									>
 										Brands
@@ -439,7 +439,7 @@ export function Footer() {
 									</Link>
 
 									<Link
-										href="/global-networks"
+										href="/global-network"
 										className="n-book text-[13px] leading-[1.6] text-white transition-colors hover:text-white/80 sm:hidden"
 									>
 										Global Networks
@@ -471,7 +471,7 @@ export function Footer() {
 										<QuickLinkRow
 											items={[
 												{ label: "About", href: "/about", showDot: false },
-												{ label: "Brands", href: "/about#brands" },
+												{ label: "Brands", href: "/our-brand" },
 												{ label: "Services", href: "/services" },
 											]}
 										/>
@@ -479,7 +479,7 @@ export function Footer() {
 
 									<div className="hidden flex-wrap items-center gap-x-4 gap-y-1.5 n-book text-[13px] leading-[1.7] sm:flex">
 										<Link
-											href="/global-networks"
+											href="/global-network"
 											className="inline-flex items-center text-white transition-colors hover:text-white/80"
 										>
 											Global Networks

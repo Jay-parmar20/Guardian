@@ -85,22 +85,21 @@ function BrandCard({
 	url: string;
 }) {
 	return (
-		<article className="flex min-h-[182px] w-full min-w-0 max-w-full items-center justify-center border border-[#ece7e7] bg-white px-6 py-8 text-center">
-			<div className="flex w-full max-w-[200px] flex-col items-center gap-2">
+		<article className="flex min-h-[105px] w-full min-w-0 max-w-full items-center justify-center border border-[#ece7e7] bg-white px-4 py-4 text-center sm:min-h-[182px] sm:px-6 sm:py-8">
+			<div className="flex w-full max-w-[105px] flex-col items-center gap-2 sm:max-w-[200px]">
 				<Image
 					src={encodeURI(url)}
 					alt={`${title}, ${subtitle}`}
 					width={180}
 					height={100}
-					className="h-auto w-full max-h-24 object-contain object-center"
-					sizes="(max-width: 768px) 50vw, 200px"
+					className="h-auto max-h-11 w-full object-contain object-center sm:max-h-24"
+					sizes="(max-width: 768px) 105px, 200px"
 					unoptimized
 				/>
 			</div>
 		</article>
 	);
 }
-
 export function AboutPageContent() {
 	return (
 		<>
@@ -289,11 +288,11 @@ export function AboutPageContent() {
 				OUR BRANDS
 			</h2>
 
-			<section id="brands" className="bg-[#F2F2F2] py-10 sm:py-16 lg:py-12.5">
+			<section id="brands" className="bg-[#F2F2F2] py-7 sm:py-16 lg:py-12.5">
 				<Container className="min-w-0">
 					<div className="flex items-center justify-center gap-5 max-lg:w-full"></div>
 
-					<div className="grid grid-cols-1 gap-[15px] sm:grid-cols-1 md:grid-cols-3">
+					<div className="grid grid-cols-1 gap-3 sm:grid-cols-1 sm:gap-[15px] md:grid-cols-3">
 						{brandCards.map((brand) => (
 							<BrandCard
 								key={brand.title}

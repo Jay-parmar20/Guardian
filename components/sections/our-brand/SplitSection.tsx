@@ -92,7 +92,7 @@ export function SplitSection({
 								className={cn(
 									audienceMarketingOutlineCtaClass,
 									buttonClassName,
-									"mt-6 hidden md:inline-flex",
+									"mt-6 !hidden md:!inline-flex",
 								)}
 							>
 								{buttonText}
@@ -136,15 +136,15 @@ export function SplitSection({
 						delay={0.45}
 						duration={0.65}
 						className="
-							flex
-							w-full
-							justify-center
-							md:order-3
-							md:col-span-2
-							md:hidden
-							[&_a]:w-fit
-							[&_a]:max-w-full
-						"
+	!flex
+	w-full
+	justify-center
+	md:order-3
+	md:col-span-2
+	md:!hidden
+	[&_a]:w-fit
+	[&_a]:max-w-full
+"
 					>
 						<OutlineArrowButton
 							href={href!}
