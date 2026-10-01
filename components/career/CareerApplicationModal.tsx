@@ -351,13 +351,13 @@ export function CareerApplicationModal({
 										<div className="mt-2.5 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 xl:gap-x-[50px]">
 											<a
 												href="mailto:hr@theguardians.com"
-												className="n-book flex items-center gap-1 text-[11px] leading-[13.75px] text-[#161616]"
+												className="n-book flex items-center gap-1 text-[14px] leading-[13.75px] text-[#161616]"
 											>
 												<MailIcon />
 												<span>hr@theguardians.com</span>
 											</a>
 
-											<a
+											{/* <a
 												href="tel:02268770076"
 												className="n-book flex items-center gap-1 text-[11px] leading-[13.75px] text-[#161616]"
 											>
@@ -371,7 +371,7 @@ export function CareerApplicationModal({
 											>
 												<PhoneIcon />
 												<span>022-6877005</span>
-											</a>
+											</a> */}
 										</div>
 									</div>
 								</div>

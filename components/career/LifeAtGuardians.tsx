@@ -11,17 +11,27 @@ import Image from "next/image";
 const careerSlides = [
 	{
 		id: 1,
-		src: LOCAL_IMAGES.workWithUs,
-		alt: "Life at The Guardians — team at work",
+		src: LOCAL_IMAGES.carousel1,
+		alt: "Life at The Guardians",
 	},
 	{
 		id: 2,
-		src: LOCAL_IMAGES.workWithUs,
+		src: LOCAL_IMAGES.carousel2,
 		alt: "Life at The Guardians",
 	},
 	{
 		id: 3,
-		src: LOCAL_IMAGES.workWithUs,
+		src: LOCAL_IMAGES.carousel3,
+		alt: "Life at The Guardians",
+	},
+	{
+		id: 4,
+		src: LOCAL_IMAGES.carousel4,
+		alt: "Life at The Guardians",
+	},
+	{
+		id: 5,
+		src: LOCAL_IMAGES.carousel5,
 		alt: "Life at The Guardians",
 	},
 ];
@@ -38,11 +48,8 @@ function CareerImageCarousel() {
 
 	return (
 		<ScrollReveal direction="up" delay={0.1} distance={28}>
-			<div
-				className="relative w-full overflow-hidden bg-[#BCBDC0]"
-				style={{ height: "clamp(240px, 62vw, 400px)" }}
-			>
-				{/* Slides */}
+			<div className="relative h-[320px] w-full overflow-hidden bg-[#BCBDC0] sm:h-[500px] lg:h-[650px]">
+				{/* Image */}
 				<AnimatePresence mode="wait" initial={false}>
 					<motion.div
 						key={slide.id}
@@ -56,107 +63,74 @@ function CareerImageCarousel() {
 							src={slide.src}
 							alt={slide.alt}
 							fill
-							className="object-cover object-center"
+							className="object-contain object-center"
 							sizes="100vw"
 							priority={index === 0}
 						/>
 					</motion.div>
 				</AnimatePresence>
 
-				{/* Previous arrow */}
-				{total > 1 && (
-					<button
-						type="button"
-						aria-label="Previous slide"
-						onClick={() => advance(-1)}
-						className={cn(
-							"absolute left-4 top-1/2 z-20 -translate-y-1/2",
-							"flex h-[34px] w-[34px] items-center justify-center sm:h-[42px] sm:w-[42px]",
-							"sm:left-8",
-						)}
-					>
-						<svg
-							width="42"
-							height="42"
-							viewBox="0 0 42 42"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								opacity="0.5"
-								d="M21 13L13 21L21 29M13 21H29M1 21C1 32.0457 9.9543 41 21 41C32.0457 41 41 32.0457 41 21C41 9.9543 32.0457 1 21 1C9.9543 1 1 9.9543 1 21Z"
-								stroke="black"
-								strokeWidth="2"
-								strokeLinejoin="round"
-							/>
-						</svg>
-					</button>
-				)}
+				{/* Previous button */}
+				<button
+					type="button"
+					aria-label="Previous slide"
+					onClick={() => advance(-1)}
+					className="absolute left-4 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 shadow-md hover:bg-white sm:left-8"
+				>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path
+							d="M15 6L9 12L15 18"
+							stroke="black"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+						/>
+					</svg>
+				</button>
 
-				{/* Next arrow */}
-				{total > 1 && (
-					<button
-						type="button"
-						aria-label="Next slide"
-						onClick={() => advance(1)}
-						className={cn(
-							"absolute right-4 top-1/2 z-20 -translate-y-1/2",
-							"flex h-[34px] w-[34px] items-center justify-center sm:h-[42px] sm:w-[42px]",
-							"sm:right-8",
-						)}
-					>
-						<svg
-							width="42"
-							height="42"
-							viewBox="0 0 42 42"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								opacity="0.5"
-								d="M21 13L29 21L21 29M29 21H13M41 21C41 32.0457 32.0457 41 21 41C9.9543 41 1 32.0457 1 21C1 9.9543 9.9543 1 21 1C32.0457 1 41 9.9543 41 21Z"
-								stroke="black"
-								strokeWidth="2"
-								strokeLinejoin="round"
-							/>
-						</svg>
-					</button>
-				)}
+				{/* Next button */}
+				<button
+					type="button"
+					aria-label="Next slide"
+					onClick={() => advance(1)}
+					className="absolute right-4 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 shadow-md hover:bg-white sm:right-8"
+				>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path
+							d="M9 6L15 12L9 18"
+							stroke="black"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+						/>
+					</svg>
+				</button>
 
-				{/* Pagination dots — OVER the image */}
-				{total > 1 && (
-					<div
-						className={cn(
-							"absolute bottom-5 left-1/2 z-20 -translate-x-1/2",
-							"flex items-center justify-center gap-[4px]",
-							"rounded-full bg-black/30 px-[7px] py-[5px]",
-						)}
-					>
-						{careerSlides.map((item, i) => (
-							<button
-								key={item.id}
-								type="button"
-								aria-label={`Go to slide ${i + 1}`}
-								onClick={() => {
-									if (i === index) return;
-
-									const direction: 1 | -1 = i > index ? 1 : -1;
-									advance(direction);
-								}}
-								className="flex h-[6px] min-w-[6px] items-center justify-center"
-							>
-								<span
-									className={cn(
-										"block rounded-full transition-all duration-300",
-										i === index
-											? "h-[4px] w-[12px] bg-white"
-											: "h-[4px] w-[4px] bg-white/60",
-									)}
-								/>
-							</button>
-						))}
-					</div>
-				)}
+				{/* Pagination dots */}
+				<div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/30 px-3 py-2">
+					{careerSlides.map((item, i) => (
+						<button
+							key={item.id}
+							type="button"
+							aria-label={`Go to slide ${i + 1}`}
+							onClick={() => {
+								if (i > index) {
+									for (let x = index; x < i; x++) {
+										advance(1);
+									}
+								} else if (i < index) {
+									for (let x = index; x > i; x--) {
+										advance(-1);
+									}
+								}
+							}}
+							className={cn(
+								"h-2 rounded-full transition-all",
+								i === index ? "w-6 bg-white" : "w-2 bg-white/60",
+							)}
+						/>
+					))}
+				</div>
 			</div>
 		</ScrollReveal>
 	);

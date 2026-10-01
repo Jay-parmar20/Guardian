@@ -4,21 +4,95 @@ import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { Container } from "@/components/common/Container";
 import type { OurWorkBandContent } from "@/data/audience-marketing";
 import { useCycleIndex } from "@/hooks/useCycleIndex";
+import { LOCAL_IMAGES } from "@/lib/local-images";
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
-const slideTransition = { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const };
+const slideTransition = {
+	duration: 0.35,
+	ease: [0.22, 1, 0.36, 1] as const,
+};
+
+type CaseStudySlide = {
+	id: number;
+	imageSrc: string;
+	alt: string;
+};
+
+const caseStudySlides: CaseStudySlide[] = [
+	{
+		id: 1,
+		imageSrc: LOCAL_IMAGES.caseMaplewoods,
+		alt: "Sai Proviso Galaxy Maplewoods case study",
+	},
+	{
+		id: 2,
+		imageSrc: LOCAL_IMAGES.caseMICL,
+		alt: "MICL Aaradhya High Park case study",
+	},
+	{
+		id: 3,
+		imageSrc: LOCAL_IMAGES.caseMonteSouth,
+		alt: "Monte South case study",
+	},
+	{
+		id: 4,
+		imageSrc: LOCAL_IMAGES.caseOneAvighna,
+		alt: "One Avighna Park case study",
+	},
+	{
+		id: 5,
+		imageSrc: LOCAL_IMAGES.caseOneMarina,
+		alt: "One Marina case study",
+	},
+	{
+		id: 6,
+		imageSrc: LOCAL_IMAGES.casePrestigeCity,
+		alt: "Prestige City case study",
+	},
+	{
+		id: 7,
+		imageSrc: LOCAL_IMAGES.caseRivaliPark,
+		alt: "CCI Rivali Park case study",
+	},
+	{
+		id: 8,
+		imageSrc: LOCAL_IMAGES.caseRunwal,
+		alt: "Runwal 25 Hour Life case study",
+	},
+	{
+		id: 9,
+		imageSrc: LOCAL_IMAGES.caseSiliconValley,
+		alt: "Kanakia Silicon Valley case study",
+	},
+	{
+		id: 10,
+		imageSrc: LOCAL_IMAGES.caseVasant,
+		alt: "Vasant Oasis and Vasant Blossom case study",
+	},
+	{
+		id: 11,
+		imageSrc: LOCAL_IMAGES.caseAtlantis,
+		alt: "Sai Proviso Atlantis case study",
+	},
+	{
+		id: 12,
+		imageSrc: LOCAL_IMAGES.caseDostiMumbai,
+		alt: "Dosti 1 Mumbai case study",
+	},
+];
 
 export function DeveloperOurWorkSection({
 	content,
 }: {
 	content: OurWorkBandContent;
 }) {
-	const slides = content.slides;
-	const total = slides.length;
+	const total = caseStudySlides.length;
+
 	const { index, advance } = useCycleIndex(total, 0);
-	const slide = slides[index]!;
+
+	const slide = caseStudySlides[index]!;
 
 	return (
 		<section
@@ -26,6 +100,7 @@ export function DeveloperOurWorkSection({
 			aria-labelledby="dev-our-work-heading"
 		>
 			<Container className="min-w-0">
+				{/* Heading */}
 				<ScrollReveal direction="up" distance={30}>
 					<h2
 						id="dev-our-work-heading"
@@ -36,8 +111,10 @@ export function DeveloperOurWorkSection({
 				</ScrollReveal>
 
 				<div className="relative mt-10 md:mt-12">
-					{/* Desktop: arrows outside panel */}
-					{/* Desktop: arrows outside panel */}
+					{/* ========================= */}
+					{/* DESKTOP PREVIOUS BUTTON */}
+					{/* ========================= */}
+
 					<button
 						type="button"
 						aria-label="Previous slide"
@@ -63,6 +140,10 @@ export function DeveloperOurWorkSection({
 							/>
 						</svg>
 					</button>
+
+					{/* ===================== */}
+					{/* DESKTOP NEXT BUTTON */}
+					{/* ===================== */}
 
 					<button
 						type="button"
@@ -90,72 +171,40 @@ export function DeveloperOurWorkSection({
 						</svg>
 					</button>
 
-					{/* Case study panel */}
-					<AnimatePresence mode="wait" initial={false}>
-						<motion.div
-							key={slide.id}
-							initial={{ opacity: 0, y: 12 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: -8 }}
-							transition={slideTransition}
-							className={cn(
-								"grid bg-[#f5f5f5] lg:grid-cols-[3fr_2fr]",
-								content.gridClassName,
-							)}
-						>
-							{/* Left: Image */}
-							<div
-								className={cn(
-									"relative flex h-[350px] items-center justify-center bg-[#f5f5f5] p-6 sm:p-8 sm:h-[420px] md:p-10 lg:h-[520px]",
-									content.imageClassName,
-								)}
+					{/* ========================= */}
+					{/* FULL CASE STUDY IMAGE */}
+					{/* ========================= */}
+
+					<div className="overflow-hidden">
+						<AnimatePresence mode="wait" initial={false}>
+							<motion.div
+								key={slide.id}
+								initial={{ opacity: 0, x: 30 }}
+								animate={{ opacity: 1, x: 0 }}
+								exit={{ opacity: 0, x: -30 }}
+								transition={slideTransition}
+								className="relative w-full overflow-hidden"
 							>
 								<Image
 									src={slide.imageSrc}
-									alt=""
-									width={800}
-									height={600}
-									className="h-auto w-full object-contain"
-									sizes="(max-width: 1024px) 100vw, 60vw"
+									alt={slide.alt}
+									width={1920}
+									height={1080}
+									className="block h-auto w-full scale-[1.02]"
+									sizes="(max-width: 768px) 100vw, 90vw"
+									priority={index === 0}
 								/>
-							</div>
+							</motion.div>
+						</AnimatePresence>
+					</div>
 
-							{/* Right: Content */}
-							<div className="flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-12">
-								{slide.label && (
-									<span className="n-bold text-[11px] uppercase tracking-[0.15em] text-[#c0392b]">
-										{slide.label}
-									</span>
-								)}
-								<h3 className="mt-3 n-bold text-[clamp(1.125rem,2.2vw,1.75rem)] uppercase leading-[1.2] tracking-[0.01em] text-[#161616]">
-									{slide.title}
-								</h3>
+					{/* ======================= */}
+					{/* MOBILE / TABLET ARROWS */}
+					{/* ======================= */}
 
-								{slide.stats && slide.stats.length > 0 && (
-									<div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-5 sm:gap-x-12 sm:gap-y-6">
-										{slide.stats.map((stat) => (
-											<div key={stat.label}>
-												<div className="n-bold text-[clamp(1.25rem,2vw,1.625rem)] leading-none text-[#161616]">
-													{stat.value}
-												</div>
-												<div className="mt-1 n-book text-[11px] uppercase tracking-wide text-[#666]">
-													{stat.label}
-												</div>
-											</div>
-										))}
-									</div>
-								)}
-
-								<p className="mt-6 max-w-lg n-book text-[13px] leading-[1.7] text-[#555] sm:text-[14px]">
-									{slide.body}
-								</p>
-							</div>
-						</motion.div>
-					</AnimatePresence>
-
-					{/* Mobile arrows */}
-					{/* Mobile / tablet arrows */}
 					<div className="mt-5 flex items-center justify-center gap-5 lg:hidden">
+						{/* Previous */}
+
 						<button
 							type="button"
 							aria-label="Previous slide"
@@ -178,6 +227,8 @@ export function DeveloperOurWorkSection({
 								/>
 							</svg>
 						</button>
+
+						{/* Next */}
 
 						<button
 							type="button"
@@ -203,11 +254,14 @@ export function DeveloperOurWorkSection({
 						</button>
 					</div>
 
-					{/* Pagination dots */}
-					<div className="mt-5 flex items-center justify-center gap-2">
-						{slides.map((s, i) => (
+					{/* ================= */}
+					{/* PAGINATION DOTS */}
+					{/* ================= */}
+
+					<div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+						{caseStudySlides.map((item, i) => (
 							<span
-								key={s.id}
+								key={item.id}
 								className={cn(
 									"h-1.5 rounded-full transition-all duration-300",
 									i === index ? "w-6 bg-[#161616]" : "w-1.5 bg-[#ccc]",

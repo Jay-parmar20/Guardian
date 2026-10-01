@@ -21,7 +21,7 @@ const brands = [
 		name: "Guardians International",
 		reverse: true,
 		href: "https://theguardiansindia.com/international",
-		logoBG: "/images/Group 70.svg",
+		logoBG: "/images/Group 78.svg",
 		logo: "/images/tgrea3.svg",
 		description:
 			"With Guardians International, we are realising that dream by providing expert real estate advisory for developers and customers with a seamless, end-to-end experience from concept to occupancy. We are providing a 360-degree experience for NRI and HNWI with access to the best-in-class property investment opportunities across the breadth and length of India. We deliver an end-to-end service that guides them through every step of their international real estate investment journey.",
@@ -34,7 +34,7 @@ const brands = [
 		logoBG: "/images/Group 66.svg",
 		logo: "/images/tgrea2.svg",
 		description:
-			"Your one-stop destination for seamless home-buying experience. With years of expertise and a deep understanding of the real estate market, we provide personalized guidance every step of the way. From luxurious properties to family-friendly homes, we ensure your vision becomes a reality. Trust us to make your dream home a lasting one.",
+			"The Guardians Real Estate Advisory is extending its mandate expertise into one of real estate’s most promising emerging categories: Second Homes. Building on our leadership across residential and commercial real estate, the new vertical brings The Guardians’ core strengths of large-scale distribution, sales strategy and execution to plotted developments, villas, farmland and destination-led real estate. At its heart is a simple proposition: bring institutional-grade sales and marketing capabilities to a category that has traditionally remained fragmented.",
 	},
 ];
 
