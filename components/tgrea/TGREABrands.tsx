@@ -22,7 +22,7 @@ const brands = [
 		reverse: true,
 		href: "https://theguardiansindia.com/international",
 		logoBG: "/images/Group 78.svg",
-		logo: "/images/tgrea3.svg",
+		logo: "/images/tgrea4.jpeg",
 		description:
 			"With Guardians International, we are realising that dream by providing expert real estate advisory for developers and customers with a seamless, end-to-end experience from concept to occupancy. We are providing a 360-degree experience for NRI and HNWI with access to the best-in-class property investment opportunities across the breadth and length of India. We deliver an end-to-end service that guides them through every step of their international real estate investment journey.",
 	},
