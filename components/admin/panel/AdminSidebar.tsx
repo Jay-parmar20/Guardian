@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IconFolderStack } from "@/components/admin/panel/AdminIcons";
 import { cn } from "@/utils/cn";
 
 type IconProps = {
@@ -28,10 +27,12 @@ function IconArticle({ className }: IconProps) {
   );
 }
 
-function IconHamburger({ className }: IconProps) {
+function IconBriefcase({ className }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" className={className} aria-hidden>
-      <path strokeLinecap="round" d="M4 7.5h16M4 12h16M4 16.5h16" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V5.25A2.25 2.25 0 0 1 11.25 3h1.5A2.25 2.25 0 0 1 15 5.25v1.5" />
+      <rect x="3.75" y="6.75" width="16.5" height="13.5" rx="2.25" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 11.25h16.5M10.5 13.5h3" />
     </svg>
   );
 }
@@ -57,15 +58,20 @@ function IconSidebarExpand({ className }: IconProps) {
 }
 
 const navItems = [
-  {
-    href: "/admin/projects",
-    label: "Projects",
-    icon: IconFolderStack,
-  },
+ // {
+ //   href: "/admin/projects",
+   // label: "Projects",
+   // icon: IconFolderStack,
+  //},
   {
     href: "/admin/book-visits",
     label: "Book Visits",
     icon: IconCalendarDays,
+  },
+  {
+    href: "/admin/career-applications",
+    label: "Careers",
+    icon: IconBriefcase,
   },
   {
     href: "/admin/articles",
@@ -159,12 +165,12 @@ export function AdminSidebar({
         <nav className="flex gap-2.5 overflow-x-auto px-3 py-4 lg:flex-1 lg:flex-col lg:gap-2.5 lg:px-3 lg:py-5">
           {navItems.map((item) => {
             const Icon = item.icon;
-            const isProjectsItem = item.href === "/admin/projects";
+            //const isProjectsItem = item.href === "/admin/projects";
             const isArticlesItem = item.href === "/admin/articles";
             const active =
               pathname === item.href ||
               pathname.startsWith(`${item.href}/`) ||
-              (isProjectsItem && pathname.startsWith("/admin/add-project")) ||
+             // (isProjectsItem && pathname.startsWith("/admin/add-project")) ||
               (isArticlesItem && pathname.startsWith("/admin/add-article"));
 
             return (

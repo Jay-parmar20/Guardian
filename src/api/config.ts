@@ -1,5 +1,11 @@
 /** Laravel app origin (no `/api`) — joins relative `file_url` paths. */
-export const PUBLIC_FILES_ORIGIN = "http://srv1662424.hstgr.cloud";
+const DEFAULT_API_ORIGIN =
+  process.env.NODE_ENV === "development"
+    ? "http://127.0.0.1:8000"
+    : "http://srv1662424.hstgr.cloud";
+
+export const PUBLIC_FILES_ORIGIN =
+  process.env.NEXT_PUBLIC_API_ORIGIN ?? DEFAULT_API_ORIGIN;
 
 /** Laravel API root — axios default, SSR, and Next `/gw-api` rewrite destination. */
 export const API_BASE_URL = `${PUBLIC_FILES_ORIGIN}/api`;
