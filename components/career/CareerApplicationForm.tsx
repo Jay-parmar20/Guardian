@@ -6,11 +6,11 @@ import {
 	BookVisitSelectField,
 } from "@/components/marketing/visit-lead-modal/BookVisitFormFields";
 import { OutlineArrowButton } from "@/components/common/OutlineArrowButton";
-import { uploadFile } from "@/src/api/services/fileService";
 import {
-	submitBookVisit,
-	type CreateBookVisitPayload,
-} from "@/src/api/services/visitService";
+	submitCareerApplication,
+	type CareerApplicationPayload,
+} from "@/src/api/services/careerApplicationService";
+import { uploadFile } from "@/src/api/services/fileService";
 import { showError, showSuccess } from "@/src/utils/toast";
 import { useId, useState, type ChangeEvent, type FormEvent } from "react";
 
@@ -85,7 +85,7 @@ export function CareerApplicationForm({
 			try {
 				const formData = new FormData();
 				formData.append("file", resumeFile);
-				formData.append("file_type", "cv");
+				formData.append("file_type", "CV");
 				const uploadResult = await uploadFile(formData);
 				cvFileId =
 					(uploadResult as { data?: { id?: number } })?.data?.id ?? null;
@@ -95,19 +95,19 @@ export function CareerApplicationForm({
 			}
 		}
 
-		const payload: CreateBookVisitPayload = {
+		const payload: CareerApplicationPayload = {
 			first_name: form.firstName.trim(),
 			last_name: form.lastName.trim() || null,
 			email: form.email.trim(),
 			phone_no: form.phone.trim(),
-			location: null,
+			applying_for: form.applyingFor.trim() || null,
 			upload_cv_file_id: cvFileId,
 			message: form.message.trim() || null,
 		};
 
 		try {
 			setIsSubmitting(true);
-			await submitBookVisit(payload);
+			await submitCareerApplication(payload);
 			showSuccess("Application submitted successfully.");
 			onSuccess();
 		} catch (error) {

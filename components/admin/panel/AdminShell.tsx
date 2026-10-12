@@ -18,7 +18,12 @@ export function AdminShell({
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-  const pageConfig = pathname.startsWith("/admin/book-visits")
+  const pageConfig = pathname.startsWith("/admin/career-applications")
+    ? {
+      title: "Career Applications",
+      searchPlaceholder: "Search applications...",
+    }
+    : pathname.startsWith("/admin/book-visits")
     ? {
       title: "Book Visits",
       searchPlaceholder: "Search visits...",
@@ -56,7 +61,13 @@ export function AdminShell({
           };
 
   useEffect(() => {
-    setIsMobileSidebarOpen(false);
+    const timeoutId = window.setTimeout(() => {
+      setIsMobileSidebarOpen(false);
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
   }, [pathname]);
 
   return (

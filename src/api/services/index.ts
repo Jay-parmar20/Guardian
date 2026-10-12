@@ -7,6 +7,7 @@ export * as fileService from "./fileService";
 export * as projectService from "./projectService";
 export * as articleService from "./articleService";
 export * as visitService from "./visitService";
+export * as careerApplicationService from "./careerApplicationService";
 /** @deprecated use `visitService` — same module, older name */
 export * as bookVisitService from "./visitService";
 export { userService } from "./userService";
