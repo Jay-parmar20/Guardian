@@ -1571,11 +1571,12 @@ export function MarketingAudienceHero({
 	return (
 		<section
 			className={cn(
-				"relative isolate w-full min-w-0 overflow-hidden bg-neutral-300",
-				"h-[400px] min-h-[400px] max-h-[400px]",
-				"lg:h-[600px] lg:min-h-[600px] lg:max-h-[600px]",
-				"box-border",
-				heroNavOverlapClass(shiftUnderHeader, tillSearch),
+				"relative isolate w-full overflow-hidden bg-black",
+				content.backgroundVideoSrc
+					? "aspect-[1920/866]"
+					: "h-[400px] lg:h-[600px]",
+				!content.backgroundVideoSrc &&
+					heroNavOverlapClass(shiftUnderHeader, tillSearch),
 				className,
 			)}
 			aria-labelledby={content.ariaHeadingId}
@@ -1587,7 +1588,8 @@ export function MarketingAudienceHero({
 						loop
 						muted
 						playsInline
-						className="h-full w-full object-cover"
+						preload="metadata"
+						className="absolute inset-0 h-full w-full object-contain object-center"
 						src={content.backgroundVideoSrc}
 					/>
 				) : (

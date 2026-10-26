@@ -20,7 +20,7 @@ const brands = [
 		id: 2,
 		name: "Guardians International",
 		reverse: true,
-		href: "https://theguardiansindia.com/international",
+		href: "https://www.tgreaedge.com/",
 		logoBG: "/images/Group 78.svg",
 		logo: "/images/tgrea4.jpeg",
 		description:
@@ -28,11 +28,11 @@ const brands = [
 	},
 	{
 		id: 3,
-		name: "Guardians Cavalry",
+		name: "Guardians Land",
 		reverse: false,
 		href: "https://theguardianscavalry.in/",
-		logoBG: "/images/Group 66.svg",
-		logo: "/images/tgrea2.svg",
+		logoBG: "/images/guardians-logo-bg.png",
+		logo: "/images/GuardiansLand-image.png",
 		description:
 			"The Guardians Real Estate Advisory is extending its mandate expertise into one of real estate’s most promising emerging categories: Second Homes. Building on our leadership across residential and commercial real estate, the new vertical brings The Guardians’ core strengths of large-scale distribution, sales strategy and execution to plotted developments, villas, farmland and destination-led real estate. At its heart is a simple proposition: bring institutional-grade sales and marketing capabilities to a category that has traditionally remained fragmented.",
 	},

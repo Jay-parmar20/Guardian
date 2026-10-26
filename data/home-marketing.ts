@@ -154,7 +154,7 @@ export const HOME_MARKETING_PAGE = {
 	hero: {
 		isBuyer: false,
 		backgroundImageSrc: "/images/Developer/developer_hero.png",
-		backgroundVideoSrc: "/images/Home/home.mp4",
+		backgroundVideoSrc: "/images/Home/home-hero.webm",
 		hideHeroContent: true,
 		body: "At The Guardians Real Estate Advisory, we bring pricing intelligence, launch strategy, and on-ground sales execution together to maximise your project's performance from day one.",
 		enquireHref: CONTACT,
