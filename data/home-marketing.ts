@@ -38,7 +38,7 @@ const AWARD_IMAGE_FILES: AwardImageEntry[] = [
 	{
 		file: "IMG_6299.png",
 		title: "Bank of Baroda",
-		subtitle: "Contribution in Home Loan Business",
+		subtitle: "Contribution to Home Loan Business",
 		year: "2022",
 	},
 	{

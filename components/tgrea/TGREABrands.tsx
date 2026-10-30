@@ -13,6 +13,10 @@ const brands = [
 		href: "https://www.groundholding.com/",
 		logoBG: "/images/holdingLogo.svg",
 		logo: "/images/holdingImg.svg",
+
+		logoScale: "scale-100",
+		titleScale: "scale-100",
+
 		description:
 			"The Guardians Real Estate Advisory*& Kotak Realty Fund have come together to overcome the challenges of project bottlenecks, project delays, inefficient processes, lack of latest marketing tools and methods, and the absence of industry intelligence. We are India's first institutionally owned 'Real Estate Development Management and Advisory Company'. Ground Holding is committed to augmenting the clients' assets and investment value with pathbreaking business solutions by renowned industry doyens.",
 	},
@@ -23,6 +27,10 @@ const brands = [
 		href: "https://www.tgreaedge.com/",
 		logoBG: "/images/Group 78.svg",
 		logo: "/images/tgrea4.jpeg",
+
+		logoScale: "scale-100",
+		titleScale: "scale-100",
+
 		description:
 			"With Guardians International, we are realising that dream by providing expert real estate advisory for developers and customers with a seamless, end-to-end experience from concept to occupancy. We are providing a 360-degree experience for NRI and HNWI with access to the best-in-class property investment opportunities across the breadth and length of India. We deliver an end-to-end service that guides them through every step of their international real estate investment journey.",
 	},
@@ -33,20 +41,53 @@ const brands = [
 		href: "https://theguardianscavalry.in/",
 		logoBG: "/images/guardians-logo-bg.png",
 		logo: "/images/GuardiansLand-image.png",
+
+		// Navigation card only
+		logoScale: "scale-[1.35]",
+
+		// Lower section — much smaller adjustment
+		titleScale: "scale-[1.08]",
+
 		description:
 			"The Guardians Real Estate Advisory is extending its mandate expertise into one of real estate’s most promising emerging categories: Second Homes. Building on our leadership across residential and commercial real estate, the new vertical brings The Guardians’ core strengths of large-scale distribution, sales strategy and execution to plotted developments, villas, farmland and destination-led real estate. At its heart is a simple proposition: bring institutional-grade sales and marketing capabilities to a category that has traditionally remained fragmented.",
 	},
 ];
 
-function BrandTitle({ src }: { src: string }) {
+function BrandTitle({
+	src,
+	scale = "scale-100",
+}: {
+	src: string;
+	scale?: string;
+}) {
 	return (
-		<Image
-			src={src}
-			alt="Brand logo"
-			width={223}
-			height={80}
-			className="block h-auto w-[150px] object-contain object-left sm:w-[180px] lg:w-[223px]"
-		/>
+		<div
+			className="
+				flex
+				h-[58px]
+				w-[240px]
+				items-center
+				justify-start
+
+				sm:h-[64px]
+				sm:w-[280px]
+
+				lg:h-[68px]
+				lg:w-[300px]
+			"
+		>
+			<Image
+				src={src}
+				alt="Brand logo"
+				width={640}
+				height={150}
+				className={cn(
+					"block max-h-full max-w-full object-contain object-left",
+					"origin-left",
+					scale,
+				)}
+			/>
+		</div>
 	);
 }
 
@@ -62,7 +103,6 @@ function BrandNavigation() {
 
 		if (!target) return;
 
-		// Keep URL clean without triggering the browser's default jump
 		window.history.replaceState(
 			null,
 			"",
@@ -89,32 +129,37 @@ function BrandNavigation() {
 							"h-[105px] sm:h-[150px]",
 							"lg:h-[180px] lg:w-[430px]",
 							"px-5 py-5",
+							"overflow-hidden",
 							"bg-[radial-gradient(290.48%_141.42%_at_0%_0%,rgba(188,189,192,0.20)_0%,rgba(143,129,131,0.20)_100%)]",
 							"transition-all duration-300",
 							"hover:bg-none hover:bg-black",
 						)}
 					>
-						<Image
-							src={brand.logoBG}
-							alt={brand.name}
-							width={258}
-							height={80}
-							className=" 
-	h-auto 
-	max-h-[58px] 
-	w-auto 
-	max-w-[78%] 
-	object-contain 
-	transition-all 
-	duration-300 
+						<div
+							className="
+								flex
+								h-[70px]
+								w-[220px]
+								items-center
+								justify-center
 
-	sm:max-h-[80px]
-	sm:max-w-[80%]
-
-	group-hover:brightness-0 
-	group-hover:invert 
-"
-						/>
+								lg:h-[80px]
+								lg:w-[258px]
+							"
+						>
+							<Image
+								src={brand.logoBG}
+								alt={brand.name}
+								width={258}
+								height={80}
+								className={cn(
+									"max-h-full max-w-full object-contain",
+									"transition-all duration-300",
+									"group-hover:brightness-0 group-hover:invert",
+									brand.logoScale,
+								)}
+							/>
+						</div>
 					</a>
 				))}
 			</div>
@@ -133,33 +178,35 @@ export function TGREABrands() {
 
 				{/* Brand rows */}
 				<StaggerContainer className="space-y-10 sm:space-y-12 lg:space-y-25">
-					{brands.map(({ id, reverse, href, logoBG, logo, description }) => {
-						const showButton = id !== 3;
+					{brands.map(
+						({ id, reverse, href, logoBG, logo, titleScale, description }) => {
+							const showButton = id !== 3;
 
-						return (
-							<div
-								key={id}
-								id={`brand-block-${id}`}
-								className="relative scroll-mt-[120px]"
-							>
-								<SplitSection
-									reverse={reverse}
-									title={<BrandTitle src={logoBG} />}
-									description={description}
-									image={{
-										src: logo,
-										alt: "Construction site at sunset",
-									}}
-									buttonText={showButton ? "Know More" : undefined}
-									href={showButton ? href : undefined}
-									contentClassName="flex items-center"
-									titleClassName="mb-5 sm:mb-[29px] lg:mb-[66px]"
-									descriptionClassName="max-w-[488px] text-[14px] leading-[22px] sm:text-base sm:leading-[1.5]"
-									imageClassName="h-[420px] rounded-none max-md:h-auto max-md:min-h-[220px] max-md:aspect-[488/434]"
-								/>
-							</div>
-						);
-					})}
+							return (
+								<div
+									key={id}
+									id={`brand-block-${id}`}
+									className="relative scroll-mt-[120px]"
+								>
+									<SplitSection
+										reverse={reverse}
+										title={<BrandTitle src={logoBG} scale={titleScale} />}
+										description={description}
+										image={{
+											src: logo,
+											alt: "Construction site at sunset",
+										}}
+										buttonText={showButton ? "Know More" : undefined}
+										href={showButton ? href : undefined}
+										contentClassName="flex items-center"
+										titleClassName="mb-5 sm:mb-[29px] lg:mb-[30px]"
+										descriptionClassName="max-w-[488px] text-[14px] leading-[22px] sm:text-base sm:leading-[1.5]"
+										imageClassName="h-[420px] rounded-none max-md:h-auto max-md:min-h-[220px] max-md:aspect-[488/434]"
+									/>
+								</div>
+							);
+						},
+					)}
 				</StaggerContainer>
 			</Container>
 		</section>

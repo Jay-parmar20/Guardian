@@ -26,13 +26,13 @@ const REASONS: ReasonCard[] = [
 		title: "Client-First Advisory Culture",
 		imageSrc: "/images/partners/career/1.svg",
 		imageAlt: "Advisory culture at The Guardians",
-		subtitle: "Progress is driven by skill, ownership, and performance.",
+		subtitle: "",
 		flex: 260,
 	},
 	{
 		id: "transactions",
 		title: "Exposure to High-Value Transactions",
-		subtitle: "Progress is driven by skill, ownership, and performance.",
+		subtitle: "",
 		imageSrc: "/images/partners/career/2.svg",
 		imageAlt: "High-value transactions exposure",
 		flex: 260,
@@ -40,7 +40,7 @@ const REASONS: ReasonCard[] = [
 	{
 		id: "growth",
 		title: "Professional Growth Over Hierarchy",
-		subtitle: "Progress is driven by skill, ownership, and performance.",
+		subtitle: "",
 		imageSrc: "/images/partners/career/3.svg",
 		imageAlt: "Professional growth environment",
 		flex: 260,
@@ -49,7 +49,7 @@ const REASONS: ReasonCard[] = [
 	{
 		id: "process",
 		title: "Refined, Process-Driven Environment",
-		subtitle: "Progress is driven by skill, ownership, and performance.",
+		subtitle: "",
 		imageSrc: "/images/partners/career/4.svg",
 		imageAlt: "Refined process-driven environment",
 		flex: 260,

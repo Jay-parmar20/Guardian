@@ -52,24 +52,24 @@ const footerEnquiryLinkCls =
 const socialLeftCol = [
 	{
 		label: "Facebook",
-		href: "https://facebook.com",
+		href: "https://www.facebook.com/TheGuardiansRealEstateAdvisory",
 		iconSrc: "/images/facebook.svg",
 	},
 	{
 		label: "Instagram",
-		href: "https://instagram.com",
+		href: "https://www.instagram.com/theguardiansrealestateadvisory/",
 		iconSrc: "/images/instagram.svg",
 	},
 ] as const;
 const socialRightCol = [
 	{
-		label: "Twitter/X",
-		href: "https://twitter.com",
-		iconSrc: "/images/twitter.svg",
+		label: "Youtube",
+		href: "https://www.youtube.com/channel/UCo7pMykCz4xj6xSmamJsxCw",
+		iconSrc: "/images/youtube.svg",
 	},
 	{
 		label: "LinkedIn",
-		href: "https://linkedin.com",
+		href: "https://www.linkedin.com/company/theguardiansrealestateadvisory/home/",
 		iconSrc: "/images/linkedIn.svg",
 	},
 ] as const;
@@ -177,7 +177,7 @@ export function Footer() {
 	const [openLocation, setOpenLocation] = useState<string | null>(null);
 	const [openQuery, setOpenQuery] = useState<string | null>(null);
 	return (
-		<footer className="relative overflow-hidden bg-[#8F8183] text-white">
+		<footer className="relative bg-[#8F8183] text-white">
 			{/* Horizontal inset + max width: shared <Container>. Vertical rhythm: outer py + grid py-4. */}
 			<Container className="relative py-8 sm:py-10 lg:py-3">
 				{/* Watermark — Guardian logo mark, bottom-left of the brand column area */}

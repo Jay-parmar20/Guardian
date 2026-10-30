@@ -20,13 +20,22 @@ const brandCards = [
 		title: "ground holding",
 		subtitle: "Real Estate Advisory",
 		url: "/images/Group 65.svg",
+		logoScale: "scale-100",
 	},
 	{
 		title: "The Guardians",
 		subtitle: "International",
 		url: "/images/Group 70.svg",
+		logoScale: "scale-100",
 	},
-	{ title: "Cavalry", subtitle: "The Guardians", url: "/images/Group 66.svg" },
+	{
+		title: "Guardians Land",
+		subtitle: "The Guardians",
+		url: "/images/guardians-logo-bg.png",
+
+		// This asset has more internal whitespace
+		logoScale: "scale-[1.35] sm:scale-[1.4]",
+	},
 ] as const;
 
 const brandPromiseOrnament = "/images/ornament.jpeg";
@@ -79,10 +88,12 @@ function BrandCard({
 	title,
 	subtitle,
 	url,
+	logoScale,
 }: {
 	title: string;
 	subtitle: string;
 	url: string;
+	logoScale?: string;
 }) {
 	return (
 		<article className="flex min-h-[105px] w-full min-w-0 max-w-full items-center justify-center border border-[#ece7e7] bg-white px-4 py-4 text-center sm:min-h-[182px] sm:px-6 sm:py-8">
@@ -92,7 +103,11 @@ function BrandCard({
 					alt={`${title}, ${subtitle}`}
 					width={180}
 					height={100}
-					className="h-auto max-h-11 w-full object-contain object-center sm:max-h-24"
+					className={cn(
+						"h-auto max-h-11 w-full object-contain object-center sm:max-h-24",
+						"transition-transform duration-300",
+						logoScale,
+					)}
 					sizes="(max-width: 768px) 105px, 200px"
 					unoptimized
 				/>
@@ -299,6 +314,7 @@ export function AboutPageContent() {
 								title={brand.title}
 								subtitle={brand.subtitle}
 								url={brand.url}
+								logoScale={brand.logoScale}
 							/>
 						))}
 					</div>

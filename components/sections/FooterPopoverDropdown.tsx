@@ -28,8 +28,36 @@ export function FooterPopoverDropdown({
 	label,
 }: FooterPopoverDropdownProps) {
 	const [open, setOpen] = useState(false);
+
 	const rootRef = useRef<HTMLDivElement>(null);
+	const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
 	const menuId = useId();
+
+	const clearCloseTimer = () => {
+		if (closeTimerRef.current) {
+			clearTimeout(closeTimerRef.current);
+			closeTimerRef.current = null;
+		}
+	};
+
+	const handleMouseEnter = () => {
+		clearCloseTimer();
+		setOpen(true);
+	};
+
+	const handleMouseLeave = () => {
+		clearCloseTimer();
+
+		closeTimerRef.current = setTimeout(() => {
+			setOpen(false);
+		}, 180);
+	};
+
+	const handleToggle = () => {
+		clearCloseTimer();
+		setOpen((o) => !o);
+	};
 
 	useEffect(() => {
 		if (!open) return;
@@ -41,11 +69,13 @@ export function FooterPopoverDropdown({
 				return;
 			}
 
+			clearCloseTimer();
 			setOpen(false);
 		};
 
 		const onKey = (e: KeyboardEvent) => {
 			if (e.key === "Escape") {
+				clearCloseTimer();
 				setOpen(false);
 			}
 		};
@@ -53,15 +83,23 @@ export function FooterPopoverDropdown({
 		document.addEventListener("pointerdown", onDocPointerDown, {
 			capture: true,
 		});
+
 		document.addEventListener("keydown", onKey);
 
 		return () => {
 			document.removeEventListener("pointerdown", onDocPointerDown, {
 				capture: true,
 			});
+
 			document.removeEventListener("keydown", onKey);
 		};
 	}, [open]);
+
+	useEffect(() => {
+		return () => {
+			clearCloseTimer();
+		};
+	}, []);
 
 	return (
 		<div
@@ -74,8 +112,8 @@ export function FooterPopoverDropdown({
 				justify-center
 				align-baseline
 			"
-			onMouseEnter={() => setOpen(true)}
-			onMouseLeave={() => setOpen(false)}
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
 		>
 			<button
 				type="button"
@@ -99,7 +137,7 @@ export function FooterPopoverDropdown({
 				aria-haspopup="true"
 				onClick={(e) => {
 					e.stopPropagation();
-					setOpen((o) => !o);
+					handleToggle();
 				}}
 			>
 				{label}
@@ -122,6 +160,8 @@ export function FooterPopoverDropdown({
 					!open && "hidden",
 				)}
 				role="menu"
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}
 			>
 				{items.map((item) => (
 					<li key={item.href} role="none">
@@ -130,6 +170,7 @@ export function FooterPopoverDropdown({
 							href={item.href}
 							className={panelLinkClass}
 							onClick={() => {
+								clearCloseTimer();
 								setOpen(false);
 							}}
 						>

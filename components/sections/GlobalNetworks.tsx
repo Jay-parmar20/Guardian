@@ -372,7 +372,7 @@ export function GlobalNetworks({
 					<ScrollReveal direction="up" distance={24} delay={0.3} duration={0.6}>
 						<div className="mt-8 mb-4 flex justify-center sm:mt-12.5 sm:mb-0">
 							<OutlineArrowButton
-								href="/our-brand"
+								href="/global-network"
 								className={cn(
 									audienceMarketingOutlineCtaClass,
 									"h-[44px] w-fit max-w-full px-6 py-0 text-[12px] leading-none",
